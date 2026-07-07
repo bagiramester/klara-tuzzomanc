@@ -29,8 +29,6 @@ export const categories: { id: Category; label: string; description: string }[] 
 ];
 
 // Eredeti termékfotók (megőrizve)
-import cseresznyeFulbevaloImg from '@assets/cseresznye-fulbevalo.jpg';
-import langoloSzettBrossImg from '@assets/langolo-szett-bross.jpg';
 import zoldOrnamentBrossImg from '@assets/zold-ornament-bross.jpg';
 import zoldFoltosSzettImg from '@assets/zold-foltos-szett.jpg';
 import millefioriSzettImg from '@assets/millefiori-szett.jpg';
@@ -48,11 +46,9 @@ import m9BilobaImg from '@assets/uj-medalok-v2/M9_biloba.jpg';
 import m10BilobaImg from '@assets/uj-medalok-v2/M10_biloba.jpg';
 
 // Millefiori medál kollekció — 2026 (M11–M21)
-import m11MillefioriImg from '@assets/uj-millefiori-medalok/M11_millefiori.jpg';
 import m12MillefioriImg from '@assets/uj-millefiori-medalok/M12_millefiori.jpg';
 import m13MillefioriImg from '@assets/uj-millefiori-medalok/M13_millefiori.jpg';
 import m14MillefioriImg from '@assets/uj-millefiori-medalok/M14_millefiori.jpg';
-import m15MillefioriImg from '@assets/uj-millefiori-medalok/M15_millefiori.jpg';
 import m16MillefioriImg from '@assets/uj-millefiori-medalok/M16_millefiori.jpg';
 import m17MillefioriImg from '@assets/uj-millefiori-medalok/M17_millefiori.jpg';
 import m18MillefioriImg from '@assets/uj-millefiori-medalok/M18_millefiori.jpg';
