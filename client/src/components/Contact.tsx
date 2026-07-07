@@ -27,6 +27,26 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Compose mailto link with all form data
+    const emailSubject = subject || 'Érdeklődés — Klára tűzzománc';
+    const bodyLines = [
+      message,
+      '',
+      '---',
+      `Név: ${name}`,
+      `Email: ${email}`,
+    ];
+    if (phone) bodyLines.push(`Telefon: ${phone}`);
+    const emailBody = bodyLines.join('\n');
+
+    const mailtoUrl = `mailto:klara.fire.enamel@gmail.com?subject=${encodeURIComponent(
+      emailSubject
+    )}&body=${encodeURIComponent(emailBody)}`;
+
+    // Open user's email client
+    window.location.href = mailtoUrl;
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
