@@ -1,0 +1,236 @@
+/* Import elegant serif + clean sans-serif (must precede tailwind directives) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* KLÁRA tűzzománc — Kobaltkék + Arany sötét téma */
+:root, .dark {
+  --button-outline: rgba(212, 175, 55, 0.18);
+  --badge-outline: rgba(212, 175, 55, 0.12);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(212, 175, 55, 0.06);
+  --elevate-2: rgba(212, 175, 55, 0.12);
+
+  /* Kobaltkék — mély, telített, prémium hatás */
+  --background: 222 70% 8%;
+  --foreground: 38 50% 92%;
+  --border: 222 55% 20%;
+  --card: 222 65% 12%;
+  --card-foreground: 38 50% 92%;
+  --card-border: 222 55% 22%;
+
+  --sidebar: 222 65% 10%;
+  --sidebar-foreground: 38 50% 92%;
+  --sidebar-border: 222 55% 20%;
+  --sidebar-primary: 42 65% 52%;
+  --sidebar-primary-foreground: 222 70% 8%;
+  --sidebar-accent: 222 55% 18%;
+  --sidebar-accent-foreground: 38 50% 92%;
+  --sidebar-ring: 42 65% 52%;
+
+  --popover: 222 65% 13%;
+  --popover-foreground: 38 50% 92%;
+  --popover-border: 222 55% 22%;
+
+  /* Gold — primary brand accent */
+  --primary: 42 65% 52%;
+  --primary-foreground: 222 70% 8%;
+
+  --secondary: 222 55% 18%;
+  --secondary-foreground: 38 50% 92%;
+  --muted: 222 50% 16%;
+  --muted-foreground: 38 20% 72%;
+  --accent: 24 75% 50%;       /* meleg narancs */
+  --accent-foreground: 38 50% 95%;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 222 50% 24%;
+  --ring: 42 65% 52%;
+
+  --chart-1: 42 65% 52%;
+  --chart-2: 24 75% 50%;
+  --chart-3: 222 70% 45%;
+  --chart-4: 350 60% 50%;
+  --chart-5: 173 50% 45%;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'Menlo', monospace;
+  --radius: 0.375rem;
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow: 0px 2px 12px 0px hsl(222 70% 3% / 0.45);
+  --shadow-md: 0px 4px 20px 0px hsl(222 70% 3% / 0.5);
+  --shadow-lg: 0px 8px 32px 0px hsl(222 70% 3% / 0.55);
+  --shadow-xl: 0px 16px 48px 0px hsl(222 70% 3% / 0.6);
+  --shadow-2xl: 0px 24px 64px 0px hsl(222 70% 3% / 0.65);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-image:
+      radial-gradient(ellipse at top, hsl(222 75% 14%) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, hsl(222 70% 11%) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: hsl(42 65% 60%);
+  }
+  .text-gold-bright {
+    color: hsl(42 75% 68%);
+  }
+  .border-gold {
+    border-color: hsl(42 50% 45% / 0.4);
+  }
+  .border-gold-bright {
+    border-color: hsl(42 65% 55% / 0.6);
+  }
+  .bg-gold {
+    background-color: hsl(42 65% 52%);
+  }
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(42 75% 65%) 0%, hsl(38 60% 48%) 50%, hsl(24 55% 45%) 100%);
+  }
+  .gold-gradient-text {
+    background: linear-gradient(135deg, hsl(42 80% 72%) 0%, hsl(38 70% 60%) 50%, hsl(24 60% 55%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(42 60% 50% / 0.6) 50%, transparent 100%);
+  }
+  .vignette {
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 60%, hsl(222 75% 5% / 0.75) 100%);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-fade-in {
+    animation: fadeIn 1.2s ease-out both;
+  }
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .no-default-hover-elevate {}
+  .no-default-active-elevate {}
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
