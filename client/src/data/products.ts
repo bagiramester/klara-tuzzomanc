@@ -119,7 +119,7 @@ import sz2Img from '@assets/Sz2.jpg';
 import sz3Img from '@assets/Sz3.jpg';
 import sz4Img from '@assets/Sz4.jpg';
 import sz5Img from '@assets/Sz5.jpg';
-import szk10Img from '@assets/Szk10.jpg';
+import szk10Img from '@assets/SzK10.jpg';
 import szk11Img from '@assets/Szk11.jpg';
 import szk20Img from '@assets/Szk20.jpg';
 import szk21Img from '@assets/Szk21.jpg';
