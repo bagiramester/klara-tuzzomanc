@@ -27,8 +27,9 @@ export const categories: { id: Category; label: string; description: string }[] 
   { id: 'brossok', label: 'Brossok', description: 'Klasszikus kitűzők, kabátra és blúzra' },
   { id: 'szettek', label: 'Szettek', description: 'Összehangolt ékszerek — medál és fülbevaló párban' },
 ];
-
 // Eredeti termékfotók (megőrizve)
+import cseresznyeFulbevaloImg from '@assets/cseresznye-fulbevalo.jpg';
+import langoloSzettBrossImg from '@assets/langolo-szett-bross.jpg';
 import zoldOrnamentBrossImg from '@assets/zold-ornament-bross.jpg';
 import zoldFoltosSzettImg from '@assets/zold-foltos-szett.jpg';
 import millefioriSzettImg from '@assets/millefiori-szett.jpg';
@@ -299,7 +300,7 @@ const allProducts: Product[] = [
     longDescription: 'Áttört, kerek formájú medál vörösréz alapon, mély bordó tűzzománccal és valódi olasz millefiori üvegberakásokkal. Az alsó harmadon apró virágokká rendezett millefiori-betétek. Minden darab egyedi mintázatú. Méret kb. 50 mm.',
     colors: ['Bordó', 'Millefiori virágok'],
     material: 'Vörösréz alap, millefiori berakás',
-    image: m11MillefioriImg,
+    // image: m11MillefioriImg,
     featured: true,
     size: '50 mm',
     materialDetail: 'Vörösréz, ékszerzománc',
@@ -356,7 +357,7 @@ const allProducts: Product[] = [
     longDescription: 'Áttört kerek medál vörösréz alapon, lágy krém-vaníliasárga tűzzománccal. A felület finom repedt textúrájú, az alsó részen mélykék foltba ágyazott millefiori virágok. Méret kb. 50 mm.',
     colors: ['Vaníliasárga', 'Millefiori virágok'],
     material: 'Vörösréz alap, millefiori berakás',
-    image: m15MillefioriImg,
+    // image: m15MillefioriImg,
     size: '50 mm',
     materialDetail: 'Vörösréz, iszapzománc',
     technique: 'Fűrészelt',
