@@ -14,6 +14,8 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   // When user clicks "Érdeklődöm" on a product, pre-fill the form
   useEffect(() => {
@@ -25,88 +27,94 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
     }
   }, [selectedProduct]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Compose mailto link with all form data
-    const emailSubject = subject || 'Érdeklődés — Klára tűzzománc';
-    const bodyLines = [
-      message,
-      '',
-      '---',
-      `Név: ${name}`,
-      `Email: ${email}`,
-    ];
-    if (phone) bodyLines.push(`Telefon: ${phone}`);
-    const emailBody = bodyLines.join('\n');
+    setSubmitting(true);
+    setError('');
 
-    const mailtoUrl = `mailto:klara.fire.enamel@gmail.com?subject=${encodeURIComponent(
-      emailSubject
-    )}&body=${encodeURIComponent(emailBody)}`;
+    try {
+      const response = await fetch('https://formspree.io/f/xzdnpepn', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          subject: subject || 'Érdeklődés — Klára tűzzománc',
+          message,
+          product: selectedProduct?.name || '',
+          _replyto: email,
+        }),
+      });
 
-    // Open user's email client
-    window.location.href = mailtoUrl;
+      if (!response.ok) {
+        throw new Error('Nem sikerült elküldeni az üzenetet.');
+      }
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+      setSubmitted(true);
       setName('');
       setEmail('');
       setPhone('');
       setSubject('');
       setMessage('');
       onClearProduct?.();
-    }, 4000);
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 4000);
+    } catch {
+      setError('Sajnos az üzenet küldése nem sikerült. Kérlek, próbáld újra, vagy írj e-mailt közvetlenül.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <section id="kapcsolat" className="relative py-24 lg:py-32 px-6" data-testid="section-contact">
+    <section id="kapcsolat" className="py-24 md:py-32 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-gold/70 tracking-[0.4em] text-xs uppercase mb-4">Kapcsolat</p>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
-            Írj nekem,
-            <span className="block italic gold-gradient-text mt-2">örömmel várom</span>
-          </h2>
-          <p className="text-base sm:text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
-            Amennyiben valamelyik terméket más színben szeretnéd, örömmel készítek Neked
-            egyedi változatot is — írj nekem bizalommal.
-          </p>
-        </div>
+        <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">Kapcsolat</p>
+        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6">
+          Írj nekem, örömmel várom
+        </h2>
+        <p className="text-muted-foreground max-w-2xl leading-relaxed mb-16">
+          Amennyiben valamelyik terméket más színben szeretnéd, örömmel készítek Neked egyedi változatot is — írj nekem bizalommal.
+        </p>
 
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Contact form */}
           <div className="lg:col-span-3">
             {submitted ? (
-              <div
-                className="bg-card/60 border border-gold/40 p-12 text-center animate-fade-in"
-                data-testid="message-form-success"
-              >
-                <CheckCircle2 className="text-gold-bright mx-auto mb-6" size={56} strokeWidth={1.2} />
-                <h3 className="font-serif text-3xl text-gold-bright mb-4">Köszönöm az üzenetet</h3>
-                <p className="text-foreground/85 leading-relaxed max-w-md mx-auto">
-                  Megkaptam az üzeneted, és hamarosan visszaírok. Addig is, kövess a Facebookon
-                  az újabb ékszerekért.
+              <div className="flex flex-col items-center justify-center text-center py-20 border border-gold/20">
+                <CheckCircle2 className="text-gold mb-6" size={48} strokeWidth={1.5} />
+                <h3 className="font-serif text-2xl text-gold-bright mb-3">Köszönöm az üzenetet</h3>
+                <p className="text-muted-foreground max-w-md leading-relaxed">
+                  Megkaptam az üzeneted, és hamarosan visszaírok. Addig is, kövess a Facebookon az újabb ékszerekért.
                 </p>
               </div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="bg-card/40 border border-card-border p-8 lg:p-10 space-y-6"
-                data-testid="form-contact"
-              >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/30 text-red-200 text-sm leading-relaxed">
+                    {error}
+                  </div>
+                )}
+
                 {selectedProduct && (
-                  <div className="flex items-start gap-3 p-4 bg-gold/5 border border-gold/30">
-                    <div className="flex-1">
-                      <p className="text-xs tracking-[0.15em] uppercase text-gold/70 mb-1">
+                  <div className="flex items-center justify-between p-4 bg-gold/5 border border-gold/20">
+                    <div>
+                      <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">
                         Érdeklődés tárgya
                       </p>
-                      <p className="font-serif text-lg text-gold-bright">{selectedProduct.name}</p>
+                      <p className="text-foreground">{selectedProduct.name}</p>
                     </div>
                     <button
                       type="button"
-                      onClick={onClearProduct}
-                      className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2"
+                      onClick={() => onClearProduct?.()}
+                      className="text-xs tracking-wider uppercase text-muted-foreground hover:text-gold transition-colors"
                       data-testid="button-clear-product"
                     >
                       eltávolít
@@ -114,88 +122,71 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                   </div>
                 )}
 
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-xs tracking-[0.15em] uppercase text-gold/70 mb-3"
-                    >
-                      Neved
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                      placeholder="Pl. Kovács Anna"
-                      data-testid="input-name"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-xs tracking-[0.15em] uppercase text-gold/70 mb-3"
-                    >
-                      E-mail
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                      placeholder="anna@pelda.hu"
-                      data-testid="input-email"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-xs tracking-[0.15em] uppercase text-gold/70 mb-3"
-                    >
-                      Telefon <span className="normal-case text-muted-foreground">(opcionális)</span>
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                      placeholder="+36 20 123 4567"
-                      data-testid="input-phone"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-xs tracking-[0.15em] uppercase text-gold/70 mb-3"
-                    >
-                      Tárgy
-                    </label>
-                    <input
-                      id="subject"
-                      type="text"
-                      required
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
-                      className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                      placeholder="Pl. Egyedi rendelés"
-                      data-testid="input-subject"
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                    Neved
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
+                    placeholder="Pl. Kovács Anna"
+                    data-testid="input-name"
+                  />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs tracking-[0.15em] uppercase text-gold/70 mb-3"
-                  >
+                  <label htmlFor="email" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                    E-mail
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
+                    placeholder="anna@pelda.hu"
+                    data-testid="input-email"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                    Telefon (opcionális)
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
+                    placeholder="+36 20 123 4567"
+                    data-testid="input-phone"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                    Tárgy
+                  </label>
+                  <input
+                    id="subject"
+                    type="text"
+                    required
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
+                    placeholder="Pl. Egyedi rendelés"
+                    data-testid="input-subject"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
                     Üzenet
                   </label>
                   <textarea
@@ -212,10 +203,11 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
 
                 <button
                   type="submit"
-                  className="w-full gold-gradient text-background font-medium tracking-[0.2em] uppercase text-sm py-4 hover:shadow-[0_8px_32px_rgba(212,175,55,0.4)] transition-all duration-500"
+                  disabled={submitting}
+                  className="w-full gold-gradient text-background font-medium tracking-[0.2em] uppercase text-sm py-4 hover:shadow-[0_8px_32px_rgba(212,175,55,0.4)] transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed"
                   data-testid="button-submit-form"
                 >
-                  Üzenet küldése
+                  {submitting ? 'Küldés folyamatban...' : 'Üzenet küldése'}
                 </button>
 
                 <p className="text-xs text-muted-foreground text-center leading-relaxed">
@@ -296,7 +288,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                 </a>
               </div>
             </div>
-
           </aside>
         </div>
       </div>
