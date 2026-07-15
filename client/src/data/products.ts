@@ -97,6 +97,7 @@ import f15Img from '@assets/uj-fulbevalok-v2/F15.jpg';
 import f16Img from '@assets/uj-fulbevalok-v2/F16.jpg';
 import f17Img from '@assets/uj-fulbevalok-v2/F17.jpg';
 import f18Img from '@assets/uj-fulbevalok-v2/F18.jpg';
+import f18aImg from '@assets/uj-fulbevalok-v2/F18a.jpg';
 import f19Img from '@assets/uj-fulbevalok-v2/F19.jpg';
 import f20Img from '@assets/uj-fulbevalok-v2/F20.jpg';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
@@ -1002,7 +1003,7 @@ const allProducts: Product[] = [
     longDescription: 'Kerek, domborított fülbevaló vörösréz alapon, mély indigókék ékszerzománccal, finom csillámfátyollal. Átmérő kb. 15 mm, antiallergén akasztóval.',
     colors: ['Indigókék'],
     material: 'Vörösréz alap, ékszerzománc, domborított',
-    imageBg: 'linear-gradient(135deg, #2b3a67 0%, #1a2547 100%)',
+    image: f18aImg,
     size: '15 mm',
     materialDetail: 'Vörösréz, ékszerzománc',
     technique: 'Domborított',
