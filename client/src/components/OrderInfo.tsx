@@ -21,12 +21,14 @@ const shippers = [
     alt: 'FoxPost csomagautomata',
     title: 'FoxPost',
     body: 'Csomagautomata — országos hálózaton, 0–24 óra között átvehető.',
+    chipClass: 'h-24 w-24',
   },
   {
     logo: mplLogo,
     alt: 'MPL – Magyar Posta Logisztika',
     title: 'MPL',
     body: 'Magyar Posta — házhozszállítás vagy postaátvétel, ahogy neked kényelmesebb.',
+    chipClass: 'h-24 w-32',
   },
 ];
 
@@ -100,11 +102,11 @@ export function OrderInfo() {
             <div className="space-y-6">
               {shippers.map((s) => (
                 <div key={s.title} className="flex gap-4 items-start">
-                  <div className="shrink-0 w-24 h-14 bg-white rounded p-1.5 flex items-center justify-center">
+                  <div className={`shrink-0 ${s.chipClass} bg-white rounded p-1 flex items-center justify-center overflow-hidden`}>
                     <img
                       src={s.logo}
                       alt={s.alt}
-                      className="max-h-full max-w-full object-contain"
+                      className="w-full h-full object-cover"
                       loading="lazy"
                     />
                   </div>
