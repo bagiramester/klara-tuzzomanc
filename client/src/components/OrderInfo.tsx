@@ -28,7 +28,7 @@ const shippers = [
     alt: 'MPL – Magyar Posta Logisztika',
     title: 'MPL',
     body: 'Magyar Posta — házhozszállítás vagy postaátvétel, ahogy neked kényelmesebb.',
-    chipClass: 'h-24 w-32',
+    chipClass: 'w-24 aspect-[200/148]',
   },
 ];
 
