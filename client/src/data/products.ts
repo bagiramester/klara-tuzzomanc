@@ -100,6 +100,23 @@ import f18Img from '@assets/uj-fulbevalok-v2/F18.jpg';
 import f18aImg from '@assets/uj-fulbevalok-v2/F18a.jpg';
 import f19Img from '@assets/uj-fulbevalok-v2/F19.jpg';
 import f20Img from '@assets/uj-fulbevalok-v2/F20.jpg';
+import f21Img from '@assets/uj-fulbevalok-v2/F21.jpg';
+import f22Img from '@assets/uj-fulbevalok-v2/F22.jpg';
+import f23Img from '@assets/uj-fulbevalok-v2/F23.jpg';
+import f24Img from '@assets/uj-fulbevalok-v2/F24.jpg';
+import f25Img from '@assets/uj-fulbevalok-v2/F25.jpg';
+import f26Img from '@assets/uj-fulbevalok-v2/F26.jpg';
+import f27Img from '@assets/uj-fulbevalok-v2/F27.jpg';
+import f28Img from '@assets/uj-fulbevalok-v2/F28.jpg';
+import f29Img from '@assets/uj-fulbevalok-v2/F29.jpg';
+import f30Img from '@assets/uj-fulbevalok-v2/F30.jpg';
+import f31Img from '@assets/uj-fulbevalok-v2/F31.jpg';
+import f32Img from '@assets/uj-fulbevalok-v2/F32.jpg';
+import f33Img from '@assets/uj-fulbevalok-v2/F33.jpg';
+import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg';
+import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg';
+import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg';
+import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
 import k1Img from '@assets/uj-karkotok/K1.jpg';
 import k2Img from '@assets/uj-karkotok/K2.jpg';
@@ -110,6 +127,7 @@ import k6Img from '@assets/uj-karkotok/K6.jpg';
 import k7Img from '@assets/uj-karkotok/K7.jpg';
 import k8Img from '@assets/uj-karkotok/K8.jpg';
 import k9Img from '@assets/uj-karkotok/K9.jpg';
+import k10Img from '@assets/uj-karkotok/K10.jpg';
 import k11Img from '@assets/uj-karkotok/K11.jpg';
 import k12Img from '@assets/uj-karkotok/K12.jpg';
 import k13Img from '@assets/uj-karkotok/K13.jpg';
@@ -121,6 +139,7 @@ import sz2Img from '@assets/Sz2.jpg';
 import sz3Img from '@assets/Sz3.jpg';
 import sz4Img from '@assets/Sz4.jpg';
 import sz5Img from '@assets/Sz5.jpg';
+import sz6Img from '@assets/Sz6.jpg';
 import szk10Img from '@assets/SzK10.jpg';
 import szk11Img from '@assets/Szk11.jpg';
 import szk20Img from '@assets/Szk20.jpg';
@@ -1029,7 +1048,7 @@ const allProducts: Product[] = [
 id: 'f20',
 name: 'Márványos fehér-arany lándzsalevél fülbevaló',
 category: 'fulbevalok',
-price: 6700,
+price: 6000,
 description: 'Hosszúkás lándzsalevél forma márványos fehér-arany felülettel.',
 longDescription: 'Lándzsalevél formájú fülbevaló vörösréz alapon, márványos fehér-arany ékszerzománccal. Karcsú, elegáns forma. Méret kb. 40×12 mm, antiallergén akasztóval.',
 colors: ['Fehér', 'Arany'],
@@ -1037,6 +1056,244 @@ material: 'Vörösréz alap, ékszerzománc',
 image: f20Img,
 size: '40×12 mm',
 materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f21',
+name: 'Smaragdzöld-kobaltkék karika fülbevaló',
+category: 'fulbevalok',
+price: 6500,
+description: 'Kis karika forma smaragdzöld és kobaltkék ékszerzománccal.',
+longDescription: 'Kis karika formájú fülbevaló vörösréz alapon, smaragdzöld és kobaltkék ékszerzománccal. Méret kb. 25 mm átmérő, antiallergén akasztóval.',
+colors: ['Smaragdzöld', 'Kobaltkék'],
+material: 'Vörösréz alap, ékszerzománc',
+image: f21Img,
+size: '25 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f22',
+name: 'Éjkék-arany karika fülbevaló',
+category: 'fulbevalok',
+price: 6500,
+description: 'Kis karikaforma mély éjkék és arany ékszerzománccal.',
+longDescription: 'Kis karika formájú fülbevaló vörösréz alapon, mély éjkék és arany ékszerzománccal. Méret kb. 25 mm átmérő, antiallergén akasztóval.',
+colors: ['Éjkék', 'Arany'],
+material: 'Vörösréz alap, ékszerzománc',
+image: f22Img,
+size: '25 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f23',
+name: 'Mustársárga lándzsalevél fülbevaló',
+category: 'fulbevalok',
+price: 6000,
+description: 'Karcsú lándzsalevél forma meleg mustársárga iszapzománccal.',
+longDescription: 'Lándzsalevél formájú fülbevaló vörösréz alapon, mustársárga iszapzománccal. Karcsú, elegáns forma. Méret kb. 40×12 mm, antiallergén akasztóval.',
+colors: ['Mustársárga'],
+material: 'Vörösréz alap, iszapzománc',
+image: f23Img,
+size: '40×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f24',
+name: 'Sötétzöld erezett levél fülbevaló',
+category: 'fulbevalok',
+price: 5900,
+description: 'Levél forma erdőzöld, erezett felületű iszapzománccal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, sötét erdőzöld iszapzománccal, finom erezettel. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Erdőzöld'],
+material: 'Vörösréz alap, iszapzománc',
+image: f24Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f25',
+name: 'Zöld-bronz levél fülbevaló',
+category: 'fulbevalok',
+price: 5900,
+description: 'Levél forma olívazöld és bronz iszapzománc árnyalatokkal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, olívazöld és bronz iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Olívazöld', 'Bronz'],
+material: 'Vörösréz alap, iszapzománc',
+image: f25Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f26',
+name: 'Világoszöld levél fülbevaló',
+category: 'fulbevalok',
+price: 6900,
+description: 'Levél forma friss zsályazöld, erezett iszapzománccal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, világos zsályazöld iszapzománccal, erezettel. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Zsályazöld'],
+material: 'Vörösréz alap, iszapzománc',
+image: f26Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f27',
+name: 'Őszi levél fülbevaló',
+category: 'fulbevalok',
+price: 6900,
+description: 'Levél forma őszi barna és fehér erezett iszapzománccal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, őszi barna és fehér erezett iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Barna', 'Fehér'],
+material: 'Vörösréz alap, iszapzománc',
+image: f27Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f28',
+name: 'Fekete levél fülbevaló',
+category: 'fulbevalok',
+price: 5900,
+description: 'Levélforma grafitfekete, mélyfényű iszapzománccal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, grafitfekete, mélyfényű iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Fekete'],
+material: 'Vörösréz alap, iszapzománc',
+image: f28Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f29',
+name: 'Citromsárga levél fülbevaló',
+category: 'fulbevalok',
+price: 5900,
+description: 'Levél forma friss citromsárga iszapzománccal.',
+longDescription: 'Levél formájú fülbevaló vörösréz alapon, friss citromsárga iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.',
+colors: ['Citromsárga'],
+material: 'Vörösréz alap, iszapzománc',
+image: f29Img,
+size: '40×15 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f30',
+name: 'Csokoládé hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 7300,
+description: 'Hosszúkás fülbevaló középbronz csokoládébarna ékszerzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, közép csokoládébarna ékszerzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Csokoládébarna'],
+material: 'Vörösréz alap, ékszerzománc',
+image: f30Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f31',
+name: 'Narancs hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 6700,
+description: 'Hosszúkás fülbevaló élénk narancssárga iszapzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, narancssárga iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Narancssárga'],
+material: 'Vörösréz alap, iszapzománc',
+image: f31Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f32',
+name: 'Királykék hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 7500,
+description: 'Hosszúkás fülbevaló mély királykék ékszerzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, mély királykék ékszerzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Királykék'],
+material: 'Vörösréz alap, ékszerzománc',
+image: f32Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f33',
+name: 'Menta hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 6700,
+description: 'Hosszúkás fülbevaló friss mentazöld iszapzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, mentazöld iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Mentazöld'],
+material: 'Vörösréz alap, iszapzománc',
+image: f33Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f34',
+name: 'Mandarin hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 6700,
+description: 'Hosszúkás fülbevaló meleg mandarin narancs iszapzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, mandarin narancssárga iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Mandarin'],
+material: 'Vörösréz alap, iszapzománc',
+image: f34Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f35',
+name: 'Acélkék hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 7500,
+description: 'Hosszúkás fülbevaló hűvös acélkék ékszerzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, acélkék ékszerzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Acélkék'],
+material: 'Vörösréz alap, ékszerzománc',
+image: f35Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+},
+
+{
+id: 'f36',
+name: 'Orchidea hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 6700,
+description: 'Hosszúkás fülbevaló pasztell lila-rózsaszín iszapzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, pasztell lila és rózsaszín iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Lila', 'Rózsaszín'],
+material: 'Vörösréz alap, iszapzománc',
+image: f36Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f37',
+name: 'Étcsoki hosszúkás fülbevaló',
+category: 'fulbevalok',
+price: 7500,
+description: 'Hosszúkás fülbevaló sötét étcsoki barna iszapzománccal.',
+longDescription: 'Hosszúkás formájú fülbevaló vörösréz alapon, sötét étcsoki barna iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.',
+colors: ['Étcsokibarna'],
+material: 'Vörösréz alap, iszapzománc',
+image: f37Img,
+size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
 },
 
 // ===== KARKÖTŐK ===== (KB_W1, K1–K14, vörösréz, fűrészelt és kalapált)
@@ -1166,6 +1423,20 @@ materialDetail: 'Vörösréz, ékszerzománc',
     material: 'Vörösréz alap, ékszerzománc',
     image: k9Img,
     size: '65×31 mm',
+    materialDetail: 'Vörösréz, ékszerzománc',
+    technique: 'Fűrészelt, kalapált',
+  },
+  {
+    id: 'k10',
+    name: 'Zöld-arany-bordó mandzsetta karperec',
+    category: 'karkotok',
+    price: 15000,
+    description: 'Nyitott mandzsetta karperec zöld-arany-bordó ékszerzománccal.',
+    longDescription: 'Nyitott mandzsetta-formájú vörösréz karperec zöld, arany és bordó ékszerzománc kompozícióval. Kézzel fűrészelt és kalapált, egyedi darab. Méret kb. 72×31 mm.',
+    colors: ['Zöld', 'Arany', 'Bordó'],
+    material: 'Vörösréz alap, ékszerzománc',
+    image: k10Img,
+    size: '72×31 mm',
     materialDetail: 'Vörösréz, ékszerzománc',
     technique: 'Fűrészelt, kalapált',
   },
@@ -1365,6 +1636,21 @@ material: 'Vörösréz alap, ékszerzománc',
 image: sz5Img,
 size: '29 mm',
 materialDetail: 'Vörösréz, ékszerzománc',
+technique: 'Fűrészelt, kalapált',
+},
+
+{
+id: 'sz6',
+name: 'Millefiori ovális–háromszög szett',
+category: 'szettek',
+price: 17000,
+description: 'Összehangolt ovális medál és háromszög fülbevaló millefiori betéttel.',
+longDescription: 'Ovális medál és hozzá illő háromszög fülbevaló pár vörösréz alapon, ékszerzománccal és valódi olasz millefiori üvegberakással. Kézzel fűrészelt és kalapált darabok. A medál kb. 55×25 mm, a fülbevalók kb. 50×20 mm.',
+colors: ['Millefiori'],
+material: 'Vörösréz alap, ékszerzománc, millefiori',
+image: sz6Img,
+size: '55×25 mm / 50×20 mm',
+materialDetail: 'Vörösréz, ékszerzománc, millefiori',
 technique: 'Fűrészelt, kalapált',
 },
 
