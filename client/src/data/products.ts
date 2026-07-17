@@ -117,6 +117,7 @@ import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg';
 import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg';
 import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg';
 import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
+import f38Img from '@assets/F38.jpg';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
 import k1Img from '@assets/uj-karkotok/K1.jpg';
 import k2Img from '@assets/uj-karkotok/K2.jpg';
@@ -1293,6 +1294,20 @@ colors: ['Étcsokibarna'],
 material: 'Vörösréz alap, iszapzománc',
 image: f37Img,
 size: '60×12 mm',
+materialDetail: 'Vörösréz, iszapzománc',
+},
+
+{
+id: 'f38',
+name: 'Sárga madárka fülbevaló',
+category: 'fulbevalok',
+price: 6000,
+description: 'Madárka forma sárga iszapzománccal.',
+longDescription: 'Madárka formájú fülbevaló vörösréz alapon, sárga iszapzománccal. Méret kb. 30×25 mm, antiallergén akasztóval.',
+colors: ['Sárga'],
+material: 'Vörösréz alap, iszapzománc',
+image: f38Img,
+size: '30×25 mm',
 materialDetail: 'Vörösréz, iszapzománc',
 },
 
