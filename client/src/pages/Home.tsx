@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { Collection } from '@/components/Collection';
 import { About } from '@/components/About';
 import { Process } from '@/components/Process';
+import { OrderInfo } from '@/components/OrderInfo';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import type { Product } from '@/data/products';
@@ -27,6 +28,7 @@ export default function Home() {
         <Collection onInterest={handleInterest} />
         <About />
         <Process />
+        <OrderInfo />
         <Contact selectedProduct={selectedProduct} onClearProduct={() => setSelectedProduct(null)} />
       </main>
       <Footer />

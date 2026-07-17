@@ -6,6 +6,7 @@ const navLinks = [
   { id: 'kollekcio', label: 'Kollekció' },
   { id: 'rolam', label: 'Rólam' },
   { id: 'folyamat', label: 'A folyamat' },
+  { id: 'vasarlas', label: 'Vásárlás' },
   { id: 'kapcsolat', label: 'Kapcsolat' },
 ];
 
