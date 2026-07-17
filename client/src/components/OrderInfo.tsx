@@ -1,5 +1,5 @@
 import { Landmark, CreditCard, Package, Gift, Truck } from 'lucide-react';
-import foxpostLogo from '@assets/foxpost-logo.png';
+import foxpostLogo from '@assets/foxpost-logo.jpg';
 import mplLogo from '@assets/mpl-logo.jpg';
 
 const payments = [
