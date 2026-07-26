@@ -113,7 +113,25 @@ import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg';
 import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg';
 import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg';
 import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
-// Új fülbevalók 2026 nyár — KB_W6 (F38–F54) import f38Img from '@assets/uj-fulbevalok-w6/F38.jpg'; import f39Img from '@assets/uj-fulbevalok-w6/F39.jpg'; import f40Img from '@assets/uj-fulbevalok-w6/F40.jpg'; import f41Img from '@assets/uj-fulbevalok-w6/F41.jpg'; import f42Img from '@assets/uj-fulbevalok-w6/F42.jpg'; import f43Img from '@assets/uj-fulbevalok-w6/F43.jpg'; import f44Img from '@assets/uj-fulbevalok-w6/F44.jpg'; import f45Img from '@assets/uj-fulbevalok-w6/F45.jpg'; import f46Img from '@assets/uj-fulbevalok-w6/F46.jpg'; import f47Img from '@assets/uj-fulbevalok-w6/F47.jpg'; import f48Img from '@assets/uj-fulbevalok-w6/F48.jpg'; import f49Img from '@assets/uj-fulbevalok-w6/F49.jpg'; import f50Img from '@assets/uj-fulbevalok-w6/F50.jpg'; import f51Img from '@assets/uj-fulbevalok-w6/F51.jpg'; import f52Img from '@assets/uj-fulbevalok-w6/F52.jpg'; import f53Img from '@assets/uj-fulbevalok-w6/F53.jpg'; import f54Img from '@assets/uj-fulbevalok-w6/F54.jpg'; import madarkaImg from '@assets/F38.jpg';
+// Új fülbevalók 2026 nyár — KB_W6 (F38–F54)
+  import f38Img from '@assets/uj-fulbevalok-w6/F38.jpg';
+  import f39Img from '@assets/uj-fulbevalok-w6/F39.jpg';
+  import f40Img from '@assets/uj-fulbevalok-w6/F40.jpg';
+  import f41Img from '@assets/uj-fulbevalok-w6/F41.jpg';
+  import f42Img from '@assets/uj-fulbevalok-w6/F42.jpg';
+  import f43Img from '@assets/uj-fulbevalok-w6/F43.jpg';
+  import f44Img from '@assets/uj-fulbevalok-w6/F44.jpg';
+  import f45Img from '@assets/uj-fulbevalok-w6/F45.jpg';
+  import f46Img from '@assets/uj-fulbevalok-w6/F46.jpg';
+  import f47Img from '@assets/uj-fulbevalok-w6/F47.jpg';
+  import f48Img from '@assets/uj-fulbevalok-w6/F48.jpg';
+  import f49Img from '@assets/uj-fulbevalok-w6/F49.jpg';
+  import f50Img from '@assets/uj-fulbevalok-w6/F50.jpg';
+  import f51Img from '@assets/uj-fulbevalok-w6/F51.jpg';
+  import f52Img from '@assets/uj-fulbevalok-w6/F52.jpg';
+  import f53Img from '@assets/uj-fulbevalok-w6/F53.jpg';
+  import f54Img from '@assets/uj-fulbevalok-w6/F54.jpg';
+  import madarkaImg from '@assets/F38.jpg';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
 import k1Img from '@assets/uj-karkotok/K1.jpg';
 import k2Img from '@assets/uj-karkotok/K2.jpg';
