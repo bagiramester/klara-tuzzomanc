@@ -21,7 +21,7 @@ export function Footer() {
               </div>
             </div>
             <p className="font-serif italic text-gold-bright/90 text-lg mt-4 leading-relaxed">
-              „Tűzzel, szívvel, lélekkel."
+              „Tűzzel, szívvel, lélekkel.”
             </p>
             <p className="text-sm text-muted-foreground mt-4 max-w-md leading-relaxed">
               Egyedi tervezésű, kézzel készített tűzzománc ékszerek Budapestről. Minden darab a
@@ -58,15 +58,10 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-foreground/70">
               <li>
                 <a
-                  href="mailto:klara.fire.enamel@gmail.com"
+                  href="mailto:fire.enamel.klara@gmail.com"
                   className="hover:text-gold-bright transition-colors break-all"
                 >
-                  klara.fire.enamel@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+36204847050" className="hover:text-gold-bright transition-colors">
-                  +36 20 484 7050
+                  fire.enamel.klara@gmail.com
                 </a>
               </li>
               <li>Budapest, Magyarország</li>

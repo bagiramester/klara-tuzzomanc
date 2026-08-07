@@ -36,7 +36,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Real brand logo — cropped via object-fit to hide black bars */}
+        {/* Real brand logo */}
         <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <div
             className="mx-auto overflow-hidden w-[300px] h-[360px] sm:w-[380px] sm:h-[460px] md:w-[460px] md:h-[560px] flex items-center justify-center"
@@ -61,9 +61,8 @@ export function Hero() {
           </div>
 
           <p className="text-base sm:text-lg text-foreground/85 max-w-2xl mx-auto leading-relaxed mb-12">
-            Egyedi tervezésű, kézzel készített tűzzománc ékszerek réz, ezüst és bronz alapon
-            — <span className="text-gold/90">820 fokon égetve</span>, napokon át tartó
-            kézműves folyamattal.
+            Egyedi tervezésű, kézzel készített tűzzománc ékszerek réz, ezüst és bronz alapon{' '}
+            <span className="text-gold/90">820 fokon égetve</span>, napokon át tartó kézműves folyamattal.
           </p>
         </div>
 
@@ -90,8 +89,6 @@ export function Hero() {
           </button>
         </div>
       </div>
-
-
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Facebook, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Facebook, CheckCircle2 } from 'lucide-react';
 import type { Product } from '@/data/products';
 
 interface ContactProps {
@@ -10,7 +10,6 @@ interface ContactProps {
 export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -43,7 +42,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
         body: JSON.stringify({
           name,
           email,
-          phone,
           subject: subject || 'Érdeklődés — Klára tűzzománc',
           message,
           product: selectedProduct?.name || '',
@@ -58,7 +56,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
       setSubmitted(true);
       setName('');
       setEmail('');
-      setPhone('');
       setSubject('');
       setMessage('');
       onClearProduct?.();
@@ -77,12 +74,9 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
     <section id="kapcsolat" className="py-24 md:py-32 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">Kapcsolat</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6">
+        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-12">
           Írj nekem, örömmel várom
         </h2>
-        <p className="text-muted-foreground max-w-2xl leading-relaxed mb-16">
-          Amennyiben valamelyik terméket más színben szeretnéd, örömmel készítek Neked egyedi változatot is — írj nekem bizalommal.
-        </p>
 
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Contact form */}
@@ -92,7 +86,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                 <CheckCircle2 className="text-gold mb-6" size={48} strokeWidth={1.5} />
                 <h3 className="font-serif text-2xl text-gold-bright mb-3">Köszönöm az üzenetet</h3>
                 <p className="text-muted-foreground max-w-md leading-relaxed">
-                  Megkaptam az üzeneted, és hamarosan visszaírok. Addig is, kövess a Facebookon az újabb ékszerekért.
+                  Megkaptam az üzeneted, és hamarosan válaszolok. Addig is, kövess a Facebookon az újabb ékszerekért.
                 </p>
               </div>
             ) : (
@@ -151,21 +145,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                     className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
                     placeholder="anna@pelda.hu"
                     data-testid="input-email"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
-                    Telefon (opcionális)
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                    placeholder="+36 20 123 4567"
-                    data-testid="input-phone"
                   />
                 </div>
 
@@ -229,26 +208,11 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                       E-mail
                     </p>
                     <a
-                      href="mailto:klara.fire.enamel@gmail.com"
+                      href="mailto:fire.enamel.klara@gmail.com"
                       className="text-foreground hover:text-gold-bright transition-colors break-all"
                       data-testid="link-email"
                     >
-                      klara.fire.enamel@gmail.com
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <Phone className="text-gold mt-1 shrink-0" size={20} strokeWidth={1.5} />
-                  <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                      Telefon
-                    </p>
-                    <a
-                      href="tel:+36204847050"
-                      className="text-foreground hover:text-gold-bright transition-colors"
-                      data-testid="link-phone"
-                    >
-                      +36 20 484 7050
+                      fire.enamel.klara@gmail.com
                     </a>
                   </div>
                 </li>

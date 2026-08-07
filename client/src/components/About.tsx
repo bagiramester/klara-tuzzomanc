@@ -49,7 +49,7 @@ export function About() {
               {/* Caption */}
               <div className="absolute bottom-8 left-0 right-0 text-center">
                 <p className="font-serif italic text-lg text-gold-bright px-6 drop-shadow-lg">
-                  „A tűz formál, a kéz tanítja a fémet."
+                  „A tűz formál, a kéz tanítja a fémet.”
                 </p>
               </div>
             </div>
@@ -79,8 +79,7 @@ export function About() {
                 tanáraimnak, akiktől a mai napig sokat tanulok:
               </p>
               <p className="text-gold-bright/90 font-serif italic text-base">
-                Lizák Pálma · Török Ibolya · Vdovkina Anastasia · Meghan Salgaonkar ·
-                Ötvös Nagy Ferenc
+                Lizák Pálma · Török Ibolya · Vdovkina Anastasia · Meghan Salgaonkar · Gergely Judit · Ötvös Nagy Ferenc
               </p>
               <p>
                 Minden ékszer napokig készül. Először a fémet formázom — réz, ezüst vagy bronz

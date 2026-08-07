@@ -42,44 +42,28 @@ export function Navigation() {
             data-testid="button-home"
             aria-label="Vissza a főoldalra"
           >
-            <Logo size={scrolled ? 40 : 48} showText={false} />
-            <div className="hidden sm:block text-left">
-              <div className="font-serif text-gold-bright tracking-[0.25em] text-base leading-none">
-                KLÁRA
-              </div>
-              <div className="font-serif text-gold/60 tracking-[0.2em] text-[9px] mt-1 uppercase">
-                Tűzzománc
-              </div>
-            </div>
+            <Logo size={scrolled ? 40 : 48} showText={true} />
           </button>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8" aria-label="Fő navigáció">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="px-5 py-2.5 text-[15px] tracking-wide text-foreground/85 hover:text-gold-bright transition-colors duration-300 relative group"
-                data-testid={`link-${link.id}`}
+                className="text-xs tracking-[0.2em] uppercase text-foreground/80 hover:text-gold-bright transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-gold after:transition-all hover:after:w-full"
+                data-testid={`nav-link-${link.id}`}
               >
                 {link.label}
-                <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-px bg-gold group-hover:w-6 transition-all duration-300" />
               </button>
             ))}
-            <button
-              onClick={() => scrollTo('kapcsolat')}
-              className="ml-4 px-6 py-2.5 border border-gold/50 text-gold-bright hover:bg-gold/10 hover:border-gold-bright transition-all duration-300 text-[14px] tracking-[0.15em] uppercase"
-              data-testid="button-cta-erdeklodes"
-            >
-              Érdeklődés
-            </button>
           </nav>
 
-          {/* Mobile burger */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-3 text-gold-bright"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menü"
+            className="md:hidden p-2 text-gold-bright hover:text-gold transition-colors"
+            aria-label={mobileOpen ? 'Menü bezárása' : 'Menü megnyitása'}
             data-testid="button-mobile-menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,28 +71,23 @@ export function Navigation() {
         </div>
       </header>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-background/95 backdrop-blur-md md:hidden flex flex-col items-center justify-center gap-2 animate-fade-in"
-          data-testid="menu-mobile"
+          className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col justify-center px-8 py-20 md:hidden animate-fade-in"
+          data-testid="drawer-mobile-menu"
         >
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              className="px-8 py-4 text-2xl font-serif text-foreground hover:text-gold-bright transition-colors"
-              data-testid={`link-mobile-${link.id}`}
-            >
-              {link.label}
-            </button>
-          ))}
-          <button
-            onClick={() => scrollTo('kapcsolat')}
-            className="mt-6 px-10 py-4 border border-gold text-gold-bright text-lg tracking-[0.15em] uppercase"
-          >
-            Érdeklődés
-          </button>
+          <nav className="flex flex-col items-center gap-8" aria-label="Mobil navigáció">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className="font-serif text-2xl tracking-[0.15em] text-foreground hover:text-gold-bright transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
         </div>
       )}
     </>

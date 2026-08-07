@@ -30,6 +30,13 @@ const shippers = [
     body: 'Magyar Posta — házhozszállítás vagy postaátvétel, ahogy neked kényelmesebb.',
     chipClass: 'w-24 aspect-[200/148]',
   },
+  {
+    logo: null,
+    alt: 'GLS Hungary',
+    title: 'GLS',
+    body: 'GLS futárszolgálat — megbízható és gyors házhozszállítás vagy csomagpontra küldés.',
+    chipClass: 'w-24 h-24',
+  },
 ];
 
 const packagings = [
@@ -102,13 +109,19 @@ export function OrderInfo() {
             <div className="space-y-6">
               {shippers.map((s) => (
                 <div key={s.title} className="flex gap-4 items-start">
-                  <div className={`shrink-0 ${s.chipClass} bg-white rounded p-1 flex items-center justify-center overflow-hidden`}>
-                    <img
-                      src={s.logo}
-                      alt={s.alt}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                  <div className={`shrink-0 ${s.chipClass} bg-white rounded p-1 flex items-center justify-center overflow-hidden border border-gold/20`}>
+                    {s.logo ? (
+                      <img
+                        src={s.logo}
+                        alt={s.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[#00175a] flex items-center justify-center rounded">
+                        <span className="font-bold italic text-yellow-400 text-base tracking-wider">GLS</span>
+                      </div>
+                    )}
                   </div>
                   <div className="pt-0.5">
                     <p className="font-serif text-lg text-foreground mb-1">{s.title}</p>
