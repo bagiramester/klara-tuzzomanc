@@ -12,24 +12,19 @@ import type { Product } from '@/data/products';
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const handleInterest = (product: Product) => {
-    setSelectedProduct(product);
-    // Scroll to contact form
-    setTimeout(() => {
-      document.getElementById('kapcsolat')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground selection:bg-gold/30 selection:text-gold-bright">
       <Navigation />
       <main>
         <Hero />
-        <Collection onInterest={handleInterest} />
+        <Collection onSelectProduct={(product) => setSelectedProduct(product)} />
         <About />
         <Process />
         <OrderInfo />
-        <Contact selectedProduct={selectedProduct} onClearProduct={() => setSelectedProduct(null)} />
+        <Contact
+          selectedProduct={selectedProduct}
+          onClearProduct={() => setSelectedProduct(null)}
+        />
       </main>
       <Footer />
     </div>
