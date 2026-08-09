@@ -125,7 +125,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                 }`}
                 data-testid={`filter-${cat.id}`}
               >
-                {cat.name} ({count})
+                {cat.label} ({count})
               </button>
             );
           })}
@@ -281,7 +281,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="text-[11px] tracking-[0.2em] uppercase text-gold font-medium">
-                    {categories.find((c) => c.id === activeProduct.category)?.name || activeProduct.category}
+                    {categories.find((c) => c.id === activeProduct.category)?.label || activeProduct.category}
                   </span>
                   <span className="text-xs text-muted-foreground">ID: {activeProduct.id}</span>
                 </div>
