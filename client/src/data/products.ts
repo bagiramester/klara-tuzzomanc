@@ -31,15 +31,8 @@ export const categories: { id: Category; label: string; description: string }[] 
 import zoldOrnamentBrossImg from '@assets/zold-ornament-bross.jpg';
 
 // Biloba (ginkgo) medál kollekció — 2026 (KB_F3 alapján, M1–M10)
-import m1BilobaImg from '@assets/uj-medalok-v2/M1_biloba.jpg';
-import m2BilobaImg from '@assets/uj-medalok-v2/M2_biloba.jpg';
-import m3BilobaImg from '@assets/uj-medalok-v2/M3_biloba.jpg';
 import m4BilobaImg from '@assets/uj-medalok-v2/M4_biloba.jpg';
-import m5BilobaImg from '@assets/uj-medalok-v2/M5_biloba.jpg';
 import m6BilobaImg from '@assets/uj-medalok-v2/M6_biloba.jpg';
-import m7BilobaImg from '@assets/uj-medalok-v2/M7_biloba.jpg';
-import m8BilobaImg from '@assets/uj-medalok-v2/M8_biloba.jpg';
-import m9BilobaImg from '@assets/uj-medalok-v2/M9_biloba.jpg';
 import m10BilobaImg from '@assets/uj-medalok-v2/M10_biloba.jpg';
 
 // Millefiori medál kollekció — 2026 (M11–M21)
@@ -50,7 +43,6 @@ import m16MillefioriImg from '@assets/uj-millefiori-medalok/M16_millefiori.jpg';
 import m17MillefioriImg from '@assets/uj-millefiori-medalok/M17_millefiori.jpg';
 import m18MillefioriImg from '@assets/uj-millefiori-medalok/M18_millefiori.jpg';
 import m19MillefioriImg from '@assets/uj-millefiori-medalok/M19_millefiori.jpg';
-import m20MillefioriImg from '@assets/uj-millefiori-medalok/M20_millefiori.jpg';
 import m21MillefioriImg from '@assets/uj-millefiori-medalok/M21_millefiori.jpg';
 // Új medálok 2026 nyár — KB_W2 (M22–M42)
 import m22Img from '@assets/uj-medalok-v2/M22.jpg';
@@ -69,7 +61,6 @@ import m34Img from '@assets/uj-medalok-v2/M34.jpg';
 import m35Img from '@assets/uj-medalok-v2/M35.jpg';
 import m36Img from '@assets/uj-medalok-v2/M36.jpg';
 import m37Img from '@assets/uj-medalok-v2/M37.jpg';
-import m38Img from '@assets/uj-medalok-v2/M38.jpg';
 import m39Img from '@assets/uj-medalok-v2/M39.jpg';
 import m40Img from '@assets/uj-medalok-v2/M40.jpg';
 import m41Img from '@assets/uj-medalok-v2/M41.jpg';
@@ -82,7 +73,6 @@ import f3Img from '@assets/uj-fulbevalok-v2/F3.jpg';
 import f4Img from '@assets/uj-fulbevalok-v2/F4.jpg';
 import f5Img from '@assets/uj-fulbevalok-v2/F5.jpg';
 import f6Img from '@assets/uj-fulbevalok-v2/F6.jpg';
-import f6aImg from '@assets/uj-fulbevalok-v2/F6a.jpg';
 import f7Img from '@assets/uj-fulbevalok-v2/F7.jpg';
 import f8Img from '@assets/uj-fulbevalok-v2/F8.jpg';
 import f9Img from '@assets/uj-fulbevalok-v2/F9.jpg';
@@ -113,7 +103,7 @@ import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg';
 import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg';
 import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg';
 import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
-// Új fülbevalók 2026 nyár — KB_W6 (F38–F54)
+// Új fülbevalók 2026 — KB_W8 (F38–F53)
   import f38Img from '@assets/uj-fulbevalok-w6/F38.jpg';
   import f39Img from '@assets/uj-fulbevalok-w6/F39.jpg';
   import f40Img from '@assets/uj-fulbevalok-w6/F40.jpg';
@@ -129,9 +119,7 @@ import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
   import f50Img from '@assets/uj-fulbevalok-w6/F50.jpg';
   import f51Img from '@assets/uj-fulbevalok-w6/F51.jpg';
   import f52Img from '@assets/uj-fulbevalok-w6/F52.jpg';
-  import f53Img from '@assets/uj-fulbevalok-w6/F53.jpg';
   import f54Img from '@assets/uj-fulbevalok-w6/F54.jpg';
-  import madarkaImg from '@assets/F38.jpg';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
 import k1Img from '@assets/uj-karkotok/K1.jpg';
 import k2Img from '@assets/uj-karkotok/K2.jpg';
@@ -146,7 +134,6 @@ import k10Img from '@assets/uj-karkotok/K10.jpg';
 import k11Img from '@assets/uj-karkotok/K11.jpg';
 import k12Img from '@assets/uj-karkotok/K12.jpg';
 import k13Img from '@assets/uj-karkotok/K13.jpg';
-import k14Img from '@assets/uj-karkotok/K14.jpg';
 
 // Szettek — 2026 (KB_W3, Sz1–Sz5, Szk10/11, Szk20/21)
 import sz1Img from '@assets/Sz1.jpg';
@@ -165,48 +152,6 @@ const allProducts: Product[] = [
 
   // ===== BILOBA (GINKGO) MEDÁL KOLLEKCIÓ — 2026 =====
   {
-    id: 'm1-biloba',
-    name: 'Aranyharmat ginkgo medál',
-    category: 'medalok',
-    price: 4500,
-    description: 'Aranyló sötétzöld levél — fűrészelt ginkgo, finom harmatcsillanással.',
-    longDescription: 'Kézzel fűrészelt biloba (ginkgo) levél medál vörösréz alapon, arany és sötétzöld ékszerzománccal égetve. Minden darab egyedi mintázatú. Mérete kb. 26×25 mm.',
-    colors: ['Arany', 'Sötétzöld'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m1BilobaImg,
-        size: '26×25 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt',
-  },
-  {
-    id: 'm2-biloba',
-    name: 'Tavaszi ginkgo medál',
-    category: 'medalok',
-    price: 4900,
-    description: 'Friss zöld és arany — a tavaszi rügyfakadás színei.',
-    longDescription: 'Fűrészelt biloba levél medál vörösréz alapon, arany és élénk zöld ékszerzománccal. Klasszikus, természetközeli darab. Mérete kb. 31×35 mm.',
-    colors: ['Arany', 'Zöld'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m2BilobaImg,
-    size: '31×35 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt',
-  },
-  {
-    id: 'm3-biloba',
-    name: 'Napsütötte ginkgo medál',
-    category: 'medalok',
-    price: 5200,
-    description: 'Aranyló zöld — meleg, déli fény a leveleken.',
-    longDescription: 'Kézzel fűrészelt biloba levél medál vörösréz alapon, arany és zöld ékszerzománccal. Mély rézvilla átsejlése a felületen meleg fényt ad. Mérete kb. 28×35 mm.',
-    colors: ['Arany', 'Zöld'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m3BilobaImg,
-    size: '28×35 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt',
-  },
-  {
     id: 'm4-biloba',
     name: 'Mezei ginkgo medál',
     category: 'medalok',
@@ -221,20 +166,6 @@ const allProducts: Product[] = [
     technique: 'Fűrészelt',
   },
   {
-    id: 'm5-biloba',
-    name: 'Smaragd ginkgo medál',
-    category: 'medalok',
-    price: 5400,
-    description: 'Mély smaragd-arany levél — drágakőszerű ragyogás.',
-    longDescription: 'Kézzel fűrészelt biloba levél medál vörösréz alapon, arany és sötétzöld ékszerzománccal. Tükörfényes, intenzív zöld felület. Mérete kb. 29×43 mm.',
-    colors: ['Arany', 'Sötétzöld'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m5BilobaImg,
-        size: '29×43 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt',
-  },
-  {
     id: 'm6-biloba',
     name: 'Erdőmély ginkgo medál',
     category: 'medalok',
@@ -246,48 +177,6 @@ const allProducts: Product[] = [
     image: m6BilobaImg,
     size: '35×48 mm',
     materialDetail: 'Vörösréz, iszapzománc',
-    technique: 'Fűrészelt',
-  },
-  {
-    id: 'm7-biloba',
-    name: 'Patakparti ginkgo medál',
-    category: 'medalok',
-    price: 6500,
-    description: 'Sárga és világoszöld — vizes, áttündöklő hangulat.',
-    longDescription: 'Kézzel fűrészelt biloba levél medál vörösréz alapon, sárga és világoszöld iszapzománccal. Nagy, ívelt formájú statement-darab. Mérete kb. 46×56 mm.',
-    colors: ['Sárga', 'Világoszöld'],
-    material: 'Vörösréz alap, iszapzománc, fűrészelt',
-    image: m7BilobaImg,
-    size: '46×56 mm',
-    materialDetail: 'Vörösréz, iszapzománc',
-    technique: 'Fűrészelt',
-  },
-  {
-    id: 'm8-biloba',
-    name: 'Éjjeli ginkgo medál',
-    category: 'medalok',
-    price: 6500,
-    description: 'Mély sötétzöld arany erezettel — holdfényes erdő.',
-    longDescription: 'Fűrészelt biloba levél medál vörösréz alapon, sötétzöld és arany ékszerzománccal. Drámai, mély árnyalat, jellegzetes karakterrel. Mérete kb. 44×63 mm.',
-    colors: ['Sötétzöld', 'Arany'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m8BilobaImg,
-        size: '44×63 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt',
-  },
-  {
-    id: 'm9-biloba',
-    name: 'Aranyfátyol ginkgo medál',
-    category: 'medalok',
-    price: 6500,
-    description: 'Sötétzöld levél aranyló átütéssel — finom textúrákkal.',
-    longDescription: 'Kézzel fűrészelt biloba levél medál vörösréz alapon, sötétzöld és arany ékszerzománccal. Az aranyréteg fátyolszerűen szűrődik át a zöldön. Mérete kb. 43×58 mm.',
-    colors: ['Sötétzöld', 'Arany'],
-    material: 'Vörösréz alap, ékszerzománc, fűrészelt',
-    image: m9BilobaImg,
-    size: '43×58 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
     technique: 'Fűrészelt',
   },
   {
@@ -405,20 +294,6 @@ const allProducts: Product[] = [
     technique: 'Fűrészelt',
   },
   {
-    id: 'm20-millefiori',
-    name: 'Pasztell millefiori medál',
-    category: 'medalok',
-    price: 7000,
-    description: 'Krémszínű áttört korong — gazdag, többszínű virágcsokorral.',
-    longDescription: 'Áttört kerek medál vörösréz alapon, lágy krém-zöld tűzzománccal. Az alsó részen sokszínű millefiori-csokor: sárga, piros, kék, zöld és fehér virágminták. Méret kb. 50 mm.',
-    colors: ['Krém', 'Narancs', 'Millefiori virágok'],
-    material: 'Vörösréz alap, millefiori berakás',
-    image: m20MillefioriImg,
-    size: '50 mm',
-    materialDetail: 'Vörösréz, iszapzománc',
-    technique: 'Fűrészelt',
-  },
-  {
     id: 'm21-millefiori',
     name: 'Ezüstszürke millefiori medál',
     category: 'medalok',
@@ -432,7 +307,6 @@ const allProducts: Product[] = [
     materialDetail: 'Vörösréz, ékszerzománc',
     technique: 'Fűrészelt',
   },
-
 
   // ===== ÚJ MILLEFIORI MEDÁLOK 2026 (KB_W2, M22–M42) =====
 
@@ -668,20 +542,6 @@ const allProducts: Product[] = [
     technique: 'Fűrészelt, domborított',
   },
   {
-    id: 'm38',
-    name: 'Arany-kobaltkék medál',
-    category: 'medalok',
-    price: 13000,
-    description: 'Nagyméretű domborított medál arany és kobaltkék kompozícióval.',
-    longDescription: 'Kézzel fűrészelt és domborított kerek vörösréz medál arany és mély kobaltkék ékszerzománc árnyalatokkal. Prémium, statement darab — illeszkedik a márka színvilágához. Átmérő kb. 50 mm.',
-    colors: ['Arany', 'Kobaltkék'],
-    material: 'Vörösréz alap, ékszerzománc',
-    image: m38Img,
-        size: '50 mm átmérő',
-    materialDetail: 'Vörösréz, ékszerzománc',
-    technique: 'Fűrészelt, domborított',
-  },
-  {
     id: 'm39',
     name: 'Antik arany medál',
     category: 'medalok',
@@ -817,19 +677,6 @@ const allProducts: Product[] = [
     colors: ['Mély zöld'],
     material: 'Vörösréz alap, iszapzománc',
     image: f6Img,
-    size: '30×8 mm',
-    materialDetail: 'Vörösréz, iszapzománc',
-  },
-  {
-    id: 'f6a',
-    name: 'Narancssárga',
-    category: 'fulbevalok',
-    price: 3400,
-    description: 'Élénk narancssárga hosszúkás csepp — meleg, napsütötte tónus.',
-    longDescription: 'Hosszúkás csepp formájú fülbevaló vörösréz alapon, narancssárga iszapzománccal. Méret kb. 30×8 mm, antiallergén akasztóval.',
-    colors: ['Narancssárga'],
-    material: 'Vörösréz alap, iszapzománc',
-    image: f6aImg,
     size: '30×8 mm',
     materialDetail: 'Vörösréz, iszapzománc',
   },
@@ -1257,19 +1104,229 @@ id: 'f37',
     materialDetail: 'Vörösréz, iszapzománc',
 },
 
-{
-id: 'f-madarka',
-name: 'Sárga madárka fülbevaló',
-category: 'fulbevalok',
-price: 6000,
-description: 'Madárka forma sárga iszapzománccal.',
-longDescription: 'Madárka formájú fülbevaló vörösréz alapon, sárga iszapzománccal. Méret kb. 30×25 mm, antiallergén akasztóval.',
-colors: ['Sárga'],
-material: 'Vörösréz alap, iszapzománc',
-image: madarkaImg,
-size: '30×25 mm',
-materialDetail: 'Vörösréz, iszapzománc',
-},
+  {
+    id: 'f38',
+    name: 'Türkiz lyukas csepp fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Csepp forma kivágott körrel, türkiz iszapzománccal.',
+    longDescription: 'Csepp forma kivágott körrel fülbevaló vörösréz alapon, türkiz iszapzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Türkiz'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f38Img,
+    size: '40×25 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f39',
+    name: 'Rózsaszín-lila lyukas csepp fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Csepp forma kivágott körrel, rózsaszín-lila iszapzománccal.',
+    longDescription: 'Csepp forma kivágott körrel fülbevaló vörösréz alapon, rózsaszín-lila iszapzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Rózsaszín', 'Lila'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f39Img,
+    size: '40×25 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f40',
+    name: 'Indigókék lyukas csepp fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Csepp forma kivágott körrel, indigókék iszapzománccal.',
+    longDescription: 'Csepp forma kivágott körrel fülbevaló vörösréz alapon, indigókék iszapzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Indigókék'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f40Img,
+    size: '40×25 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f41',
+    name: 'Almazöld lyukas csepp fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Csepp forma kivágott körrel, almazöld ékszerzománccal.',
+    longDescription: 'Csepp forma kivágott körrel fülbevaló vörösréz alapon, almazöld ékszerzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Almazöld'],
+    material: 'Vörösréz alap, ékszerzománc',
+    image: f41Img,
+    size: '40×25 mm',
+    materialDetail: 'Vörösréz, ékszerzománc',
+  },
+
+  {
+    id: 'f42',
+    name: 'Sötétkék nagy csepp fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Teltebb, nagy csepp forma, sötétkék iszapzománccal.',
+    longDescription: 'Teltebb, nagy csepp forma fülbevaló vörösréz alapon, sötétkék iszapzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Sötétkék'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f42Img,
+    size: '40×25 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f43',
+    name: 'Indigókék kerek korong fülbevaló',
+    category: 'fulbevalok',
+    price: 5900,
+    description: 'Sima kerek korong, indigókék iszapzománccal.',
+    longDescription: 'Sima kerek korong fülbevaló vörösréz alapon, indigókék iszapzománccal égetve. Méret kb. 30 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Indigókék'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f43Img,
+    size: '30 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f44',
+    name: 'Narancs szablya fülbevaló',
+    category: 'fulbevalok',
+    price: 6900,
+    description: 'Ívelt szablya forma, narancs iszapzománccal.',
+    longDescription: 'Ívelt szablya forma fülbevaló vörösréz alapon, narancs iszapzománccal égetve. Méret kb. 50×20 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Narancs'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f44Img,
+    size: '50×20 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f45',
+    name: 'Méregzöld szablya fülbevaló',
+    category: 'fulbevalok',
+    price: 6900,
+    description: 'Ívelt szablya forma, méregzöld iszapzománccal.',
+    longDescription: 'Ívelt szablya forma fülbevaló vörösréz alapon, méregzöld iszapzománccal égetve. Méret kb. 50×20 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Méregzöld'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f45Img,
+    size: '50×20 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f46',
+    name: 'Fekete-opálos ívelt levél fülbevaló',
+    category: 'fulbevalok',
+    price: 6900,
+    description: 'Ívelt levél forma, fekete-opálos iszapzománccal.',
+    longDescription: 'Ívelt levél forma fülbevaló vörösréz alapon, fekete-opálos iszapzománccal égetve. Méret kb. 45×15 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Fekete', 'Opálos'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f46Img,
+    size: '45×15 mm',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f47',
+    name: 'Középkék lyukas kör fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Kör alak kivágott középpel, középkék iszapzománccal.',
+    longDescription: 'Kör alak kivágott középpel fülbevaló vörösréz alapon, középkék iszapzománccal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Középkék'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f47Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f48',
+    name: 'Türkiz lyukas kör fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Kör alak kivágott középpel, türkiz iszapzománccal.',
+    longDescription: 'Kör alak kivágott középpel fülbevaló vörösréz alapon, türkiz iszapzománccal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Türkiz'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f48Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f49',
+    name: 'Középkék-fehér lyukas kör fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Kör alak kivágott középpel, középkék-fehér iszapzománccal.',
+    longDescription: 'Kör alak kivágott középpel fülbevaló vörösréz alapon, középkék-fehér iszapzománccal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Középkék', 'Fehér'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f49Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f50',
+    name: 'Sötétzöld-fehér lyukas kör fülbevaló',
+    category: 'fulbevalok',
+    price: 7900,
+    description: 'Kör alak kivágott középpel, sötétzöld-fehér iszapzománccal.',
+    longDescription: 'Kör alak kivágott középpel fülbevaló vörösréz alapon, sötétzöld-fehér iszapzománccal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Sötétzöld', 'Fehér'],
+    material: 'Vörösréz alap, iszapzománc',
+    image: f50Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc',
+  },
+
+  {
+    id: 'f51',
+    name: 'Szodalitos kék kör fülbevaló',
+    category: 'fulbevalok',
+    price: 9900,
+    description: 'Kör alak kivágott középpel, szodalit ásvánnyal, sötétkék iszapzománccal és szodalit ásvánnyal.',
+    longDescription: 'Kör alak kivágott középpel, szodalit ásvánnyal fülbevaló vörösréz alapon, sötétkék iszapzománccal és szodalit ásvánnyal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Sötétkék'],
+    material: 'Vörösréz alap, iszapzománc, szodalit',
+    image: f51Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc, szodalit',
+  },
+
+  {
+    id: 'f52',
+    name: 'Korallos fekete kör fülbevaló',
+    category: 'fulbevalok',
+    price: 10900,
+    description: 'Kör alak kivágott középpel, korall gyönggyel, fekete-réz-piros iszapzománccal és korallal.',
+    longDescription: 'Kör alak kivágott középpel, korall gyönggyel fülbevaló vörösréz alapon, fekete-réz-piros iszapzománccal és korallal égetve. Méret kb. 40 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Fekete', 'Réz', 'Piros'],
+    material: 'Vörösréz alap, iszapzománc, korall',
+    image: f52Img,
+    size: '40 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc, korall',
+  },
+
+  {
+    id: 'f53',
+    name: 'Éjfekete kör fülbevaló korallal',
+    category: 'fulbevalok',
+    price: 8900,
+    description: 'Kerek korong korall gyönggyel, éjfekete iszapzománccal és korallal.',
+    longDescription: 'Kerek korong korall gyönggyel fülbevaló vörösréz alapon, éjfekete iszapzománccal és korallal égetve. Méret kb. 30 mm átmérő, antiallergén akasztóval. Minden darab egyedi mintázatú.',
+    colors: ['Éjfekete'],
+    material: 'Vörösréz alap, iszapzománc, korall',
+    image: f54Img,
+    size: '30 mm átmérő',
+    materialDetail: 'Vörösréz, iszapzománc, korall',
+  },
 
 // ===== KARKÖTŐK ===== (KB_W1, K1–K14, vörösréz, fűrészelt és kalapált)
   {
@@ -1454,20 +1511,6 @@ materialDetail: 'Vörösréz, iszapzománc',
     image: k13Img,
     size: '62×50 mm',
     materialDetail: 'Vörösréz, iszapzománc',
-    technique: 'Fűrészelt, kalapált',
-  },
-  {
-    id: 'k14',
-    name: 'Arany-zöld körkarperec',
-    category: 'karkotok',
-    price: 10000,
-    description: 'Kör alakú karperec természetközeli arany-zöld árnyalatokkal.',
-    longDescription: 'Kör alakú, zárt vörösréz karperec arany és zöld ékszerzománc kompozícióval. Természetinspirálta, ünnepi darab. Átmérő kb. 62×50 mm.',
-    colors: ['Arany', 'Zöld'],
-    material: 'Vörösréz alap, ékszerzománc',
-    image: k14Img,
-    size: '62×50 mm',
-    materialDetail: 'Vörösréz, ékszerzománc',
     technique: 'Fűrészelt, kalapált',
   },
 
