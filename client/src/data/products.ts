@@ -135,7 +135,7 @@ import k11Img from '@assets/uj-karkotok/K11.jpg';
 import k12Img from '@assets/uj-karkotok/K12.jpg';
 import k13Img from '@assets/uj-karkotok/K13.jpg';
 
-// Szettek — 2026 (KB_W3, Sz1–Sz5, Szk10/11, Szk20/21)
+// Szettek — 2026 (KB_W9, Sz1–Sz6, Szk10/11/12, Szk20/21/22)
 import sz1Img from '@assets/Sz1.jpg';
 import sz2Img from '@assets/Sz2.jpg';
 import sz3Img from '@assets/Sz3.jpg';
@@ -144,8 +144,10 @@ import sz5Img from '@assets/Sz5.jpg';
 import sz6Img from '@assets/Sz6.jpg';
 import szk10Img from '@assets/SzK10.jpg';
 import szk11Img from '@assets/Szk11.jpg';
+import szk12Img from '@assets/Szk12.jpg';
 import szk20Img from '@assets/Szk20.jpg';
 import szk21Img from '@assets/Szk21.jpg';
+import szk22Img from '@assets/Szk22.jpg';
 
 const allProducts: Product[] = [
   // ===== MEDÁLOK =====
@@ -1646,6 +1648,21 @@ technique: 'Ázsúr és forrasztott alapzománc',
 
 {
 id: 'szk11',
+name: 'Mackintosh rózsái fülbevaló',
+category: 'szettek',
+price: 22000,
+description: 'Ázsúr technikával készült tűzzománc fülbevaló a Mackintosh-kollekcióból.',
+longDescription: 'Kör formájú, ázsúr technikával készült tűzzománc fülbevaló vörösréz alapon, ékszerzománccal, a Mackintosh rózsái kollekció darabja. Átmérő kb. 20 mm. A hozzá illő medál kb. 35 mm, forrasztott alappal, külön is elérhető (18 000 Ft).',
+colors: ['Rózsásvörös'],
+material: 'Vörösréz alap, ékszerzománc',
+image: szk11Img,
+size: '20 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+technique: 'Ázsúr',
+},
+
+{
+id: 'szk12',
 name: 'Mackintosh rózsái medál',
 category: 'szettek',
 price: 18000,
@@ -1653,7 +1670,7 @@ description: 'Forrasztott alapú tűzzománc medál a Mackintosh-kollekcióból.
 longDescription: 'Kör formájú, forrasztott alapú tűzzománc medál vörösréz alapon, ékszerzománccal, a Mackintosh rózsái kollekció darabja. Átmérő kb. 35 mm. A hozzá illő fülbevaló kb. 20 mm, ázsúr technikával, külön is elérhető (22 000 Ft).',
 colors: ['Rózsásvörös'],
 material: 'Vörösréz alap, ékszerzománc',
-image: szk11Img,
+image: szk12Img,
 size: '35 mm',
 materialDetail: 'Vörösréz, ékszerzománc',
 technique: 'Forrasztott alap',
@@ -1676,6 +1693,21 @@ technique: 'Ázsúr és forrasztott alapzománc',
 
 {
 id: 'szk21',
+name: 'Őszi szüret fülbevaló',
+category: 'szettek',
+price: 27000,
+description: 'Ázsúrozott, nagyméretű tűzzománc fülbevaló az Őszi szüret kollekcióból.',
+longDescription: 'Szőlőfürt formájú, ázsúr és forrasztott alapzománc technikával készült tűzzománc fülbevaló vörösréz alapon, ékszerzománccal, az Őszi szüret kollekció darabja. Méret kb. 50×40 mm. A hozzá illő medál kb. 60×60 mm, külön is elérhető (24 000 Ft).',
+colors: ['Vörös', 'Zöld'],
+material: 'Vörösréz alap, ékszerzománc',
+image: szk21Img,
+size: '50×40 mm',
+materialDetail: 'Vörösréz, ékszerzománc',
+technique: 'Ázsúr és forrasztott alapzománc',
+},
+
+{
+id: 'szk22',
 name: 'Őszi szüret medál',
 category: 'szettek',
 price: 24000,
@@ -1683,7 +1715,7 @@ description: 'Nagyméretű forrasztott alapú medál az Őszi szüret kollekció
 longDescription: 'Nagy, forrasztott alapú tűzzománc medál vörösréz alapon, ékszerzománccal, az Őszi szüret kollekció darabja. Méret kb. 60×60 mm. A hozzá illő fülbevaló kb. 50×40 mm, ázsúr és forrasztott alapzománc technikával, külön is elérhető (27 000 Ft).',
 colors: ['Vörös', 'Zöld'],
 material: 'Vörösréz alap, ékszerzománc',
-image: szk21Img,
+image: szk22Img,
 size: '60×60 mm',
 materialDetail: 'Vörösréz, ékszerzománc',
 technique: 'Ázsúr és forrasztott alapzománc',
