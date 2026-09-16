@@ -4,6 +4,15 @@ import { ZoomIn, X, ChevronLeft, ChevronRight, ExternalLink, Mail } from 'lucide
 
 type Filter = Category | 'all';
 
+// A termék azonosítójából csak a sorszámot mutatjuk: 'm4-biloba' → 'M4', 'br1-smaragd-ornament' → 'Br1'.
+function productCode(id: string): string {
+  const base = id.split('-')[0];
+  const parts = base.match(/^([a-z]+)(\d+)([a-z]*)$/i);
+  if (!parts) return base.toUpperCase();
+  const [, prefix, num, suffix] = parts;
+  return prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase() + num + suffix;
+}
+
 interface CollectionProps {
   onSelectProduct?: (product: Product) => void;
 }
@@ -283,7 +292,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                   <span className="text-[11px] tracking-[0.2em] uppercase text-gold font-medium">
                     {categories.find((c) => c.id === activeProduct.category)?.label || activeProduct.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">ID: {activeProduct.id}</span>
+                  <span className="text-xs text-muted-foreground">ID: {productCode(activeProduct.id)}</span>
                 </div>
 
                 <h3 className="font-serif text-3xl text-foreground mb-3 leading-tight">

@@ -1317,7 +1317,7 @@ id: 'f37',
   },
 
   {
-    id: 'f53',
+    id: 'f54',
     name: 'Éjfekete kör fülbevaló korallal',
     category: 'fulbevalok',
     price: 8900,
@@ -1518,7 +1518,7 @@ id: 'f37',
 
   // ===== BROSSOK =====
   {
-    id: 'b1-smaragd-ornament',
+    id: 'br1-smaragd-ornament',
     name: 'Smaragd ornament bross',
     category: 'brossok',
     price: 14900,
