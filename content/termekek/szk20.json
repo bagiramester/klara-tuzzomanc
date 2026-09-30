@@ -1,0 +1,18 @@
+{
+  "id": "szk20",
+  "name": "Őszi szüret szett",
+  "category": "szettek",
+  "price": 46000,
+  "description": "Kiemelt, ázsúrozott tűzzománc szett őszi vörös-zöld színvilággal.",
+  "longDescription": "Prémium, kiemelt kollekciós szett vörösréz alapon, ékszerzománccal, ázsúr és forrasztott alapzománc technikával. Meleg őszi vörös és zöld színvilág. Medál és fülbevaló összehangolt párban.",
+  "image": "/attached_assets/termekek/Szk20.jpg",
+  "size": "",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Ázsúr és forrasztott alapzománc",
+  "colors": [
+    "Vörös",
+    "Zöld"
+  ],
+  "featured": true,
+  "sold": false
+}

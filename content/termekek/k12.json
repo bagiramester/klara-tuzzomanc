@@ -1,0 +1,17 @@
+{
+  "id": "k12",
+  "name": "Fehér körkarperec",
+  "category": "karkotok",
+  "price": 8500,
+  "description": "Kör alakú karperec letisztult fehér iszapzománccal.",
+  "longDescription": "Kör alakú, zárt vörösréz karperec fehér iszapzománc bevonattal. Időtlen, minimalista darab. Átmérő kb. 62×50 mm.",
+  "image": "/attached_assets/termekek/K12.jpg",
+  "size": "62×50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt, kalapált",
+  "colors": [
+    "Fehér"
+  ],
+  "featured": false,
+  "sold": false
+}

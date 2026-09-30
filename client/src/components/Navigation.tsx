@@ -77,9 +77,9 @@ export function Navigation() {
               }}
               className="rounded-full"
               data-testid="button-home"
-              aria-label="KLÁRA tűzzománc — vissza az oldal tetejére"
             >
               <Logo size={scrolled ? 38 : 44} />
+              <span className="sr-only"> — vissza az oldal tetejére</span>
             </a>
 
             <nav className="hidden md:flex items-center gap-1" aria-label="Fő navigáció">

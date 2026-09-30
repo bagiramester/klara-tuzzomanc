@@ -1,0 +1,17 @@
+{
+  "id": "f2",
+  "name": "Mohazöld csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Mély zöld hosszúkás csepp — erdei nyugalom.",
+  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, mély zöld iszapzománccal. Méret kb. 30×8 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F2.jpg",
+  "size": "30×8 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Zöld"
+  ],
+  "featured": false,
+  "sold": false
+}

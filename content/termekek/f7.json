@@ -1,0 +1,17 @@
+{
+  "id": "f7",
+  "name": "Kobaltkék szív fülbevaló",
+  "category": "fulbevalok",
+  "price": 4200,
+  "description": "Mély kobaltkék szív — a kollekció jellegzetes színe.",
+  "longDescription": "Szív formájú fülbevaló vörösréz alapon, mély kobaltkék ékszerzománccal, finom csillámfátyollal. Méret kb. 20×20 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F7.jpg",
+  "size": "20×20 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "",
+  "colors": [
+    "Kobaltkék"
+  ],
+  "featured": true,
+  "sold": false
+}

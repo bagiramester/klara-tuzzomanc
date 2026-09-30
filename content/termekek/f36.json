@@ -1,0 +1,18 @@
+{
+  "id": "f36",
+  "name": "Orchidea hosszúkás fülbevaló",
+  "category": "fulbevalok",
+  "price": 6700,
+  "description": "Hosszúkás fülbevaló pasztell lila-rózsaszín iszapzománccal.",
+  "longDescription": "Hosszúkás formájú fülbevaló vörösréz alapon, pasztell lila és rózsaszín iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F36.jpg",
+  "size": "60×12 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Lila",
+    "Rózsaszín"
+  ],
+  "featured": false,
+  "sold": false
+}

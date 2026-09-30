@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Hero } from '@/components/Hero';
 import { Collection } from '@/components/Collection';
@@ -8,11 +8,13 @@ import { OrderInfo } from '@/components/OrderInfo';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { useReveal } from '@/hooks/use-reveal';
+import { consumePendingSection } from '@/lib/scroll';
 import type { Product } from '@/data/products';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   useReveal();
+  useEffect(consumePendingSection, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-gold/30 selection:text-gold-bright">

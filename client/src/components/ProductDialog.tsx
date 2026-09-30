@@ -61,7 +61,7 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
 
   const specs = [
     { label: 'Méret', value: product.size },
-    { label: 'Anyag', value: product.materialDetail ?? product.material },
+    { label: 'Anyag', value: product.materialDetail },
     { label: 'Technika', value: product.technique },
   ].filter((s) => !!s.value);
 

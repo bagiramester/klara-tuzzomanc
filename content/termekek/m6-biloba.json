@@ -1,0 +1,18 @@
+{
+  "id": "m6-biloba",
+  "name": "Erdőmély ginkgo medál",
+  "category": "medalok",
+  "price": 5700,
+  "description": "Sötétzöld levél aranyló erezettel — erdei csend.",
+  "longDescription": "Fűrészelt biloba levél medál vörösréz alapon, arany és sötétzöld iszapzománccal. Karakteres, nagyobb méretű darab. Mérete kb. 35×48 mm.",
+  "image": "/attached_assets/termekek/M6_biloba.jpg",
+  "size": "35×48 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Arany",
+    "Sötétzöld"
+  ],
+  "featured": false,
+  "sold": false
+}

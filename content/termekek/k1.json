@@ -1,0 +1,17 @@
+{
+  "id": "k1",
+  "name": "Kobaltkék nyitott karperec",
+  "category": "karkotok",
+  "price": 16000,
+  "description": "Nyitott vörösréz karperec mély kobaltkék ékszerzománccal.",
+  "longDescription": "Kézzel fűrészelt és kalapált, nyitott vörösréz karperec mély kobaltkék ékszerzománc bevonattal. Letisztult, elegáns darab, mely könnyedén a csukló méretéhez igazítható. Méret kb. 73×30 mm.",
+  "image": "/attached_assets/termekek/K1.jpg",
+  "size": "73×30 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, kalapált",
+  "colors": [
+    "Kobaltkék"
+  ],
+  "featured": false,
+  "sold": false
+}

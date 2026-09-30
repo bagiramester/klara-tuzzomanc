@@ -1,13 +1,18 @@
 import { ArrowRight } from 'lucide-react';
 import klaraLogoHero from '@assets/brand/klara-logo-hero.jpg?portrait';
-import { products } from '@/data/products';
+import { products, type Product } from '@/data/products';
 import { scrollToSection } from '@/lib/scroll';
 import { Img } from './Picture';
 
-// Két kiemelt darab "lebeg" a logó mellett
-const floating = ['sz1', 'k4']
-  .map((id) => products.find((p) => p.id === id))
-  .filter((p) => !!p?.image);
+// Két kiemelt darab "lebeg" a logó mellett (ha ezek elkelnek, más kiemelt darab kerül a helyükre)
+const floating = [
+  ...new Set([
+    ...['sz1', 'k4'].map((id) => products.find((p) => p.id === id)),
+    ...products.filter((p) => p.featured),
+  ]),
+]
+  .filter((p): p is Product => !!p)
+  .slice(0, 2);
 
 const highPriority = { fetchpriority: 'high' } as Record<string, string>;
 
@@ -106,15 +111,15 @@ export function Hero() {
 
           {floating.map((p, i) => (
             <button
-              key={p!.id}
+              key={p.id}
               onClick={() => scrollToSection('kollekcio')}
               className={`absolute hidden sm:block h-24 w-24 overflow-hidden rounded-full border-4 border-background bg-white shadow-2xl ring-1 ring-gold/40 lg:h-28 lg:w-28 animate-float ${
                 i === 0 ? '-left-10 top-[38%] lg:-left-16' : '-right-8 bottom-[12%] lg:-right-12'
               }`}
               style={{ animationDelay: `${i * 1.8}s` }}
-              aria-label={`${p!.name} — ugrás a kollekcióhoz`}
+              aria-label={`${p.name} — ugrás a kollekcióhoz`}
             >
-              <Img picture={p!.image!} sizes="112px" alt="" className="h-full w-full object-cover" />
+              <Img picture={p.image} sizes="112px" alt="" className="h-full w-full object-cover" />
             </button>
           ))}
         </div>

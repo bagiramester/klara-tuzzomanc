@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import { Plus, Search, X } from 'lucide-react';
-import { products, categories, formatPrice, productCode, type Category, type Product } from '@/data/products';
+import { products, categories, formatPrice, isNew, productCode, type Category, type Product } from '@/data/products';
 import { scrollToSection } from '@/lib/scroll';
 import { Img } from './Picture';
 import { ProductDialog } from './ProductDialog';
 
 type Filter = Category | 'all';
-type Sort = 'featured' | 'price-asc' | 'price-desc';
+type Sort = 'featured' | 'newest' | 'price-asc' | 'price-desc';
 
 const PAGE_SIZE = 12;
 const CARD_SIZES = '(min-width: 1280px) 300px, (min-width: 768px) 31vw, 46vw';
@@ -18,7 +18,7 @@ const normalize = (s: string) =>
 const searchIndex = new Map(
   products.map((p) => [
     p.id,
-    normalize([p.name, p.description, productCode(p.id), p.material, ...p.colors].join(' ')),
+    normalize([p.name, p.description, productCode(p.id), p.materialDetail ?? '', p.technique ?? '', ...p.colors].join(' ')),
   ]),
 );
 
@@ -38,8 +38,14 @@ export function Collection({ onSelectProduct }: CollectionProps) {
     let result = products.filter(
       (p) => (filter === 'all' || p.category === filter) && (!q || searchIndex.get(p.id)!.includes(q)),
     );
+    const added = (p: Product) => (p.addedAt ? new Date(p.addedAt).getTime() : 0);
     if (sort === 'featured') {
-      result = [...result].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+      // kiemeltek elöl, utánuk a legfrissebb feltöltések, majd a katalógus sorrendje
+      result = [...result].sort(
+        (a, b) => Number(!!b.featured) - Number(!!a.featured) || Number(isNew(b)) - Number(isNew(a)) || added(b) - added(a),
+      );
+    } else if (sort === 'newest') {
+      result = [...result].sort((a, b) => added(b) - added(a));
     } else {
       result = [...result].sort((a, b) => (sort === 'price-asc' ? a.price - b.price : b.price - a.price));
     }
@@ -103,7 +109,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                   data-testid={`filter-${c.id}`}
                 >
                   {c.label}
-                  <span className={`ml-1.5 tabular-nums ${filter === c.id ? 'text-paper/60' : 'text-ink/40'}`}>
+                  <span className={`ml-1.5 tabular-nums ${filter === c.id ? 'text-paper/70' : 'text-ink/60'}`}>
                     {c.count}
                   </span>
                 </button>
@@ -144,6 +150,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                   data-testid="select-sort"
                 >
                   <option value="featured">Ajánlott</option>
+                  <option value="newest">Legújabb</option>
                   <option value="price-asc">Ár ↑</option>
                   <option value="price-desc">Ár ↓</option>
                 </select>
@@ -192,9 +199,18 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                       />
                     )}
-                    {product.featured && (
-                      <span className="absolute left-2.5 top-2.5 rounded-full bg-ink/85 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-bright backdrop-blur">
-                        Kiemelt
+                    {(product.featured || isNew(product)) && (
+                      <span className="absolute left-2.5 top-2.5 flex gap-1.5">
+                        {isNew(product) && (
+                          <span className="rounded-full bg-[hsl(22_80%_50%)] px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
+                            Új
+                          </span>
+                        )}
+                        {product.featured && (
+                          <span className="rounded-full bg-ink/85 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-bright backdrop-blur">
+                            Kiemelt
+                          </span>
+                        )}
                       </span>
                     )}
                     <span className="absolute bottom-2.5 right-2.5 grid h-9 w-9 translate-y-2 place-items-center rounded-full bg-white/95 text-ink opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -207,7 +223,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                       <h3 className="font-serif text-lg leading-snug sm:text-xl" data-testid={`text-name-${product.id}`}>
                         {product.name}
                       </h3>
-                      <span className="mt-1 shrink-0 text-[0.7rem] font-medium text-ink/40">{productCode(product.id)}</span>
+                      <span className="mt-1 shrink-0 text-[0.7rem] font-medium text-ink/60">{productCode(product.id)}</span>
                     </div>
                     <p className="mt-1 hidden text-sm leading-relaxed text-ink-muted line-clamp-2 sm:block">
                       {product.description}

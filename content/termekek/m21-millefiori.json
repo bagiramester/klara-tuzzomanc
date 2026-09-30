@@ -1,0 +1,19 @@
+{
+  "id": "m21-millefiori",
+  "name": "Ezüstszürke millefiori medál",
+  "category": "medalok",
+  "price": 7500,
+  "description": "Selymes ezüstszürke korong — kék-piros virágokkal.",
+  "longDescription": "Áttört kerek medál vörösréz alapon, ezüstszürke-zöldesfekete iszapzománccal, selymes textúrával. Az alsó részen rendezett millefiori virágsor: fehér, kék, sárga, piros és narancs. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M21_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Ezüstszürke",
+    "Mély zöld",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

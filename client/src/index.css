@@ -217,3 +217,20 @@
   .animate-float { animation: float 7s ease-in-out infinite; }
   .animate-glow { animation: glow 6s ease-in-out infinite; }
 }
+
+/* Jogi oldalak tipográfiája */
+.legal h2 {
+  @apply pt-6 font-serif text-3xl text-foreground;
+}
+.legal h3 {
+  @apply pt-2 font-sans text-base font-semibold text-gold-bright;
+}
+.legal ul {
+  @apply list-disc space-y-2 pl-5 marker:text-gold/60;
+}
+.legal a {
+  @apply text-gold-bright underline decoration-gold/40 underline-offset-2 hover:decoration-gold;
+}
+.legal strong {
+  @apply font-semibold text-foreground;
+}

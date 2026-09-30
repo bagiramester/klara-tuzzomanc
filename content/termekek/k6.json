@@ -1,0 +1,18 @@
+{
+  "id": "k6",
+  "name": "Zöld-vörös keskeny karperec",
+  "category": "karkotok",
+  "price": 9000,
+  "description": "Keskeny karperec mély zöld és vörös iszapzománc árnyalatokkal.",
+  "longDescription": "Keskeny, nyitott vörösréz karperec zöld és vörös iszapzománc kompozícióval. Egyszerű, mégis karakteres darab. Méret kb. 62×22 mm.",
+  "image": "/attached_assets/termekek/K6.jpg",
+  "size": "62×22 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt, kalapált",
+  "colors": [
+    "Zöld",
+    "Vörös"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,18 @@
+{
+  "id": "m28-millefiori",
+  "name": "Fekete-mélyvörös millefiori medál",
+  "category": "medalok",
+  "price": 6500,
+  "description": "Domborított kerek millefiori medál drámai fekete-vörös színvilággal.",
+  "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál ékszerzománccal, fekete és mély vörös millefiori virágokkal. Drámai, elegáns darab. Átmérő kb. 29 mm.",
+  "image": "/attached_assets/termekek/M28.jpg",
+  "size": "29 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, domborított",
+  "colors": [
+    "Fekete",
+    "Mély vörös"
+  ],
+  "featured": false,
+  "sold": false
+}

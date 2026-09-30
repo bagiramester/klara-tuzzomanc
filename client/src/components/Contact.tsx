@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Mail, MapPin, Facebook, CheckCircle2, Send, X } from 'lucide-react';
 import { formatPrice, productCode, type Product } from '@/data/products';
 import { Img } from './Picture';
+import { site } from '@/data/site';
 
 interface ContactProps {
   selectedProduct?: Product | null;
@@ -228,7 +229,11 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                 </button>
 
                 <p className="text-center text-xs leading-relaxed text-foreground/50">
-                  Az adataidat bizalmasan kezelem, és csak a válasz küldésére használom.
+                  Az adataidat bizalmasan kezelem, és csak a válasz küldésére használom. Részletek:{' '}
+                  <a href="#/adatkezeles" className="underline decoration-foreground/30 underline-offset-2 hover:text-gold-bright">
+                    adatkezelési tájékoztató
+                  </a>
+                  .
                 </p>
               </form>
             )}
@@ -237,7 +242,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
           {/* Elérhetőség */}
           <aside className="reveal space-y-4 lg:col-span-2" style={{ ['--reveal-delay' as string]: '120ms' }}>
             <a
-              href="mailto:fire.enamel.klara@gmail.com"
+              href={`mailto:${site.email}`}
               className="group flex items-start gap-4 rounded-3xl border border-white/[0.08] bg-card/40 p-6 transition hover:border-gold/30"
               data-testid="link-email"
             >
@@ -247,7 +252,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
               <span className="min-w-0">
                 <span className="block text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">E-mail</span>
                 <span className="mt-1 block break-all font-medium transition group-hover:text-gold-bright">
-                  fire.enamel.klara@gmail.com
+                  {site.email}
                 </span>
               </span>
             </a>
@@ -268,7 +273,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
             </div>
 
             <a
-              href="https://www.facebook.com/klara.kovarinebauer"
+              href={site.facebook}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-4 rounded-3xl border border-white/[0.08] bg-card/40 p-6 transition hover:border-gold/30"

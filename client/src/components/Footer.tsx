@@ -2,6 +2,7 @@ import { Facebook, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
 import { navLinks } from './Navigation';
 import { scrollToSection } from '@/lib/scroll';
+import { site } from '@/data/site';
 
 export function Footer() {
   return (
@@ -18,7 +19,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Lábléc navigáció">
-            <h4 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Oldal</h4>
+            <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Oldal</h2>
             <ul className="mt-5 space-y-3">
               {navLinks.map((link) => (
                 <li key={link.id}>
@@ -35,22 +36,17 @@ export function Footer() {
           </nav>
 
           <div>
-            <h4 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Kapcsolat</h4>
+            <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Kapcsolat</h2>
             <ul className="mt-5 space-y-3 text-sm text-foreground/65">
               <li>
-                <a href="mailto:fire.enamel.klara@gmail.com" className="break-all transition-colors hover:text-gold-bright">
-                  fire.enamel.klara@gmail.com
+                <a href={`mailto:${site.email}`} className="break-all transition-colors hover:text-gold-bright">
+                  {site.email}
                 </a>
               </li>
               <li>Budapest, Magyarország</li>
               <li>
-                <a href="https://klaratuzzomanc.hu" className="transition-colors hover:text-gold-bright">
-                  klaratuzzomanc.hu
-                </a>
-              </li>
-              <li>
                 <a
-                  href="https://www.facebook.com/klara.kovarinebauer"
+                  href={site.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 transition-colors hover:text-gold-bright"
@@ -64,8 +60,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-6 text-xs text-foreground/45 sm:flex-row">
-          <p>© {new Date().getFullYear()} KLÁRA Tűzzománc — Minden jog fenntartva</p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-6 text-xs text-foreground/60 sm:flex-row">
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-5">
+            <p>© {new Date().getFullYear()} KLÁRA Tűzzománc — Minden jog fenntartva</p>
+            <nav className="flex gap-4" aria-label="Jogi információk">
+              <a href="#/impresszum" className="transition hover:text-gold-bright">Impresszum</a>
+              <a href="#/adatkezeles" className="transition hover:text-gold-bright">Adatkezelési tájékoztató</a>
+            </nav>
+          </div>
           <button
             onClick={() => scrollToSection('hero')}
             className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-gold/40 hover:text-gold-bright"

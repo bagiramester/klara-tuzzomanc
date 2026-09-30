@@ -1,0 +1,18 @@
+{
+  "id": "m41",
+  "name": "Arany-szürkés bézs medál",
+  "category": "medalok",
+  "price": 11000,
+  "description": "Nagyméretű domborított medál arany és szürkés bézs harmóniával.",
+  "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál arany és szürkés bézs ékszerzománc árnyalatokkal. Visszafogott, elegáns darab. Átmérő kb. 50 mm.",
+  "image": "/attached_assets/termekek/M41.jpg",
+  "size": "50 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, domborított",
+  "colors": [
+    "Arany",
+    "Szürkés bézs"
+  ],
+  "featured": false,
+  "sold": false
+}

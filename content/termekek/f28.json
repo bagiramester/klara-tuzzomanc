@@ -1,0 +1,17 @@
+{
+  "id": "f28",
+  "name": "Fekete levél fülbevaló",
+  "category": "fulbevalok",
+  "price": 5900,
+  "description": "Levélforma grafitfekete, mélyfényű iszapzománccal.",
+  "longDescription": "Levél formájú fülbevaló vörösréz alapon, grafitfekete, mélyfényű iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F28.jpg",
+  "size": "40×15 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Fekete"
+  ],
+  "featured": false,
+  "sold": false
+}

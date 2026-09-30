@@ -25,7 +25,7 @@ export function Logo({ size = 44, showText = true }: LogoProps) {
         <div className="flex flex-col text-left leading-none">
           <span className="font-serif text-gold-bright tracking-[0.22em] text-lg font-semibold">
             KLÁRA
-          </span>
+          </span>{' '}
           <span className="text-gold/70 tracking-[0.32em] text-[0.6rem] uppercase mt-1.5 font-medium">
             Tűzzománc
           </span>

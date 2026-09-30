@@ -21,12 +21,7 @@ const blocks: { id: string; icon: LucideIcon; title: string; items: Item[] }[] =
       {
         icon: Landmark,
         title: 'Előre utalás',
-        body: 'A rendelés visszaigazolása után banki átutalással fizetheted ki az összeget. A csomagot az összeg megérkezése után adom fel.',
-      },
-      {
-        icon: CreditCard,
-        title: 'Bankkártya',
-        body: 'Online bankkártyás fizetés a megrendelés során — biztonságos, azonnal visszaigazolt tranzakció.',
+        body: 'Az érdeklődésed után visszaigazolom, hogy a darab elérhető, és elküldöm az utalási adatokat. A csomagot az összeg megérkezése után adom fel.',
       },
     ],
   },
@@ -97,7 +92,26 @@ export function OrderInfo() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:gap-6">
+        {/* A vásárlás menete */}
+        <ol className="reveal mx-auto mt-12 grid max-w-4xl gap-3 sm:grid-cols-3">
+          {[
+            ['Válaszd ki', 'Az ékszernél kattints az „Érdeklődöm” gombra, és küldd el az üzenetet.'],
+            ['Visszaigazolom', 'Megírom, hogy a darab elérhető-e, és elküldöm az utalási és szállítási részleteket.'],
+            ['Úton hozzád', 'Az összeg beérkezése után gondosan becsomagolva feladom — vagy személyesen átveheted.'],
+          ].map(([title, body], i) => (
+            <li key={title} className="flex gap-4 rounded-2xl bg-paper-2/70 p-5">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-ink text-sm font-semibold text-gold-bright">
+                {i + 1}
+              </span>
+              <div>
+                <p className="font-semibold">{title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-muted">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-8 grid gap-5 lg:grid-cols-3 lg:gap-6">
           {blocks.map((b, i) => (
             <div
               key={b.id}

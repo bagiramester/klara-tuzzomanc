@@ -1,0 +1,18 @@
+{
+  "id": "m26",
+  "name": "Bordó-sárga téglalap medál",
+  "category": "medalok",
+  "price": 8000,
+  "description": "Téglalap medál mély bordó és napsárga iszapzománccal.",
+  "longDescription": "Kézzel fűrészelt, téglalap formájú vörösréz medál mély bordó és napsárga iszapzománc kompozícióval. Erőteljes, meleg színvilág. Méret kb. 25×50 mm.",
+  "image": "/attached_assets/termekek/M26.jpg",
+  "size": "25×50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Bordó",
+    "Sárga"
+  ],
+  "featured": false,
+  "sold": false
+}

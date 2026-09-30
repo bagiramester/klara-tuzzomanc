@@ -1,0 +1,19 @@
+{
+  "id": "m18-millefiori",
+  "name": "Aranyhímzés millefiori medál",
+  "category": "medalok",
+  "price": 6500,
+  "description": "Smaragdzöld és arany csillámos korong — gazdag virágmintával.",
+  "longDescription": "Áttört kerek medál vörösréz alapon, smaragdzöld és arany csillámos tűzzománccal. A felület mintha aranyhímzéssel volna teleszórva, alsó részén bőséges millefiori virágcsoporttal. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M18_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Smaragdzöld",
+    "Arany",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

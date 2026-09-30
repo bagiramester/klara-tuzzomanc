@@ -1,0 +1,17 @@
+{
+  "id": "f3",
+  "name": "Cinóber narancs csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Élénk narancsszínű hosszúkás csepp — lendületes árnyalat.",
+  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, narancssárga iszapzománccal. Méret kb. 30×8 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F3.jpg",
+  "size": "30×8 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Narancssárga"
+  ],
+  "featured": false,
+  "sold": false
+}

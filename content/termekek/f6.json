@@ -1,0 +1,17 @@
+{
+  "id": "f6",
+  "name": "Erdőmély csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Mély erdőzöld hosszúkás csepp — drámai természeti tónus.",
+  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, mély zöld iszapzománccal. Méret kb. 30×8 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F6.jpg",
+  "size": "30×8 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Mély zöld"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,17 @@
+{
+  "id": "f26",
+  "name": "Világoszöld levél fülbevaló",
+  "category": "fulbevalok",
+  "price": 6900,
+  "description": "Levél forma friss zsályazöld, erezett iszapzománccal.",
+  "longDescription": "Levél formájú fülbevaló vörösréz alapon, világos zsályazöld iszapzománccal, erezettel. Méret kb. 40×15 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F26.jpg",
+  "size": "40×15 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Zsályazöld"
+  ],
+  "featured": false,
+  "sold": false
+}

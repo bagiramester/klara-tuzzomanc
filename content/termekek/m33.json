@@ -1,0 +1,17 @@
+{
+  "id": "m33",
+  "name": "Szederlila medál",
+  "category": "medalok",
+  "price": 5500,
+  "description": "Domborított kerek medál mély szederlila árnyalattal.",
+  "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál mély szederlila ékszerzománc bevonattal. Visszafogott, gazdag színvilág. Átmérő kb. 29 mm.",
+  "image": "/attached_assets/termekek/M33.jpg",
+  "size": "29 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, domborított",
+  "colors": [
+    "Szederlila"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,18 @@
+{
+  "id": "br1-smaragd-ornament",
+  "name": "Smaragd ornament bross",
+  "category": "brossok",
+  "price": 14900,
+  "description": "Mélyzöld bross, finom barokk mintázattal — a múlt és a tűz egy darabban.",
+  "longDescription": "Kerek vörösréz bross mély smaragdzöld ékszerzománccal, hengerelt technikával készült finom ornamentális mintázattal. Félfényes felület, melyen a fény lágyan vibrál. Átmérője kb. 50 mm, erős bronz tűvel.",
+  "image": "/attached_assets/termekek/zold-ornament-bross.jpg",
+  "size": "50 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Hengerelt",
+  "colors": [
+    "Smaragdzöld",
+    "Antik réz"
+  ],
+  "featured": true,
+  "sold": false
+}

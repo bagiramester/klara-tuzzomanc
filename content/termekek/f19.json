@@ -1,0 +1,17 @@
+{
+  "id": "f19",
+  "name": "Vörös szív fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Klasszikus vörös szív — visszafogottabb, mindennapos viselethez.",
+  "longDescription": "Szív formájú fülbevaló vörösréz alapon, vörös iszapzománccal. Méret kb. 20×20 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F19.jpg",
+  "size": "20×20 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Vörös"
+  ],
+  "featured": false,
+  "sold": false
+}

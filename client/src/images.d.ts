@@ -16,3 +16,9 @@ declare module '*?logo' {
   const picture: Picture;
   export default picture;
 }
+
+declare module 'virtual:products' {
+  const products: import('./data/products').Product[];
+  export default products;
+  export const soldCount: number;
+}
