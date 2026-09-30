@@ -171,123 +171,49 @@
 }
 
 /* =====================================================================
-   DIZÁJNVÁLTOZATOK (lásd client/src/lib/design.ts) — ?design=a|b|c
-   Az alap (fent) a mostani megjelenés. Itt csak az eltérések vannak.
+   Megjelenés: lekerekített kártyák, pill gombok, alsó menüsáv mobilon
    ===================================================================== */
-
-/* Az A/B/C váltó a jobb szélen, félmagasságban — nem takar gombot */
-.design-switcher { opacity: 0.92; }
-
-/* ---------- A · Klasszikus: a mostani, nagyobb betűkkel, több levegővel ---------- */
 @media (max-width: 767px) {
-  [data-design="a"] { font-size: 17px; }
+  html { font-size: 17px; }
+  body { padding-bottom: calc(4.4rem + env(safe-area-inset-bottom)); }
+  .nav-burger { display: none; }
+  .section-title { font-size: 2.35rem; }
 }
-[data-design="a"] .product-card { border-radius: 0.5rem; }
-[data-design="a"] .product-image { border-radius: 0.5rem 0.5rem 0 0; }
-[data-design="a"] .product-title { font-size: 1.4rem; }
-[data-design="a"] .product-desc { font-size: 0.95rem; color: hsl(var(--foreground) / 0.8); }
-[data-design="a"] .product-price { font-size: 1.3rem; }
-[data-design="a"] .section-lead,
-[data-design="a"] .hero-lead { color: hsl(var(--foreground) / 0.88); }
-[data-design="a"] .info-card { border-radius: 0.5rem; }
-[data-design="a"] .btn-gold,
-[data-design="a"] .btn-outline { letter-spacing: 0.12em; border-radius: 0.375rem; }
-[data-design="a"] .btn-interest { border-radius: 0.375rem; padding: 0.6rem 1rem; }
-[data-design="a"] .chip { border-radius: 0.375rem; font-size: 0.78rem; letter-spacing: 0.12em; }
-[data-design="a"] .field { border-radius: 0.375rem; }
-
-/* ---------- B · Modern: lekerekített kártyák, pill gombok, alsó menüsáv mobilon ---------- */
-@media (max-width: 767px) {
-  [data-design="b"] { font-size: 17px; }
-  [data-design="b"] body { padding-bottom: calc(4.4rem + env(safe-area-inset-bottom)); }
-  [data-design="b"] .nav-burger { display: none; }
-  [data-design="b"] .section-title { font-size: 2.35rem; }
-}
-[data-design="b"] .eyebrow { letter-spacing: 0.22em; font-weight: 500; }
-[data-design="b"] .product-card {
+.eyebrow { letter-spacing: 0.22em; font-weight: 500; }
+.product-card {
   border-radius: 1.25rem;
   border-color: transparent;
   background: hsl(var(--card) / 0.85);
   box-shadow: 0 1px 0 hsl(var(--gold) / 0.15), 0 20px 40px -24px rgb(0 0 0 / 0.7);
 }
-[data-design="b"] .product-card:hover { border-color: hsl(var(--gold) / 0.4); }
-[data-design="b"] .product-image { border-radius: 1.25rem 1.25rem 0 0; }
-[data-design="b"] .product-image img { border-radius: 0; }
-[data-design="b"] .product-body { padding: 1.25rem 1.25rem 1.35rem; }
-[data-design="b"] .product-title { font-size: 1.45rem; font-weight: 500; }
-[data-design="b"] .product-desc { font-size: 0.98rem; color: hsl(var(--foreground) / 0.78); }
-[data-design="b"] .product-price { font-family: var(--font-sans); font-size: 1.15rem; font-weight: 600; }
-[data-design="b"] .btn-interest,
-[data-design="b"] .btn-gold,
-[data-design="b"] .btn-outline,
-[data-design="b"] .chip,
-[data-design="b"] .field {
+.product-card:hover { border-color: hsl(var(--gold) / 0.4); }
+.product-image { border-radius: 1.25rem 1.25rem 0 0; }
+.product-image img { border-radius: 0; }
+.product-body { padding: 1.25rem 1.25rem 1.35rem; }
+.product-title { font-size: 1.45rem; font-weight: 500; }
+.product-desc { font-size: 0.98rem; color: hsl(var(--foreground) / 0.78); }
+.product-price { font-family: var(--font-sans); font-size: 1.15rem; font-weight: 600; }
+.btn-interest,
+.btn-gold,
+.btn-outline,
+.chip,
+.field {
   border-radius: 9999px;
   text-transform: none;
   letter-spacing: 0;
 }
-[data-design="b"] .btn-gold,
-[data-design="b"] .btn-outline { font-size: 0.98rem; font-weight: 600; padding-top: 0.95rem; padding-bottom: 0.95rem; }
-[data-design="b"] .btn-interest { font-size: 0.9rem; font-weight: 600; padding: 0.55rem 1.1rem; }
-[data-design="b"] .chip { font-size: 0.92rem; font-weight: 500; padding: 0.6rem 1.1rem; }
-[data-design="b"] .info-card { border-radius: 1.25rem; }
-[data-design="b"] .site-header .max-w-7xl > a .font-serif { letter-spacing: 0.18em; }
-[data-design="b"] .hero-actions .btn-gold { min-width: 16rem; }
+.btn-gold,
+.btn-outline { font-size: 0.98rem; font-weight: 600; padding-top: 0.95rem; padding-bottom: 0.95rem; }
+.btn-interest { font-size: 0.9rem; font-weight: 600; padding: 0.55rem 1.1rem; }
+.chip { font-size: 0.92rem; font-weight: 500; padding: 0.6rem 1.1rem; }
+.info-card { border-radius: 1.25rem; }
+.site-header .max-w-7xl > a .font-serif { letter-spacing: 0.18em; }
+.hero-actions .btn-gold { min-width: 16rem; }
 @media (max-width: 639px) {
-  [data-design="b"] .hero-actions .btn-outline { display: none; } /* mobilon egy fő gomb elég, a többi az alsó sávban */
+  .hero-actions .btn-outline { display: none; } /* mobilon egy fő gomb elég, a többi az alsó sávban */
 }
-[data-design="b"] .mobile-tabbar { background: hsl(var(--background) / 0.92); }
+.mobile-tabbar { background: hsl(var(--background) / 0.92); }
 
-/* ---------- C · Ékszerdoboz: kék háttér + krémszínű kártyák, sötét szöveggel ---------- */
-@media (max-width: 767px) {
-  [data-design="c"] { font-size: 17px; }
-}
-/* A krém kártyákon belül a színváltozók újradefiniálva → minden szöveg automatikusan sötét lesz */
-[data-design="c"] .product-card,
-[data-design="c"] .info-card,
-[data-design="c"] .contact-form,
-[data-design="c"] .dialog-details {
-  --background: 40 38% 97%;
-  --foreground: 224 45% 13%;
-  --card: 40 30% 93%;
-  --card-border: 38 25% 85%;
-  --muted-foreground: 224 14% 36%;
-  --input: 38 22% 80%;
-  --gold: 32 70% 38%;
-  --gold-bright: 32 75% 34%;
-  background: hsl(40 38% 97%);
-  color: hsl(var(--foreground));
-  border-color: hsl(38 25% 86%);
-  border-radius: 0.875rem;
-}
-[data-design="c"] .product-card { box-shadow: 0 18px 40px -22px rgb(0 0 0 / 0.75); }
-[data-design="c"] .product-card:hover { border-color: hsl(32 60% 55% / 0.6); }
-[data-design="c"] .product-image { border-radius: 0.875rem 0.875rem 0 0; background: #fff; }
-[data-design="c"] .product-title { font-size: 1.4rem; }
-[data-design="c"] .product-desc { font-size: 0.97rem; color: hsl(224 20% 30%); }
-[data-design="c"] .product-price { font-size: 1.3rem; }
-[data-design="c"] .product-body { border-top: 1px solid hsl(38 25% 88%); }
-[data-design="c"] .btn-interest { border-radius: 0.5rem; border-color: hsl(224 45% 13% / 0.35); color: hsl(224 45% 13%); }
-[data-design="c"] .btn-interest:hover { background: hsl(224 45% 13%); color: hsl(40 38% 97%); }
-[data-design="c"] .product-card .gold-divider,
-[data-design="c"] .dialog-details .gold-divider { background: linear-gradient(90deg, transparent, hsl(32 60% 45% / 0.5), transparent); }
-[data-design="c"] .info-card { padding: 1.75rem; }
-[data-design="c"] .info-card .bg-gold\/10,
-[data-design="c"] .info-card .bg-gold\/5 { background: hsl(32 60% 45% / 0.1); }
-[data-design="c"] .contact-form { padding: 1.5rem; }
-@media (min-width: 640px) { [data-design="c"] .contact-form { padding: 2rem; } }
-[data-design="c"] .contact-form .field { background: #fff; }
-[data-design="c"] .contact-form .btn-gold { border-radius: 0.5rem; }
-[data-design="c"] .dialog-details { border-radius: 0; }
-[data-design="c"] .dialog-details .bg-background\/95 { background: hsl(40 38% 97%); }
-[data-design="c"] .section-lead,
-[data-design="c"] .hero-lead { color: hsl(var(--foreground) / 0.88); font-size: 1.08rem; }
-[data-design="c"] .chip { border-radius: 0.5rem; letter-spacing: 0.1em; font-size: 0.8rem; }
-[data-design="c"] .chip[aria-selected="true"] { background: hsl(40 38% 97%); color: hsl(224 45% 13%); border-color: hsl(40 38% 97%); box-shadow: none; }
-[data-design="c"] .btn-gold,
-[data-design="c"] .btn-outline,
-[data-design="c"] .field { border-radius: 0.5rem; letter-spacing: 0.12em; }
-[data-design="b"] .contact-form input,
-[data-design="b"] .contact-form textarea { border-radius: 0.9rem; }
-[data-design="b"] .contact-form label { text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
-[data-design="c"] .contact-form label { color: hsl(224 20% 30%); }
+.contact-form input,
+.contact-form textarea { border-radius: 0.9rem; }
+.contact-form label { text-transform: none; letter-spacing: 0; font-size: 0.95rem; }

@@ -11,7 +11,7 @@ Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdek
 - **Telefon:** +36 20 484 7050
 - **Facebook:** [klara.kovarinebauer](https://www.facebook.com/klara.kovarinebauer)
 - **Nyelv:** magyar (30+ női célközönség)
-- **Stílus:** kobaltkék + arany, egységes sötét téma, nagy logós nyitókép
+- **Stílus:** kobaltkék + arany, egységes sötét téma, nagy logós nyitókép, lekerekített kártyák, mobilon alsó menüsáv
 
 ## Termékek kezelése
 

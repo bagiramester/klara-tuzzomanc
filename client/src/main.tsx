@@ -1,5 +1,4 @@
 import { createRoot } from "react-dom/client";
-import "./lib/design"; // a data-design attribútum már az első festés előtt legyen kint
 import App from "./App";
 // Betűtípusok saját tárhelyről (nincs Google Fonts kérés → gyorsabb, GDPR-barát).
 // Latin + közép-európai (ő, ű) karakterkészlet; a böngésző csak a ténylegesen használtat tölti le.

@@ -8,7 +8,6 @@ import { OrderInfo } from '@/components/OrderInfo';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { MobileTabBar } from '@/components/MobileTabBar';
-import { useDesign } from '@/lib/design';
 import { useReveal } from '@/hooks/use-reveal';
 import { consumePendingSection } from '@/lib/scroll';
 import type { Product } from '@/data/products';
@@ -16,7 +15,6 @@ import type { Product } from '@/data/products';
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   useReveal();
-  const design = useDesign();
   useEffect(consumePendingSection, []);
 
   return (
@@ -41,7 +39,7 @@ export default function Home() {
         <Contact selectedProduct={selectedProduct} onClearProduct={() => setSelectedProduct(null)} />
       </main>
       <Footer />
-      {design === 'b' && <MobileTabBar />}
+      <MobileTabBar />
     </div>
   );
 }
