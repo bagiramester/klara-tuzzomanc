@@ -52,7 +52,7 @@ const preloadCritical = (): Plugin => ({
     if (hero.length) {
       const srcset = hero.sort((a, b) => a.w - b.w).map((h) => `./${h.file} ${h.w}w`).join(", ");
       tags.unshift(
-        `<link rel="preload" as="image" imagesrcset="${srcset}" imagesizes="(min-width: 1024px) 400px, (min-width: 640px) 320px, 210px" fetchpriority="high">`,
+        `<link rel="preload" as="image" imagesrcset="${srcset}" imagesizes="(min-width: 768px) 440px, (min-width: 640px) 380px, 300px" fetchpriority="high">`,
       );
     }
     return html.replace("</title>", "</title>\n" + tags.join("\n"));

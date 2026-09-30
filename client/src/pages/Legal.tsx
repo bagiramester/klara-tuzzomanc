@@ -15,13 +15,13 @@ function LegalLayout({ title, children }: { title: string; children: ReactNode }
   }, [title]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <Navigation />
       <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 sm:px-6">
         <a href="#/" className="inline-flex items-center gap-2 text-sm text-foreground/60 transition hover:text-gold-bright">
           <ArrowLeft size={15} /> Vissza a főoldalra
         </a>
-        <h1 className="section-title mt-6">{title}</h1>
+        <h1 className="font-serif text-4xl sm:text-5xl text-foreground mt-6 leading-tight">{title}</h1>
         <p className="mt-3 text-sm text-foreground/50">Utolsó módosítás: {site.legalUpdated}</p>
         <div className="legal mt-10 space-y-6 text-[0.98rem] leading-relaxed text-foreground/80">{children}</div>
       </main>
@@ -35,7 +35,7 @@ const Row = ({ label, value }: { label: string; value?: string }) =>
   value ? (
     <div className="grid gap-1 border-b border-white/[0.07] py-3 sm:grid-cols-[14rem_1fr]">
       <dt className="text-foreground/55">{label}</dt>
-      <dd className="font-medium text-foreground">{value}</dd>
+      <dd className="text-foreground">{value}</dd>
     </div>
   ) : null;
 

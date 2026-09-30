@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(consumePendingSection, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-gold/30 selection:text-gold-bright">
+    <div className="min-h-screen text-foreground selection:bg-gold/30 selection:text-gold-bright">
       <a
         href="#kollekcio"
         onClick={(e) => {

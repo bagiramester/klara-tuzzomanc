@@ -2,46 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* KLÁRA tűzzománc — kobaltkék + arany, sötét alap világos "galéria" szekciókkal */
+/* KLÁRA tűzzománc — kobaltkék + arany sötét téma */
 :root, .dark {
   /* Kobaltkék — mély, telített, prémium hatás */
-  --background: 224 62% 7%;
-  --foreground: 40 45% 93%;
-  --border: 224 45% 20%;
-  --card: 224 55% 11%;
-  --card-foreground: 40 45% 93%;
-  --card-border: 224 45% 19%;
-
-  --popover: 224 55% 12%;
-  --popover-foreground: 40 45% 93%;
-  --popover-border: 224 45% 22%;
+  --background: 222 70% 8%;
+  --foreground: 38 50% 92%;
+  --border: 222 55% 20%;
+  --card: 222 65% 12%;
+  --card-foreground: 38 50% 92%;
+  --card-border: 222 55% 22%;
 
   /* Arany — elsődleges márkaszín */
-  --primary: 42 68% 56%;
-  --primary-foreground: 224 62% 8%;
+  --primary: 42 65% 52%;
+  --primary-foreground: 222 70% 8%;
 
-  --secondary: 224 45% 17%;
-  --secondary-foreground: 40 45% 93%;
-  --muted: 224 40% 15%;
-  --muted-foreground: 38 18% 72%;
-  --accent: 22 80% 54%;       /* tűz-narancs */
-  --accent-foreground: 40 50% 97%;
+  --secondary: 222 55% 18%;
+  --secondary-foreground: 38 50% 92%;
+  --muted: 222 50% 16%;
+  --muted-foreground: 38 20% 72%;
+  --accent: 24 75% 50%;       /* meleg narancs */
+  --accent-foreground: 38 50% 95%;
   --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 98%;
-  --input: 224 40% 24%;
-  --ring: 42 68% 56%;
+  --input: 222 50% 24%;
+  --ring: 42 65% 52%;
 
-  /* Világos "galéria" szekciók (a fehér hátterű termékfotókhoz) */
-  --paper: 40 38% 96%;
-  --paper-2: 38 30% 91%;
-  --ink: 224 45% 13%;
-  --ink-muted: 224 14% 38%;
-  --cobalt: 224 70% 38%;
-
-  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --radius: 1rem;
+  --radius: 0.375rem;
 }
 
 @layer base {
@@ -52,26 +41,34 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    background-color: hsl(var(--background));
   }
 
-
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-    font-feature-settings: "ss01", "cv11";
-    text-rendering: optimizeLegibility;
+    @apply font-sans antialiased text-foreground;
+  }
+
+  /* Egységes, finom kobaltkék fényfolt a háttérben (fix réteg — mobilon is akadásmentes) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at top, hsl(222 75% 14%) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, hsl(222 70% 11%) 0%, transparent 60%);
   }
 
   h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: var(--font-serif);
-    font-variant-numeric: lining-nums;
-    font-weight: 500;
-    letter-spacing: -0.015em;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   :focus-visible {
     outline: 2px solid hsl(var(--primary));
     outline-offset: 3px;
-    border-radius: 6px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -85,107 +82,48 @@
 }
 
 @layer components {
-  /* Kis felirat a címek fölött */
-  .eyebrow {
-    @apply inline-flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.28em];
-    color: hsl(var(--primary));
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.7;
-  }
-
-  .section-title {
-    @apply font-serif text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl;
-  }
-
-  /* Gombok */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60;
-  }
+  /* Arany, nagybetűs gomb (eredeti stílus) */
   .btn-gold {
-    @apply btn;
-    color: hsl(var(--primary-foreground));
-    background: linear-gradient(135deg, hsl(44 82% 70%) 0%, hsl(40 68% 54%) 55%, hsl(28 64% 48%) 100%);
-    box-shadow: 0 6px 24px -8px hsl(40 80% 50% / 0.55), inset 0 1px 0 hsl(45 100% 85% / 0.5);
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] transition-all duration-500 disabled:cursor-not-allowed disabled:opacity-60;
+    color: hsl(var(--background));
+    background: linear-gradient(135deg, hsl(42 75% 65%) 0%, hsl(38 60% 48%) 50%, hsl(24 55% 45%) 100%);
   }
   .btn-gold:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 32px -8px hsl(40 80% 50% / 0.65), inset 0 1px 0 hsl(45 100% 85% / 0.5);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.4);
   }
-  .btn-ghost {
-    @apply btn border;
-    border-color: hsl(var(--primary) / 0.4);
-    color: hsl(var(--foreground));
-  }
-  .btn-ghost:hover {
-    border-color: hsl(var(--primary));
-    background: hsl(var(--primary) / 0.08);
-  }
-  .btn-ink {
-    @apply btn;
-    background: hsl(var(--ink));
-    color: hsl(var(--paper));
-  }
-  .btn-ink:hover {
-    background: hsl(var(--cobalt));
-  }
-
-  /* Világos szekció */
-  .paper {
-    background: hsl(var(--paper));
-    color: hsl(var(--ink));
-  }
-
-  .glass {
-    background: hsl(var(--background) / 0.86);
-    backdrop-filter: blur(16px) saturate(1.4);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-gold/40 px-8 py-4 text-sm uppercase tracking-[0.2em] text-gold-bright transition-all duration-300 hover:border-gold hover:bg-gold/5;
   }
 
   .field {
-    @apply w-full rounded-xl border px-4 py-3.5 text-[0.95rem] transition-colors duration-200 placeholder:text-foreground/35 focus:outline-none;
-    background: hsl(var(--background) / 0.6);
-    border-color: hsl(var(--input));
-    color: hsl(var(--foreground));
-  }
-  .field:focus {
-    border-color: hsl(var(--primary) / 0.8);
-    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.15);
+    @apply w-full border border-input bg-background/60 px-4 py-3 text-foreground transition-colors placeholder:text-foreground/35 focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40;
   }
 }
 
 @layer utilities {
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(42 75% 65%) 0%, hsl(38 60% 48%) 50%, hsl(24 55% 45%) 100%);
+  }
   .gold-gradient-text {
-    background: linear-gradient(120deg, hsl(45 88% 76%) 0%, hsl(40 72% 60%) 45%, hsl(24 72% 56%) 100%);
+    background: linear-gradient(135deg, hsl(42 80% 72%) 0%, hsl(38 70% 60%) 50%, hsl(24 60% 55%) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(42 60% 50% / 0.6) 50%, transparent 100%);
+  }
 
   .scrollbar-none { scrollbar-width: none; }
   .scrollbar-none::-webkit-scrollbar { display: none; }
 
-  /* Finom szemcsés textúra a sötét háttérre (inline SVG, nincs extra kérés) */
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
   /* Megjelenés görgetéskor (lásd useReveal) */
   .reveal {
     opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(18px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
   .reveal.is-visible {
@@ -204,18 +142,13 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
   }
-  @keyframes glow {
-    0%, 100% { opacity: 0.55; transform: scale(1); }
-    50% { opacity: 0.85; transform: scale(1.06); }
-  }
-  .animate-fade-up { animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .animate-fade-in { animation: fadeIn 0.4s ease-out both; }
-  .animate-float { animation: float 7s ease-in-out infinite; }
-  .animate-glow { animation: glow 6s ease-in-out infinite; }
+  .animate-fade-up { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-fade-in { animation: fadeIn 0.3s ease-out both; }
+  .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
 }
 
 /* Jogi oldalak tipográfiája */
@@ -223,7 +156,7 @@
   @apply pt-6 font-serif text-3xl text-foreground;
 }
 .legal h3 {
-  @apply pt-2 font-sans text-base font-semibold text-gold-bright;
+  @apply pt-2 font-sans text-base font-medium text-gold-bright;
 }
 .legal ul {
   @apply list-disc space-y-2 pl-5 marker:text-gold/60;
@@ -232,5 +165,5 @@
   @apply text-gold-bright underline decoration-gold/40 underline-offset-2 hover:decoration-gold;
 }
 .legal strong {
-  @apply font-semibold text-foreground;
+  @apply font-medium text-foreground;
 }
