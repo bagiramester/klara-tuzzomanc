@@ -32,12 +32,12 @@ export function Process() {
     <section id="folyamat" className="py-24 md:py-32 px-6 relative overflow-hidden" aria-labelledby="folyamat-title">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 reveal">
-          <p className="text-xs tracking-[0.4em] uppercase text-gold mb-4">Műhelytitkok</p>
-          <h2 id="folyamat-title" className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
+          <p className="eyebrow text-xs tracking-[0.4em] uppercase text-gold mb-4">Műhelytitkok</p>
+          <h2 id="folyamat-title" className="section-title font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
             A tűzzománc készítés
             <span className="block italic gold-gradient-text mt-2">folyamata</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
+          <p className="section-lead text-muted-foreground max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
             Az ékszerkészítés nem gyors folyamat. Minden darab mögött napok munkája, odaadása és az alkonyi kemence tüze áll.
           </p>
         </div>
@@ -47,7 +47,7 @@ export function Process() {
             <div
               key={s.step}
               style={{ ['--reveal-delay' as string]: `${i * 80}ms` }}
-              className="reveal bg-card/40 border border-card-border p-8 relative group hover:border-gold/40 transition-all duration-500 flex flex-col justify-between"
+              className="info-card reveal bg-card/40 border border-card-border p-8 relative group hover:border-gold/40 transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">

@@ -3,6 +3,7 @@ import { useHashLocation } from "wouter/use-hash-location";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import { Adatkezeles, Impresszum } from "@/pages/Legal";
+import { DesignSwitcher } from "@/components/DesignSwitcher";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/adatkezeles" component={Adatkezeles} />
         <Route component={NotFound} />
       </Switch>
+      <DesignSwitcher />
     </Router>
   );
 }

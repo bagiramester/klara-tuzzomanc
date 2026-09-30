@@ -42,7 +42,7 @@ export function Navigation() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled || mobileOpen
             ? 'bg-background/90 backdrop-blur-md border-b border-gold/20 py-3'
             : 'bg-transparent py-6'
@@ -78,7 +78,7 @@ export function Navigation() {
 
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="md:hidden p-2 -mr-2 text-gold-bright hover:text-gold transition-colors"
+            className="nav-burger md:hidden p-2 -mr-2 text-gold-bright hover:text-gold transition-colors"
             aria-label={mobileOpen ? 'Menü bezárása' : 'Menü megnyitása'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"

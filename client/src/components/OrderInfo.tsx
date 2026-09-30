@@ -60,12 +60,12 @@ export function OrderInfo() {
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 reveal">
-          <p className="text-gold tracking-[0.4em] text-xs uppercase mb-4">Vásárlási információk</p>
-          <h2 id="vasarlas-title" className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
+          <p className="eyebrow text-gold tracking-[0.4em] text-xs uppercase mb-4">Vásárlási információk</p>
+          <h2 id="vasarlas-title" className="section-title font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
             Fizetés, szállítás
             <span className="block italic gold-gradient-text mt-2">és csomagolás</span>
           </h2>
-          <p className="text-base sm:text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="section-lead text-base sm:text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
             Kézműves ékszereimet gondosan csomagolom és a számodra legkényelmesebb
             módon juttatom el. Válaszd a neked megfelelő fizetési és szállítási módot.
           </p>
@@ -78,7 +78,7 @@ export function OrderInfo() {
             ['Visszaigazolom', 'Megírom, hogy a darab elérhető-e, és elküldöm az utalási és szállítási részleteket.'],
             ['Úton hozzád', 'Az összeg beérkezése után gondosan becsomagolva feladom — vagy személyesen átveheted.'],
           ].map(([title, body], i) => (
-            <li key={title} className="flex gap-4 border border-gold/20 bg-card/40 p-5">
+            <li key={title} className="info-card flex gap-4 border border-gold/20 bg-card/40 p-5">
               <span className="font-serif italic text-3xl text-gold/60 leading-none" aria-hidden="true">
                 0{i + 1}
               </span>
@@ -92,7 +92,7 @@ export function OrderInfo() {
 
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 reveal">
           {/* Fizetés */}
-          <div className="bg-card/60 border border-card-border p-8" data-testid="block-payment">
+          <div className="info-card bg-card/60 border border-card-border p-8" data-testid="block-payment">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 flex items-center justify-center bg-gold/10 border border-gold/30">
                 <CreditCard className="text-gold-bright" size={22} strokeWidth={1.5} />
@@ -115,7 +115,7 @@ export function OrderInfo() {
           </div>
 
           {/* Szállítás */}
-          <div className="bg-card/60 border border-card-border p-8" data-testid="block-shipping">
+          <div className="info-card bg-card/60 border border-card-border p-8" data-testid="block-shipping">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 flex items-center justify-center bg-gold/10 border border-gold/30">
                 <Truck className="text-gold-bright" size={22} strokeWidth={1.5} />
@@ -144,7 +144,7 @@ export function OrderInfo() {
           </div>
 
           {/* Csomagolás */}
-          <div className="bg-card/60 border border-card-border p-8" data-testid="block-packaging">
+          <div className="info-card bg-card/60 border border-card-border p-8" data-testid="block-packaging">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 flex items-center justify-center bg-gold/10 border border-gold/30">
                 <Package className="text-gold-bright" size={22} strokeWidth={1.5} />

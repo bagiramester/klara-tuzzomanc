@@ -77,8 +77,8 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   return (
     <section id="kapcsolat" className="py-24 md:py-32 px-6" aria-labelledby="kapcsolat-title">
       <div className="max-w-6xl mx-auto">
-        <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">Kapcsolat</p>
-        <h2 id="kapcsolat-title" className="font-serif text-4xl md:text-5xl text-foreground mb-12">
+        <p className="eyebrow text-xs tracking-[0.4em] uppercase text-gold mb-4">Kapcsolat</p>
+        <h2 id="kapcsolat-title" className="section-title font-serif text-4xl md:text-5xl text-foreground mb-12">
           Írj nekem, örömmel várom
         </h2>
 
@@ -86,7 +86,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
           {/* Contact form */}
           <div className="lg:col-span-3 min-w-0">
             {submitted ? (
-              <div role="status" className="flex flex-col items-center justify-center text-center py-20 border border-gold/20">
+              <div role="status" className="contact-form flex flex-col items-center justify-center text-center py-20 border border-gold/20">
                 <CheckCircle2 className="text-gold mb-6" size={48} strokeWidth={1.5} />
                 <h3 className="font-serif text-2xl text-gold-bright mb-3">Köszönöm az üzenetet</h3>
                 <p className="text-muted-foreground max-w-md leading-relaxed">
@@ -94,7 +94,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="contact-form space-y-6">
                 {error && (
                   <div role="alert" className="p-4 bg-red-500/10 border border-red-500/30 text-red-200 text-sm leading-relaxed">
                     {error}
@@ -227,7 +227,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
           </div>
 
           {/* Contact info sidebar */}
-          <aside className="lg:col-span-2 space-y-8 min-w-0">
+          <aside className="contact-aside lg:col-span-2 space-y-8 min-w-0">
             <div>
               <h3 className="font-serif text-2xl text-gold-bright mb-6">Elérhetőség</h3>
               <ul className="space-y-5">

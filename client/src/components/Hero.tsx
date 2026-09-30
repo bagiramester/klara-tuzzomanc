@@ -29,7 +29,7 @@ export function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* A nagy márkalogó */}
         <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
-          <div className="mx-auto w-[300px] sm:w-[380px] md:w-[440px]">
+          <div className="hero-logo mx-auto w-[300px] sm:w-[380px] md:w-[440px]">
             <Img
               picture={klaraLogoHero}
               sizes="(min-width: 768px) 440px, (min-width: 640px) 380px, 300px"
@@ -55,14 +55,14 @@ export function Hero() {
           </div>
 
           <h1 className="sr-only">KLÁRA tűzzománc — kézzel készített tűzzománc ékszerek</h1>
-          <p className="text-base sm:text-lg text-foreground/85 max-w-2xl mx-auto leading-relaxed mb-12">
+          <p className="hero-lead text-base sm:text-lg text-foreground/85 max-w-2xl mx-auto leading-relaxed mb-12">
             Egyedi tervezésű, kézzel készített tűzzománc ékszerek réz, ezüst és bronz alapon{' '}
             <span className="text-gold/90">820 fokon égetve</span>, napokon át tartó kézműves folyamattal.
           </p>
         </div>
 
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"
+          className="hero-actions flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"
           style={{ animationDelay: '0.6s' }}
         >
           <button onClick={() => scrollToSection('kollekcio')} className="btn-gold group w-full max-w-[16rem] sm:w-auto" data-testid="button-view-collection">

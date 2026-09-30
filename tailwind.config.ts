@@ -53,8 +53,8 @@ export default {
         },
         ring: "hsl(var(--ring) / <alpha-value>)",
         gold: {
-          DEFAULT: "hsl(42 65% 60% / <alpha-value>)",
-          bright: "hsl(42 75% 68% / <alpha-value>)",
+          DEFAULT: "hsl(var(--gold) / <alpha-value>)",
+          bright: "hsl(var(--gold-bright) / <alpha-value>)",
         },
         chart: {
           "1": "hsl(var(--chart-1) / <alpha-value>)",
