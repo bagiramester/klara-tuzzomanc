@@ -56,9 +56,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - # Tartalék / előnézeti telepítés GitHub Pages-re.
-# Az éles oldal a Cloudflare Pages-en fut (lásd docs/ELESITES.md). Ha az élesítés kész,
-# ez a workflow kikapcsolható (Actions → Deploy to GitHub Pages → Disable workflow).
-name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
