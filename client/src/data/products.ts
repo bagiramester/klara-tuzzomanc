@@ -15,7 +15,7 @@ export interface Product {
   size?: string;          // pl. "30×8 mm" vagy "50 mm"
   materialDetail?: string; // pl. "Vörösréz, ékszerzománc"
   technique?: string;      // pl. "fűrészelt", "domborított"
-  image?: string;       // imported image path
+  image?: Picture;      // reszponzív WebP változatok (vite-imagetools, ?product)
   imageBg?: string;     // CSS gradient for placeholder cards
   featured?: boolean;
 }
@@ -28,126 +28,126 @@ export const categories: { id: Category; label: string; description: string }[] 
   { id: 'szettek', label: 'Szettek', description: 'Összehangolt ékszerek — medál és fülbevaló párban' },
 ];
 // Eredeti termékfotók (megőrizve)
-import zoldOrnamentBrossImg from '@assets/zold-ornament-bross.jpg';
+import zoldOrnamentBrossImg from '@assets/zold-ornament-bross.jpg?product';
 
 // Biloba (ginkgo) medál kollekció — 2026 (KB_F3 alapján, M1–M10)
-import m4BilobaImg from '@assets/uj-medalok-v2/M4_biloba.jpg';
-import m6BilobaImg from '@assets/uj-medalok-v2/M6_biloba.jpg';
-import m10BilobaImg from '@assets/uj-medalok-v2/M10_biloba.jpg';
+import m4BilobaImg from '@assets/uj-medalok-v2/M4_biloba.jpg?product';
+import m6BilobaImg from '@assets/uj-medalok-v2/M6_biloba.jpg?product';
+import m10BilobaImg from '@assets/uj-medalok-v2/M10_biloba.jpg?product';
 
 // Millefiori medál kollekció — 2026 (M11–M21)
-import m12MillefioriImg from '@assets/uj-millefiori-medalok/M12_millefiori.jpg';
-import m13MillefioriImg from '@assets/uj-millefiori-medalok/M13_millefiori.jpg';
-import m14MillefioriImg from '@assets/uj-millefiori-medalok/M14_millefiori.jpg';
-import m16MillefioriImg from '@assets/uj-millefiori-medalok/M16_millefiori.jpg';
-import m17MillefioriImg from '@assets/uj-millefiori-medalok/M17_millefiori.jpg';
-import m18MillefioriImg from '@assets/uj-millefiori-medalok/M18_millefiori.jpg';
-import m19MillefioriImg from '@assets/uj-millefiori-medalok/M19_millefiori.jpg';
-import m21MillefioriImg from '@assets/uj-millefiori-medalok/M21_millefiori.jpg';
+import m12MillefioriImg from '@assets/uj-millefiori-medalok/M12_millefiori.jpg?product';
+import m13MillefioriImg from '@assets/uj-millefiori-medalok/M13_millefiori.jpg?product';
+import m14MillefioriImg from '@assets/uj-millefiori-medalok/M14_millefiori.jpg?product';
+import m16MillefioriImg from '@assets/uj-millefiori-medalok/M16_millefiori.jpg?product';
+import m17MillefioriImg from '@assets/uj-millefiori-medalok/M17_millefiori.jpg?product';
+import m18MillefioriImg from '@assets/uj-millefiori-medalok/M18_millefiori.jpg?product';
+import m19MillefioriImg from '@assets/uj-millefiori-medalok/M19_millefiori.jpg?product';
+import m21MillefioriImg from '@assets/uj-millefiori-medalok/M21_millefiori.jpg?product';
 // Új medálok 2026 nyár — KB_W2 (M22–M42)
-import m22Img from '@assets/uj-medalok-v2/M22.jpg';
-import m23Img from '@assets/uj-medalok-v2/M23.jpg';
-import m24Img from '@assets/uj-medalok-v2/M24.jpg';
-import m25Img from '@assets/uj-medalok-v2/M25.jpg';
-import m26Img from '@assets/uj-medalok-v2/M26.jpg';
-import m27Img from '@assets/uj-medalok-v2/M27.jpg';
-import m28Img from '@assets/uj-medalok-v2/M28.jpg';
-import m29Img from '@assets/uj-medalok-v2/M29.jpg';
-import m30Img from '@assets/uj-medalok-v2/M30.jpg';
-import m31Img from '@assets/uj-medalok-v2/M31.jpg';
-import m32Img from '@assets/uj-medalok-v2/M32.jpg';
-import m33Img from '@assets/uj-medalok-v2/M33.jpg';
-import m34Img from '@assets/uj-medalok-v2/M34.jpg';
-import m35Img from '@assets/uj-medalok-v2/M35.jpg';
-import m36Img from '@assets/uj-medalok-v2/M36.jpg';
-import m37Img from '@assets/uj-medalok-v2/M37.jpg';
-import m39Img from '@assets/uj-medalok-v2/M39.jpg';
-import m40Img from '@assets/uj-medalok-v2/M40.jpg';
-import m41Img from '@assets/uj-medalok-v2/M41.jpg';
-import m42Img from '@assets/uj-medalok-v2/M42.jpg';
+import m22Img from '@assets/uj-medalok-v2/M22.jpg?product';
+import m23Img from '@assets/uj-medalok-v2/M23.jpg?product';
+import m24Img from '@assets/uj-medalok-v2/M24.jpg?product';
+import m25Img from '@assets/uj-medalok-v2/M25.jpg?product';
+import m26Img from '@assets/uj-medalok-v2/M26.jpg?product';
+import m27Img from '@assets/uj-medalok-v2/M27.jpg?product';
+import m28Img from '@assets/uj-medalok-v2/M28.jpg?product';
+import m29Img from '@assets/uj-medalok-v2/M29.jpg?product';
+import m30Img from '@assets/uj-medalok-v2/M30.jpg?product';
+import m31Img from '@assets/uj-medalok-v2/M31.jpg?product';
+import m32Img from '@assets/uj-medalok-v2/M32.jpg?product';
+import m33Img from '@assets/uj-medalok-v2/M33.jpg?product';
+import m34Img from '@assets/uj-medalok-v2/M34.jpg?product';
+import m35Img from '@assets/uj-medalok-v2/M35.jpg?product';
+import m36Img from '@assets/uj-medalok-v2/M36.jpg?product';
+import m37Img from '@assets/uj-medalok-v2/M37.jpg?product';
+import m39Img from '@assets/uj-medalok-v2/M39.jpg?product';
+import m40Img from '@assets/uj-medalok-v2/M40.jpg?product';
+import m41Img from '@assets/uj-medalok-v2/M41.jpg?product';
+import m42Img from '@assets/uj-medalok-v2/M42.jpg?product';
 
 // Fülbevalók (KB_F3, F1–F20, F12 nincs, F13/F20 törölve)
-import f1Img from '@assets/uj-fulbevalok-v2/F1.jpg';
-import f2Img from '@assets/uj-fulbevalok-v2/F2.jpg';
-import f3Img from '@assets/uj-fulbevalok-v2/F3.jpg';
-import f4Img from '@assets/uj-fulbevalok-v2/F4.jpg';
-import f5Img from '@assets/uj-fulbevalok-v2/F5.jpg';
-import f6Img from '@assets/uj-fulbevalok-v2/F6.jpg';
-import f7Img from '@assets/uj-fulbevalok-v2/F7.jpg';
-import f8Img from '@assets/uj-fulbevalok-v2/F8.jpg';
-import f9Img from '@assets/uj-fulbevalok-v2/F9.jpg';
-import f10Img from '@assets/uj-fulbevalok-v2/F10.jpg';
-import f11Img from '@assets/uj-fulbevalok-v2/F11.jpg';
-import f14Img from '@assets/uj-fulbevalok-v2/F14.jpg';
-import f15Img from '@assets/uj-fulbevalok-v2/F15.jpg';
-import f16Img from '@assets/uj-fulbevalok-v2/F16.jpg';
-import f17Img from '@assets/uj-fulbevalok-v2/F17.jpg';
-import f18Img from '@assets/uj-fulbevalok-v2/F18.jpg';
-import f18aImg from '@assets/uj-fulbevalok-v2/F18a.jpg';
-import f19Img from '@assets/uj-fulbevalok-v2/F19.jpg';
-import f20Img from '@assets/uj-fulbevalok-v2/F20.jpg';
-import f21Img from '@assets/uj-fulbevalok-v2/F21.jpg';
-import f22Img from '@assets/uj-fulbevalok-v2/F22.jpg';
-import f23Img from '@assets/uj-fulbevalok-v2/F23.jpg';
-import f24Img from '@assets/uj-fulbevalok-v2/F24.jpg';
-import f25Img from '@assets/uj-fulbevalok-v2/F25.jpg';
-import f26Img from '@assets/uj-fulbevalok-v2/F26.jpg';
-import f27Img from '@assets/uj-fulbevalok-v2/F27.jpg';
-import f28Img from '@assets/uj-fulbevalok-v2/F28.jpg';
-import f29Img from '@assets/uj-fulbevalok-v2/F29.jpg';
-import f30Img from '@assets/uj-fulbevalok-v2/F30.jpg';
-import f31Img from '@assets/uj-fulbevalok-v2/F31.jpg';
-import f32Img from '@assets/uj-fulbevalok-v2/F32.jpg';
-import f33Img from '@assets/uj-fulbevalok-v2/F33.jpg';
-import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg';
-import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg';
-import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg';
-import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg';
+import f1Img from '@assets/uj-fulbevalok-v2/F1.jpg?product';
+import f2Img from '@assets/uj-fulbevalok-v2/F2.jpg?product';
+import f3Img from '@assets/uj-fulbevalok-v2/F3.jpg?product';
+import f4Img from '@assets/uj-fulbevalok-v2/F4.jpg?product';
+import f5Img from '@assets/uj-fulbevalok-v2/F5.jpg?product';
+import f6Img from '@assets/uj-fulbevalok-v2/F6.jpg?product';
+import f7Img from '@assets/uj-fulbevalok-v2/F7.jpg?product';
+import f8Img from '@assets/uj-fulbevalok-v2/F8.jpg?product';
+import f9Img from '@assets/uj-fulbevalok-v2/F9.jpg?product';
+import f10Img from '@assets/uj-fulbevalok-v2/F10.jpg?product';
+import f11Img from '@assets/uj-fulbevalok-v2/F11.jpg?product';
+import f14Img from '@assets/uj-fulbevalok-v2/F14.jpg?product';
+import f15Img from '@assets/uj-fulbevalok-v2/F15.jpg?product';
+import f16Img from '@assets/uj-fulbevalok-v2/F16.jpg?product';
+import f17Img from '@assets/uj-fulbevalok-v2/F17.jpg?product';
+import f18Img from '@assets/uj-fulbevalok-v2/F18.jpg?product';
+import f18aImg from '@assets/uj-fulbevalok-v2/F18a.jpg?product';
+import f19Img from '@assets/uj-fulbevalok-v2/F19.jpg?product';
+import f20Img from '@assets/uj-fulbevalok-v2/F20.jpg?product';
+import f21Img from '@assets/uj-fulbevalok-v2/F21.jpg?product';
+import f22Img from '@assets/uj-fulbevalok-v2/F22.jpg?product';
+import f23Img from '@assets/uj-fulbevalok-v2/F23.jpg?product';
+import f24Img from '@assets/uj-fulbevalok-v2/F24.jpg?product';
+import f25Img from '@assets/uj-fulbevalok-v2/F25.jpg?product';
+import f26Img from '@assets/uj-fulbevalok-v2/F26.jpg?product';
+import f27Img from '@assets/uj-fulbevalok-v2/F27.jpg?product';
+import f28Img from '@assets/uj-fulbevalok-v2/F28.jpg?product';
+import f29Img from '@assets/uj-fulbevalok-v2/F29.jpg?product';
+import f30Img from '@assets/uj-fulbevalok-v2/F30.jpg?product';
+import f31Img from '@assets/uj-fulbevalok-v2/F31.jpg?product';
+import f32Img from '@assets/uj-fulbevalok-v2/F32.jpg?product';
+import f33Img from '@assets/uj-fulbevalok-v2/F33.jpg?product';
+import f34Img from '@assets/uj-fulbevalok-v2/F34.jpg?product';
+import f35Img from '@assets/uj-fulbevalok-v2/F35.jpg?product';
+import f36Img from '@assets/uj-fulbevalok-v2/F36.jpg?product';
+import f37Img from '@assets/uj-fulbevalok-v2/F37.jpg?product';
 // Új fülbevalók 2026 — KB_W8 (F38–F53)
-  import f38Img from '@assets/uj-fulbevalok-w6/F38.jpg';
-  import f39Img from '@assets/uj-fulbevalok-w6/F39.jpg';
-  import f40Img from '@assets/uj-fulbevalok-w6/F40.jpg';
-  import f41Img from '@assets/uj-fulbevalok-w6/F41.jpg';
-  import f42Img from '@assets/uj-fulbevalok-w6/F42.jpg';
-  import f43Img from '@assets/uj-fulbevalok-w6/F43.jpg';
-  import f44Img from '@assets/uj-fulbevalok-w6/F44.jpg';
-  import f45Img from '@assets/uj-fulbevalok-w6/F45.jpg';
-  import f46Img from '@assets/uj-fulbevalok-w6/F46.jpg';
-  import f47Img from '@assets/uj-fulbevalok-w6/F47.jpg';
-  import f48Img from '@assets/uj-fulbevalok-w6/F48.jpg';
-  import f49Img from '@assets/uj-fulbevalok-w6/F49.jpg';
-  import f50Img from '@assets/uj-fulbevalok-w6/F50.jpg';
-  import f51Img from '@assets/uj-fulbevalok-w6/F51.jpg';
-  import f52Img from '@assets/uj-fulbevalok-w6/F52.jpg';
-  import f54Img from '@assets/uj-fulbevalok-w6/F54.jpg';
+import f38Img from '@assets/uj-fulbevalok-w6/F38.jpg?product';
+import f39Img from '@assets/uj-fulbevalok-w6/F39.jpg?product';
+import f40Img from '@assets/uj-fulbevalok-w6/F40.jpg?product';
+import f41Img from '@assets/uj-fulbevalok-w6/F41.jpg?product';
+import f42Img from '@assets/uj-fulbevalok-w6/F42.jpg?product';
+import f43Img from '@assets/uj-fulbevalok-w6/F43.jpg?product';
+import f44Img from '@assets/uj-fulbevalok-w6/F44.jpg?product';
+import f45Img from '@assets/uj-fulbevalok-w6/F45.jpg?product';
+import f46Img from '@assets/uj-fulbevalok-w6/F46.jpg?product';
+import f47Img from '@assets/uj-fulbevalok-w6/F47.jpg?product';
+import f48Img from '@assets/uj-fulbevalok-w6/F48.jpg?product';
+import f49Img from '@assets/uj-fulbevalok-w6/F49.jpg?product';
+import f50Img from '@assets/uj-fulbevalok-w6/F50.jpg?product';
+import f51Img from '@assets/uj-fulbevalok-w6/F51.jpg?product';
+import f52Img from '@assets/uj-fulbevalok-w6/F52.jpg?product';
+import f54Img from '@assets/uj-fulbevalok-w6/F54.jpg?product';
 // Karkötők (KB_W1, K1–K14, K10 hiányzó kép kihagyva)
-import k1Img from '@assets/uj-karkotok/K1.jpg';
-import k2Img from '@assets/uj-karkotok/K2.jpg';
-import k3Img from '@assets/uj-karkotok/K3.jpg';
-import k4Img from '@assets/uj-karkotok/K4.jpg';
-import k5Img from '@assets/uj-karkotok/K5.jpg';
-import k6Img from '@assets/uj-karkotok/K6.jpg';
-import k7Img from '@assets/uj-karkotok/K7.jpg';
-import k8Img from '@assets/uj-karkotok/K8.jpg';
-import k9Img from '@assets/uj-karkotok/K9.jpg';
-import k10Img from '@assets/uj-karkotok/K10.jpg';
-import k11Img from '@assets/uj-karkotok/K11.jpg';
-import k12Img from '@assets/uj-karkotok/K12.jpg';
-import k13Img from '@assets/uj-karkotok/K13.jpg';
+import k1Img from '@assets/uj-karkotok/K1.jpg?product';
+import k2Img from '@assets/uj-karkotok/K2.jpg?product';
+import k3Img from '@assets/uj-karkotok/K3.jpg?product';
+import k4Img from '@assets/uj-karkotok/K4.jpg?product';
+import k5Img from '@assets/uj-karkotok/K5.jpg?product';
+import k6Img from '@assets/uj-karkotok/K6.jpg?product';
+import k7Img from '@assets/uj-karkotok/K7.jpg?product';
+import k8Img from '@assets/uj-karkotok/K8.jpg?product';
+import k9Img from '@assets/uj-karkotok/K9.jpg?product';
+import k10Img from '@assets/uj-karkotok/K10.jpg?product';
+import k11Img from '@assets/uj-karkotok/K11.jpg?product';
+import k12Img from '@assets/uj-karkotok/K12.jpg?product';
+import k13Img from '@assets/uj-karkotok/K13.jpg?product';
 
 // Szettek — 2026 (KB_W9, Sz1–Sz6, Szk10/11/12, Szk20/21/22)
-import sz1Img from '@assets/Sz1.jpg';
-import sz2Img from '@assets/Sz2.jpg';
-import sz3Img from '@assets/Sz3.jpg';
-import sz4Img from '@assets/Sz4.jpg';
-import sz5Img from '@assets/Sz5.jpg';
-import sz6Img from '@assets/Sz6.jpg';
-import szk10Img from '@assets/SzK10.jpg';
-import szk11Img from '@assets/Szk11.jpg';
-import szk12Img from '@assets/Szk12.jpg';
-import szk20Img from '@assets/Szk20.jpg';
-import szk21Img from '@assets/Szk21.jpg';
-import szk22Img from '@assets/Szk22.jpg';
+import sz1Img from '@assets/Sz1.jpg?product';
+import sz2Img from '@assets/Sz2.jpg?product';
+import sz3Img from '@assets/Sz3.jpg?product';
+import sz4Img from '@assets/Sz4.jpg?product';
+import sz5Img from '@assets/Sz5.jpg?product';
+import sz6Img from '@assets/Sz6.jpg?product';
+import szk10Img from '@assets/SzK10.jpg?product';
+import szk11Img from '@assets/Szk11.jpg?product';
+import szk12Img from '@assets/Szk12.jpg?product';
+import szk20Img from '@assets/Szk20.jpg?product';
+import szk21Img from '@assets/Szk21.jpg?product';
+import szk22Img from '@assets/Szk22.jpg?product';
 
 const allProducts: Product[] = [
   // ===== MEDÁLOK =====
@@ -1729,3 +1729,15 @@ export const products: Product[] = allProducts.filter((p) => !!p.image);
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat('hu-HU').format(price) + ' Ft';
 };
+
+// A termék azonosítójából csak a sorszámot mutatjuk: 'm4-biloba' → 'M4', 'br1-smaragd-ornament' → 'Br1'.
+export function productCode(id: string): string {
+  const base = id.split('-')[0];
+  const parts = base.match(/^([a-z]+)(\d+)([a-z]*)$/i);
+  if (!parts) return base.toUpperCase();
+  const [, prefix, num, suffix] = parts;
+  return prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase() + num + suffix;
+}
+
+export const categoryLabel = (id: Category): string =>
+  categories.find((c) => c.id === id)?.label ?? id;

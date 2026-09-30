@@ -52,6 +52,19 @@ export default {
           border: "var(--destructive-border)",
         },
         ring: "hsl(var(--ring) / <alpha-value>)",
+        paper: {
+          DEFAULT: "hsl(var(--paper) / <alpha-value>)",
+          2: "hsl(var(--paper-2) / <alpha-value>)",
+        },
+        ink: {
+          DEFAULT: "hsl(var(--ink) / <alpha-value>)",
+          muted: "hsl(var(--ink-muted) / <alpha-value>)",
+        },
+        cobalt: "hsl(var(--cobalt) / <alpha-value>)",
+        gold: {
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          bright: "hsl(43 80% 72% / <alpha-value>)",
+        },
         chart: {
           "1": "hsl(var(--chart-1) / <alpha-value>)",
           "2": "hsl(var(--chart-2) / <alpha-value>)",

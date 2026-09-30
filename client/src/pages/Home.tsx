@@ -7,13 +7,25 @@ import { Process } from '@/components/Process';
 import { OrderInfo } from '@/components/OrderInfo';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { useReveal } from '@/hooks/use-reveal';
 import type { Product } from '@/data/products';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  useReveal();
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-gold/30 selection:text-gold-bright">
+      <a
+        href="#kollekcio"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('kollekcio')?.scrollIntoView();
+        }}
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-background"
+      >
+        Ugrás a kollekcióhoz
+      </a>
       <Navigation />
       <main>
         <Hero />
@@ -21,10 +33,7 @@ export default function Home() {
         <About />
         <Process />
         <OrderInfo />
-        <Contact
-          selectedProduct={selectedProduct}
-          onClearProduct={() => setSelectedProduct(null)}
-        />
+        <Contact selectedProduct={selectedProduct} onClearProduct={() => setSelectedProduct(null)} />
       </main>
       <Footer />
     </div>

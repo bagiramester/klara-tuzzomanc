@@ -1,48 +1,30 @@
+import { Facebook, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
-import { Facebook } from 'lucide-react';
+import { navLinks } from './Navigation';
+import { scrollToSection } from '@/lib/scroll';
 
 export function Footer() {
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
   return (
-    <footer className="relative border-t border-gold/20 pt-16 pb-8 px-6" data-testid="footer">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Logo size={56} showText={false} />
-            <div className="mt-4">
-              <div className="font-serif text-gold-bright tracking-[0.3em] text-xl leading-none">
-                KLÁRA
-              </div>
-              <div className="font-serif text-gold/60 tracking-[0.2em] text-xs mt-1 uppercase">
-                Tűzzománc
-              </div>
-            </div>
-            <p className="font-serif italic text-gold-bright/90 text-lg mt-4 leading-relaxed">
-              „Tűzzel, szívvel, lélekkel.”
-            </p>
-            <p className="text-sm text-muted-foreground mt-4 max-w-md leading-relaxed">
-              Egyedi tervezésű, kézzel készített tűzzománc ékszerek Budapestről. Minden darab a
-              hagyományos ötvös technikák és a 820°C-os égetés eredménye.
+    <footer className="relative border-t border-white/[0.07] bg-[hsl(224_65%_5%)] pt-16 pb-8" data-testid="footer">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <Logo size={52} />
+            <p className="mt-6 font-serif text-2xl italic text-gold-bright">„Tűzzel, szívvel, lélekkel.”</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/55">
+              Egyedi tervezésű, kézzel készített tűzzománc ékszerek Budapestről. Minden darab a hagyományos
+              ötvöstechnikák és a 820 °C-os égetés eredménye.
             </p>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="text-xs tracking-[0.25em] uppercase text-gold mb-5">Oldal</h4>
-            <ul className="space-y-3">
-              {[
-                { id: 'kollekcio', label: 'Kollekció' },
-                { id: 'rolam', label: 'Rólam' },
-                { id: 'folyamat', label: 'A folyamat' },
-                { id: 'kapcsolat', label: 'Kapcsolat' },
-              ].map((link) => (
+          <nav aria-label="Lábléc navigáció">
+            <h4 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Oldal</h4>
+            <ul className="mt-5 space-y-3">
+              {navLinks.map((link) => (
                 <li key={link.id}>
                   <button
-                    onClick={() => scrollTo(link.id)}
-                    className="text-sm text-foreground/70 hover:text-gold-bright transition-colors"
+                    onClick={() => scrollToSection(link.id)}
+                    className="text-sm text-foreground/65 transition-colors hover:text-gold-bright"
                     data-testid={`footer-link-${link.id}`}
                   >
                     {link.label}
@@ -50,52 +32,46 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-xs tracking-[0.25em] uppercase text-gold mb-5">Kapcsolat</h4>
-            <ul className="space-y-3 text-sm text-foreground/70">
+            <h4 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold/80">Kapcsolat</h4>
+            <ul className="mt-5 space-y-3 text-sm text-foreground/65">
               <li>
-                <a
-                  href="mailto:fire.enamel.klara@gmail.com"
-                  className="hover:text-gold-bright transition-colors break-all"
-                >
+                <a href="mailto:fire.enamel.klara@gmail.com" className="break-all transition-colors hover:text-gold-bright">
                   fire.enamel.klara@gmail.com
                 </a>
               </li>
               <li>Budapest, Magyarország</li>
               <li>
-                <a
-                  href="https://klaratuzzomanc.hu"
-                  className="hover:text-gold-bright transition-colors"
-                >
+                <a href="https://klaratuzzomanc.hu" className="transition-colors hover:text-gold-bright">
                   klaratuzzomanc.hu
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/klara.kovarinebauer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-gold-bright"
+                  data-testid="footer-link-facebook"
+                >
+                  <Facebook size={15} strokeWidth={1.6} />
+                  Facebook
+                </a>
+              </li>
             </ul>
-            <div className="mt-8">
-              <h4 className="text-xs tracking-[0.25em] uppercase text-gold mb-3">Kövess</h4>
-              <a
-                href="https://www.facebook.com/klara.kovarinebauer"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-gold-bright transition-colors"
-                data-testid="footer-link-facebook"
-              >
-                <Facebook size={16} strokeWidth={1.5} />
-                <span>Facebook</span>
-              </a>
-            </div>
           </div>
         </div>
 
-        {/* Gold divider */}
-        <div className="gold-divider mb-6" />
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-6 text-xs text-foreground/45 sm:flex-row">
           <p>© {new Date().getFullYear()} KLÁRA Tűzzománc — Minden jog fenntartva</p>
-          <p className="tracking-wider">Kézzel készítve Budapesten</p>
+          <button
+            onClick={() => scrollToSection('hero')}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-gold/40 hover:text-gold-bright"
+          >
+            Vissza a tetejére <ArrowUp size={13} />
+          </button>
         </div>
       </div>
     </footer>

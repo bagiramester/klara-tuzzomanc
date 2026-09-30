@@ -1,340 +1,258 @@
-import { useState, useEffect, useCallback } from 'react';
-import { products, categories, formatPrice, type Category, type Product } from '@/data/products';
-import { ZoomIn, X, ChevronLeft, ChevronRight, ExternalLink, Mail } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Plus, Search, X } from 'lucide-react';
+import { products, categories, formatPrice, productCode, type Category, type Product } from '@/data/products';
+import { scrollToSection } from '@/lib/scroll';
+import { Img } from './Picture';
+import { ProductDialog } from './ProductDialog';
 
 type Filter = Category | 'all';
+type Sort = 'featured' | 'price-asc' | 'price-desc';
 
-// A termék azonosítójából csak a sorszámot mutatjuk: 'm4-biloba' → 'M4', 'br1-smaragd-ornament' → 'Br1'.
-function productCode(id: string): string {
-  const base = id.split('-')[0];
-  const parts = base.match(/^([a-z]+)(\d+)([a-z]*)$/i);
-  if (!parts) return base.toUpperCase();
-  const [, prefix, num, suffix] = parts;
-  return prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase() + num + suffix;
-}
+const PAGE_SIZE = 12;
+const CARD_SIZES = '(min-width: 1280px) 300px, (min-width: 768px) 31vw, 46vw';
+
+// Ékezet- és kisbetű-független keresés
+const normalize = (s: string) =>
+  s.toLocaleLowerCase('hu').normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+const searchIndex = new Map(
+  products.map((p) => [
+    p.id,
+    normalize([p.name, p.description, productCode(p.id), p.material, ...p.colors].join(' ')),
+  ]),
+);
 
 interface CollectionProps {
   onSelectProduct?: (product: Product) => void;
 }
 
 export function Collection({ onSelectProduct }: CollectionProps) {
-  const [activeFilter, setActiveFilter] = useState<Filter>('all');
-  const [selectedProductIndex, setSelectedProductIndex] = useState<number | null>(null);
+  const [filter, setFilter] = useState<Filter>('all');
+  const [sort, setSort] = useState<Sort>('featured');
+  const [query, setQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Filter products based on selected category
-  const filteredProducts = activeFilter === 'all'
-    ? products
-    : products.filter((p) => p.category === activeFilter);
-
-  const activeProduct = selectedProductIndex !== null ? filteredProducts[selectedProductIndex] : null;
-
-  // Handle modal navigation
-  const handlePrev = useCallback(() => {
-    if (selectedProductIndex !== null && filteredProducts.length > 0) {
-      setSelectedProductIndex((prev) =>
-        prev === 0 ? filteredProducts.length - 1 : (prev as number) - 1
-      );
-    }
-  }, [selectedProductIndex, filteredProducts]);
-
-  const handleNext = useCallback(() => {
-    if (selectedProductIndex !== null && filteredProducts.length > 0) {
-      setSelectedProductIndex((prev) =>
-        prev === filteredProducts.length - 1 ? 0 : (prev as number) + 1
-      );
-    }
-  }, [selectedProductIndex, filteredProducts]);
-
-  const closeModal = useCallback(() => {
-    setSelectedProductIndex(null);
-  }, []);
-
-  // Keyboard navigation for Lightbox
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedProductIndex === null) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProductIndex, closeModal, handlePrev, handleNext]);
-
-  // Lock body scroll when Lightbox is open
-  useEffect(() => {
-    if (selectedProductIndex !== null) {
-      document.body.style.overflow = 'hidden';
+  const list = useMemo(() => {
+    const q = normalize(query.trim());
+    let result = products.filter(
+      (p) => (filter === 'all' || p.category === filter) && (!q || searchIndex.get(p.id)!.includes(q)),
+    );
+    if (sort === 'featured') {
+      result = [...result].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
     } else {
-      document.body.style.overflow = '';
+      result = [...result].sort((a, b) => (sort === 'price-asc' ? a.price - b.price : b.price - a.price));
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedProductIndex]);
+    return result;
+  }, [filter, sort, query]);
 
-  const handleInterest = (product: Product) => {
-    closeModal();
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    }
-    const contactElement = document.getElementById('kapcsolat');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
-    }
+  const visible = list.slice(0, visibleCount);
+  const remaining = list.length - visible.length;
+
+  const changeFilter = (f: Filter) => {
+    setFilter(f);
+    setVisibleCount(PAGE_SIZE);
   };
 
+  const handleInterest = (product: Product) => {
+    setOpenIndex(null);
+    onSelectProduct?.(product);
+    // a dialógus bezárása után görgessünk
+    requestAnimationFrame(() => scrollToSection('kapcsolat'));
+  };
+
+  const chips: { id: Filter; label: string; count: number }[] = [
+    { id: 'all', label: 'Összes', count: products.length },
+    ...categories
+      .map((c) => ({ id: c.id as Filter, label: c.label, count: products.filter((p) => p.category === c.id).length }))
+      .filter((c) => c.count > 0),
+  ];
+
   return (
-    <section id="kollekcio" className="py-24 md:py-32 px-6 bg-background/50 relative">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.4em] uppercase text-gold mb-4">Ékszerkatalógus</p>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
-            Kézzel készült
-            <span className="block italic gold-gradient-text mt-2">tűzzománc alkotások</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
-            Minden darab egyedi, kézzel formázott réz, ezüst vagy bronz alapon készült, 820°C-os égetéssel.
-            Kattints bármelyik képre a részletes nagyításhoz!
+    <section id="kollekcio" className="paper relative py-24 md:py-32" aria-labelledby="kollekcio-title">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        {/* Fejléc */}
+        <div className="reveal grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end">
+          <div>
+            <p className="eyebrow !text-[hsl(32_70%_40%)]">Ékszerkatalógus</p>
+            <h2 id="kollekcio-title" className="section-title mt-5">
+              Kézzel készült <em className="text-cobalt">tűzzománc</em> alkotások
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-relaxed text-ink-muted md:justify-self-end md:text-right">
+            Minden darab egyedi: kézzel formázott réz, ezüst vagy bronz alapon, 820 °C-os égetéssel.
+            Kattints bármelyik ékszerre a részletekért!
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
-          <button
-            onClick={() => {
-              setActiveFilter('all');
-              setSelectedProductIndex(null);
-            }}
-            className={`px-5 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-300 border ${
-              activeFilter === 'all'
-                ? 'bg-gold/15 border-gold text-gold-bright shadow-[0_0_20px_rgba(212,175,55,0.2)]'
-                : 'border-card-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
-            }`}
-            data-testid="filter-all"
-          >
-            Összes ({products.length})
-          </button>
-          {categories.map((cat) => {
-            const count = products.filter((p) => p.category === cat.id).length;
-            if (count === 0) return null;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  setActiveFilter(cat.id);
-                  setSelectedProductIndex(null);
-                }}
-                className={`px-5 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-300 border ${
-                  activeFilter === cat.id
-                    ? 'bg-gold/15 border-gold text-gold-bright shadow-[0_0_20px_rgba(212,175,55,0.2)]'
-                    : 'border-card-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
-                }`}
-                data-testid={`filter-${cat.id}`}
-              >
-                {cat.label} ({count})
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredProducts.map((product, index) => (
-            <article
-              key={product.id}
-              className="group flex flex-col bg-card/60 border border-card-border hover:border-gold/50 transition-all duration-500 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)]"
-              data-testid={`card-product-${product.id}`}
-            >
-              {/* Image area */}
-              <div
-                className="relative aspect-square overflow-hidden bg-background/50 cursor-pointer"
-                onClick={() => setSelectedProductIndex(index)}
-              >
-                {product.image ? (
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center relative"
-                    style={{ background: product.imageBg }}
-                  >
-                    <span className="font-serif italic text-2xl text-white/50 px-6 text-center z-10">
-                      {product.name}
-                    </span>
-                  </div>
-                )}
-
-                {/* Featured Badge */}
-                {product.featured && (
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-background/85 backdrop-blur-sm border border-gold/40 z-10">
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-gold-bright">Kiemelt</span>
-                  </div>
-                )}
-
-                {/* Hover overlay with Zoom icon */}
-                <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gold/20 border border-gold/60 text-gold-bright flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                    <ZoomIn size={22} strokeWidth={1.5} />
-                  </div>
-                  <span className="text-xs tracking-[0.2em] uppercase text-gold-bright font-medium">Nagyítás</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-6">
-                <div className="flex-1">
-                  <h3
-                    className="font-serif text-xl text-foreground mb-2 leading-tight group-hover:text-gold-bright transition-colors cursor-pointer"
-                    onClick={() => setSelectedProductIndex(index)}
-                    data-testid={`text-name-${product.id}`}
-                  >
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-                </div>
-
-                {/* Price & Action */}
-                <div className="pt-4 border-t border-gold/15 flex items-center justify-between gap-4 mt-auto">
-                  <span className="font-serif text-lg text-gold-bright font-medium">
-                    {formatPrice(product.price)}
+        {/* Szűrők — görgetéskor a menü alatt maradnak */}
+        <div className="relative z-20 -mx-4 mt-12 bg-paper/95 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6 md:sticky md:top-[4.9rem] lg:mx-0 lg:rounded-full lg:px-3 lg:shadow-[0_10px_30px_-18px_hsl(224_45%_13%/0.35)]">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="tablist" aria-label="Kategóriák">
+              {chips.map((c) => (
+                <button
+                  key={c.id}
+                  role="tab"
+                  aria-selected={filter === c.id}
+                  onClick={() => changeFilter(c.id)}
+                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                    filter === c.id
+                      ? 'bg-ink text-paper shadow-md'
+                      : 'bg-white text-ink/75 ring-1 ring-ink/10 hover:text-ink hover:ring-ink/25'
+                  }`}
+                  data-testid={`filter-${c.id}`}
+                >
+                  {c.label}
+                  <span className={`ml-1.5 tabular-nums ${filter === c.id ? 'text-paper/60' : 'text-ink/40'}`}>
+                    {c.count}
                   </span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex gap-2">
+              <label className="relative flex-1 lg:w-60 lg:flex-none">
+                <span className="sr-only">Keresés az ékszerek között</span>
+                <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink/40" />
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setVisibleCount(PAGE_SIZE);
+                  }}
+                  placeholder="Keresés (pl. kék, M12)"
+                  className="w-full rounded-full bg-white py-2 pl-10 pr-9 text-sm text-ink ring-1 ring-ink/10 placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-cobalt/40 [&::-webkit-search-cancel-button]:hidden"
+                  data-testid="input-search"
+                />
+                {query && (
                   <button
-                    onClick={() => handleInterest(product)}
-                    className="px-4 py-2 text-xs tracking-wider uppercase border border-gold/40 text-gold hover:bg-gold hover:text-background font-medium transition-all duration-300 flex items-center gap-1.5"
-                    data-testid={`button-interest-${product.id}`}
+                    onClick={() => setQuery('')}
+                    className="absolute right-2 top-1/2 grid h-6 w-6 -translate-y-1/2 place-items-center rounded-full text-ink/50 hover:bg-ink/5 hover:text-ink"
+                    aria-label="Keresés törlése"
                   >
-                    <Mail size={14} />
-                    <span>Érdeklődöm</span>
+                    <X size={14} />
                   </button>
-                </div>
-              </div>
-            </article>
-          ))}
+                )}
+              </label>
+              <label className="relative">
+                <span className="sr-only">Rendezés</span>
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value as Sort)}
+                  className="h-full appearance-none rounded-full bg-white py-2 pl-4 pr-9 text-sm font-medium text-ink ring-1 ring-ink/10 focus:outline-none focus:ring-2 focus:ring-cobalt/40"
+                  data-testid="select-sort"
+                >
+                  <option value="featured">Ajánlott</option>
+                  <option value="price-asc">Ár ↑</option>
+                  <option value="price-desc">Ár ↓</option>
+                </select>
+                <svg className="pointer-events-none absolute right-3.5 top-1/2 h-3 w-3 -translate-y-1/2 text-ink/50" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </label>
+            </div>
+          </div>
         </div>
+
+        {/* Termékrács */}
+        {list.length === 0 ? (
+          <div className="mt-16 rounded-3xl border border-dashed border-ink/15 py-20 text-center">
+            <p className="font-serif text-2xl">Nincs találat</p>
+            <p className="mt-2 text-sm text-ink-muted">Próbálj más kulcsszót, vagy nézd meg az összes ékszert.</p>
+            <button
+              onClick={() => {
+                setQuery('');
+                changeFilter('all');
+              }}
+              className="btn-ink mt-6"
+            >
+              Összes ékszer
+            </button>
+          </div>
+        ) : (
+          <ul className="mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 md:grid-cols-3 xl:grid-cols-4 xl:gap-x-6 xl:gap-y-10">
+            {visible.map((product, index) => (
+              <li
+                key={product.id}
+                className="reveal"
+                style={{ ['--reveal-delay' as string]: `${(index % 4) * 70}ms` }}
+              >
+                <article className="group flex h-full flex-col" data-testid={`card-product-${product.id}`}>
+                  <button
+                    onClick={() => setOpenIndex(index)}
+                    className="relative block aspect-square w-full overflow-hidden rounded-2xl bg-white ring-1 ring-ink/[0.06] transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-20px_hsl(224_45%_13%/0.35)]"
+                    aria-label={`${product.name} — részletek`}
+                  >
+                    {product.image && (
+                      <Img
+                        picture={product.image}
+                        sizes={CARD_SIZES}
+                        alt={product.name}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                      />
+                    )}
+                    {product.featured && (
+                      <span className="absolute left-2.5 top-2.5 rounded-full bg-ink/85 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-bright backdrop-blur">
+                        Kiemelt
+                      </span>
+                    )}
+                    <span className="absolute bottom-2.5 right-2.5 grid h-9 w-9 translate-y-2 place-items-center rounded-full bg-white/95 text-ink opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <Plus size={16} />
+                    </span>
+                  </button>
+
+                  <div className="flex flex-1 flex-col px-1 pt-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-serif text-lg leading-snug sm:text-xl" data-testid={`text-name-${product.id}`}>
+                        {product.name}
+                      </h3>
+                      <span className="mt-1 shrink-0 text-[0.7rem] font-medium text-ink/40">{productCode(product.id)}</span>
+                    </div>
+                    <p className="mt-1 hidden text-sm leading-relaxed text-ink-muted line-clamp-2 sm:block">
+                      {product.description}
+                    </p>
+                    <div className="mt-auto flex items-center justify-between gap-2 pt-3">
+                      <span className="whitespace-nowrap font-semibold tabular-nums text-ink">{formatPrice(product.price)}</span>
+                      <button
+                        onClick={() => handleInterest(product)}
+                        className="hidden rounded-full px-3 py-1.5 text-xs font-semibold text-cobalt ring-1 ring-cobalt/25 transition hover:bg-cobalt hover:text-white sm:inline-flex"
+                        data-testid={`button-interest-${product.id}`}
+                      >
+                        Érdeklődöm
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {remaining > 0 && (
+          <div className="mt-14 flex flex-col items-center gap-3">
+            <p className="text-sm text-ink-muted">
+              {visible.length} / {list.length} ékszer látható
+            </p>
+            <button
+              onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+              className="btn-ink"
+              data-testid="button-load-more"
+            >
+              További {Math.min(PAGE_SIZE, remaining)} ékszer
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* LIGHTBOX MODAL */}
-      {activeProduct && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-md transition-opacity duration-300"
-          onClick={closeModal}
-        >
-          {/* Top Bar: Close & Counter */}
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-50">
-            <div className="px-4 py-1.5 bg-background/80 border border-gold/30 text-xs tracking-widest text-gold-bright uppercase backdrop-blur-sm">
-              {selectedProductIndex! + 1} / {filteredProducts.length}
-            </div>
-            <button
-              onClick={closeModal}
-              className="p-2.5 rounded-full bg-background/80 border border-gold/30 text-gold-bright hover:bg-gold hover:text-background transition-all backdrop-blur-sm"
-              aria-label="Bezárás"
-            >
-              <X size={24} />
-            </button>
-          </div>
-
-          {/* Modal Container */}
-          <div
-            className="relative max-w-5xl w-full bg-card/95 border border-gold/40 shadow-2xl overflow-hidden grid lg:grid-cols-12 gap-0 my-auto max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Left / Prev Arrow */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-background/75 border border-gold/40 text-gold-bright hover:bg-gold hover:text-background transition-all shadow-lg backdrop-blur-sm"
-              aria-label="Előző kép"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            {/* Right / Next Arrow */}
-            <button
-              onClick={handleNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-background/75 border border-gold/40 text-gold-bright hover:bg-gold hover:text-background transition-all shadow-lg backdrop-blur-sm lg:hidden"
-              aria-label="Következő kép"
-            >
-              <ChevronRight size={24} />
-            </button>
-
-            {/* Image Preview (8 cols on Desktop) */}
-            <div className="lg:col-span-7 bg-black/60 relative flex items-center justify-center p-6 min-h-[320px] lg:min-h-[500px]">
-              {activeProduct.image ? (
-                <img
-                  src={activeProduct.image}
-                  alt={activeProduct.name}
-                  className="max-h-[75vh] w-auto max-w-full object-contain rounded shadow-2xl"
-                />
-              ) : (
-                <div
-                  className="w-full h-64 flex items-center justify-center rounded"
-                  style={{ background: activeProduct.imageBg }}
-                >
-                  <span className="font-serif italic text-3xl text-white/60 text-center px-4">
-                    {activeProduct.name}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Product Details Sidebar (5 cols on Desktop) */}
-            <div className="lg:col-span-5 p-6 lg:p-8 flex flex-col justify-between overflow-y-auto bg-background/90">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[11px] tracking-[0.2em] uppercase text-gold font-medium">
-                    {categories.find((c) => c.id === activeProduct.category)?.label || activeProduct.category}
-                  </span>
-                  <span className="text-xs text-muted-foreground">ID: {productCode(activeProduct.id)}</span>
-                </div>
-
-                <h3 className="font-serif text-3xl text-foreground mb-3 leading-tight">
-                  {activeProduct.name}
-                </h3>
-
-                <div className="text-2xl font-serif text-gold-bright mb-6">
-                  {formatPrice(activeProduct.price)}
-                </div>
-
-                <div className="gold-divider mb-6 opacity-40" />
-
-                <p className="text-sm text-foreground/80 leading-relaxed mb-6">
-                  {activeProduct.description}
-                </p>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-3 pt-4 border-t border-gold/20 mt-auto">
-                <button
-                  onClick={() => handleInterest(activeProduct)}
-                  className="w-full py-3.5 gold-gradient text-background font-medium tracking-[0.15em] uppercase text-xs hover:shadow-[0_4px_24px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2"
-                >
-                  <Mail size={16} />
-                  <span>Érdeklődés erről a darabról</span>
-                </button>
-
-                {activeProduct.image && (
-                  <a
-                    href={activeProduct.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 border border-gold/30 text-gold hover:border-gold hover:bg-gold/10 transition-colors text-xs tracking-wider uppercase flex items-center justify-center gap-2 text-center"
-                  >
-                    <ExternalLink size={14} />
-                    <span>Kép megnyitása új lapon</span>
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+      {openIndex !== null && (
+        <ProductDialog
+          products={list}
+          index={openIndex}
+          onIndexChange={setOpenIndex}
+          onClose={() => setOpenIndex(null)}
+          onInterest={handleInterest}
+        />
       )}
     </section>
   );

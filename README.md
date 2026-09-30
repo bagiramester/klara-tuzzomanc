@@ -11,7 +11,7 @@ Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdek
 - **Telefon:** +36 20 484 7050
 - **Facebook:** [klara.kovarinebauer](https://www.facebook.com/klara.kovarinebauer)
 - **Nyelv:** magyar (30+ női célközönség)
-- **Stílus:** kobaltkék + arany, sötét téma
+- **Stílus:** kobaltkék + arany sötét alap, világos „galéria” szekciók a termékfotókhoz
 
 ## Kategóriák
 
@@ -27,9 +27,24 @@ Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdek
 export const products = allProducts.filter(p => !!p.image)
 ```
 
+## Képek kezelése
+
+Az `attached_assets/` mappában az **eredeti, nagy felbontású fotók** maradnak (ezek a forrásfájlok).
+A build (`vite-imagetools`) ezekből automatikusan kis méretű, reszponzív **WebP** változatokat készít
+(360 / 640 / 1000 / 1500 px), és a böngésző mindig csak a kijelzőhöz illő méretet tölti le.
+
+Új termékfotó hozzáadása a `client/src/data/products.ts` fájlban — a `?product` utótag a lényeg:
+
+```ts
+import m43Img from '@assets/uj-medalok-v2/M43.jpg?product';
+```
+
+Előbeállítások (lásd `vite.config.ts`): `?product` (termékfotók), `?portrait` (portré, logó a nyitóképen),
+`?logo` (kis logók). A márka-kivágatok az `attached_assets/brand/` mappában vannak.
+
 ## Tech stack
 
-- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + Radix UI
+- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + vite-imagetools (WebP)
 - **Backend:** Express 5 + better-sqlite3 + Drizzle ORM
 - **Deploy target:** Node.js szerver (jelenleg pplx.app)
 
