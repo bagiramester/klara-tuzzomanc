@@ -1,0 +1,18 @@
+{
+  "id": "m27",
+  "name": "Kék-rózsaszín téglalap medál",
+  "category": "medalok",
+  "price": 8000,
+  "description": "Téglalap medál kék és rózsaszín iszapzománc kompozícióval.",
+  "longDescription": "Kézzel fűrészelt, téglalap formájú vörösréz medál kék és rózsaszín iszapzománc árnyalatokkal. Lágy, romantikus darab. Méret kb. 25×50 mm.",
+  "image": "/attached_assets/termekek/M27.jpg",
+  "size": "25×50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Kék",
+    "Rózsaszín"
+  ],
+  "featured": false,
+  "sold": false
+}

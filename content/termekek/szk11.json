@@ -1,0 +1,17 @@
+{
+  "id": "szk11",
+  "name": "Mackintosh rózsái fülbevaló",
+  "category": "szettek",
+  "price": 22000,
+  "description": "Ázsúr technikával készült tűzzománc fülbevaló a Mackintosh-kollekcióból.",
+  "longDescription": "Kör formájú, ázsúr technikával készült tűzzománc fülbevaló vörösréz alapon, ékszerzománccal, a Mackintosh rózsái kollekció darabja. Átmérő kb. 20 mm. A hozzá illő medál kb. 35 mm, forrasztott alappal, külön is elérhető (18 000 Ft).",
+  "image": "/attached_assets/termekek/Szk11.jpg",
+  "size": "20 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Ázsúr",
+  "colors": [
+    "Rózsásvörös"
+  ],
+  "featured": false,
+  "sold": false
+}

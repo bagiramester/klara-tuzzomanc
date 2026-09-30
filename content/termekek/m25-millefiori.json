@@ -1,0 +1,18 @@
+{
+  "id": "m25-millefiori",
+  "name": "Zöld-arany millefiori (kisebb)",
+  "category": "medalok",
+  "price": 6200,
+  "description": "Letisztult téglalap millefiori medál zöld-arany mintázattal.",
+  "longDescription": "Téglalap alakú vörösréz medál ékszerzománccal, finom zöld-arany millefiori virágokkal. Visszafogott, mégis karakteres darab. Méret kb. 25×50 mm.",
+  "image": "/attached_assets/termekek/M25.jpg",
+  "size": "25×50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Zöld",
+    "Arany"
+  ],
+  "featured": false,
+  "sold": false
+}

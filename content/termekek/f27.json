@@ -1,0 +1,18 @@
+{
+  "id": "f27",
+  "name": "Őszi levél fülbevaló",
+  "category": "fulbevalok",
+  "price": 6900,
+  "description": "Levél forma őszi barna és fehér erezett iszapzománccal.",
+  "longDescription": "Levél formájú fülbevaló vörösréz alapon, őszi barna és fehér erezett iszapzománccal. Méret kb. 40×15 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F27.jpg",
+  "size": "40×15 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Barna",
+    "Fehér"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,17 @@
+{
+  "id": "szk12",
+  "name": "Mackintosh rózsái medál",
+  "category": "szettek",
+  "price": 18000,
+  "description": "Forrasztott alapú tűzzománc medál a Mackintosh-kollekcióból.",
+  "longDescription": "Kör formájú, forrasztott alapú tűzzománc medál vörösréz alapon, ékszerzománccal, a Mackintosh rózsái kollekció darabja. Átmérő kb. 35 mm. A hozzá illő fülbevaló kb. 20 mm, ázsúr technikával, külön is elérhető (22 000 Ft).",
+  "image": "/attached_assets/termekek/Szk12.jpg",
+  "size": "35 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Forrasztott alap",
+  "colors": [
+    "Rózsásvörös"
+  ],
+  "featured": false,
+  "sold": false
+}

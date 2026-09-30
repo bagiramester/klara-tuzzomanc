@@ -1,0 +1,18 @@
+{
+  "id": "m4-biloba",
+  "name": "Mezei ginkgo medál",
+  "category": "medalok",
+  "price": 5200,
+  "description": "Sötétzöld és sárga — réti hangulatú iszapzománc levél.",
+  "longDescription": "Fűrészelt biloba levél medál vörösréz alapon, sötétzöld és sárga iszapzománccal. Az iszapzománc finom textúrája különleges felületet ad. Mérete kb. 33×49 mm.",
+  "image": "/attached_assets/termekek/M4_biloba.jpg",
+  "size": "33×49 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Sötétzöld",
+    "Sárga"
+  ],
+  "featured": false,
+  "sold": false
+}

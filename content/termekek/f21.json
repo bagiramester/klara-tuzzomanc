@@ -1,0 +1,18 @@
+{
+  "id": "f21",
+  "name": "Smaragdzöld-kobaltkék karika fülbevaló",
+  "category": "fulbevalok",
+  "price": 6500,
+  "description": "Kis karika forma smaragdzöld és kobaltkék ékszerzománccal.",
+  "longDescription": "Kis karika formájú fülbevaló vörösréz alapon, smaragdzöld és kobaltkék ékszerzománccal. Méret kb. 25 mm átmérő, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F21.jpg",
+  "size": "25 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "",
+  "colors": [
+    "Smaragdzöld",
+    "Kobaltkék"
+  ],
+  "featured": false,
+  "sold": false
+}

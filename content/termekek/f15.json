@@ -1,0 +1,18 @@
+{
+  "id": "f15",
+  "name": "Rózsapiros korong fülbevaló",
+  "category": "fulbevalok",
+  "price": 3900,
+  "description": "Rózsaszín-piros domborított korong — finom, romantikus.",
+  "longDescription": "Kerek, domborított fülbevaló vörösréz alapon, rózsaszín-piros ékszerzománccal. A domború forma fényes csillanást ad. Átmérő kb. 15 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F15.jpg",
+  "size": "15 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Domborított",
+  "colors": [
+    "Rózsaszín",
+    "Piros"
+  ],
+  "featured": false,
+  "sold": false
+}

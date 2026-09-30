@@ -1,0 +1,17 @@
+{
+  "id": "f31",
+  "name": "Narancs hosszúkás fülbevaló",
+  "category": "fulbevalok",
+  "price": 6700,
+  "description": "Hosszúkás fülbevaló élénk narancssárga iszapzománccal.",
+  "longDescription": "Hosszúkás formájú fülbevaló vörösréz alapon, narancssárga iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F31.jpg",
+  "size": "60×12 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Narancssárga"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,18 @@
+{
+  "id": "m22-millefiori",
+  "name": "Fehér-zöld millefiori medál",
+  "category": "medalok",
+  "price": 6200,
+  "description": "Téglalap formájú millefiori medál fehér és zöld virágokkal.",
+  "longDescription": "Kézzel fűrészelt, téglalap formájú vörösréz medál ékszerzománc bevonattal és gazdag fehér-zöld millefiori virágmintával. Méret kb. 25×50 mm.",
+  "image": "/attached_assets/termekek/M22.jpg",
+  "size": "25×50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Fehér",
+    "Zöld"
+  ],
+  "featured": false,
+  "sold": false
+}

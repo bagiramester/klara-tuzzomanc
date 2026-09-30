@@ -1,0 +1,18 @@
+{
+  "id": "k4",
+  "name": "Arany-zöld nyitott karperec",
+  "category": "karkotok",
+  "price": 16000,
+  "description": "Nyitott vörösréz karperec arany és zöld zománcozással.",
+  "longDescription": "Kézzel fűrészelt és kalapált nyitott vörösréz karperec, arany és zöld ékszerzománc árnyalatokkal. Természetközeli, mégis fényes darab. Méret kb. 65×30 mm.",
+  "image": "/attached_assets/termekek/K4.jpg",
+  "size": "65×30 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, kalapált",
+  "colors": [
+    "Arany",
+    "Zöld"
+  ],
+  "featured": true,
+  "sold": false
+}

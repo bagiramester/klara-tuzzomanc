@@ -1,0 +1,17 @@
+{
+  "id": "f10",
+  "name": "Narancs rombusz fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Vibráló narancs nyújtott rombusz — fiatalos lendület.",
+  "longDescription": "Nyújtott rombusz formájú fülbevaló vörösréz alapon, narancssárga iszapzománccal. Méret kb. 33×18 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F10.jpg",
+  "size": "33×18 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Narancssárga"
+  ],
+  "featured": false,
+  "sold": false
+}

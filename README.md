@@ -2,7 +2,7 @@
 
 Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdeklődési űrlap (nem valódi webshop).
 
-**Élő oldal:** [klaratuzzomanc.pplx.app](https://klaratuzzomanc.pplx.app)
+**Éles oldal:** [klaratuzzomanc.hu](https://klaratuzzomanc.hu) (élesítés után — addig: GitHub Pages)
 
 ## Márka és technikai adatok
 
@@ -11,90 +11,46 @@ Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdek
 - **Telefon:** +36 20 484 7050
 - **Facebook:** [klara.kovarinebauer](https://www.facebook.com/klara.kovarinebauer)
 - **Nyelv:** magyar (30+ női célközönség)
-- **Stílus:** kobaltkék + arany, sötét téma
+- **Stílus:** kobaltkék + arany sötét alap, világos „galéria” szekciók a termékfotókhoz
 
-## Kategóriák
+## Termékek kezelése
 
-1. Medálok (42)
-2. Fülbevalók (18)
-3. Karkötők (13)
-4. Brossok (2)
-5. Szettek (2)
+- **Admin felület:** https://klaratuzzomanc.hu/admin (Decap CMS, GitHub-bejelentkezés) — útmutató: [docs/ADMIN-UTMUTATO.md](docs/ADMIN-UTMUTATO.md)
+- **Adatok:** `content/termekek/*.json` (termékenként egy fájl), képek: `attached_assets/termekek/`
+- Az elkelt (`"sold": true`) vagy hiányos tételeket a build kihagyja (figyelmeztetéssel), lásd `vite-plugin-products.ts`.
 
-Összesen 77 termék. A `products.ts` csak azokat az elemeket jeleníti meg, amelyekhez tényleges fotó tartozik:
+## Élesítés
+
+Cloudflare Pages + saját domain — lépésről lépésre: [docs/ELESITES.md](docs/ELESITES.md)
+
+## Képek kezelése
+
+Az `attached_assets/` mappában az **eredeti, nagy felbontású fotók** maradnak (ezek a forrásfájlok).
+A build (`vite-imagetools`) ezekből automatikusan kis méretű, reszponzív **WebP** változatokat készít
+(360 / 640 / 1000 / 1500 px), és a böngésző mindig csak a kijelzőhöz illő méretet tölti le.
+
+A termékfotókat a `vite-plugin-products.ts` automatikusan `?product` előbeállítással importálja.
+Egyéb képeknél:
 
 ```ts
-export const products = allProducts.filter(p => !!p.image)
+import portre from '@assets/klara-portre-2026.jpg?portrait';
 ```
+
+Előbeállítások (lásd `vite.config.ts`): `?product` (termékfotók), `?portrait` (portré, logó a nyitóképen),
+`?logo` (kis logók). A márka-kivágatok az `attached_assets/brand/` mappában vannak.
 
 ## Tech stack
 
-- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + Radix UI
-- **Backend:** Express 5 + better-sqlite3 + Drizzle ORM
-- **Deploy target:** Node.js szerver (jelenleg pplx.app)
+- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + vite-imagetools (WebP), saját tárhelyű betűtípusok (@fontsource)
+- **Tartalomkezelés:** Decap CMS (git-alapú), bejelentkezés Cloudflare Pages Functions-szel (`functions/api/`)
+- **Tárhely:** Cloudflare Pages (statikus), biztonsági fejlécek: `client/public/_headers`
+- **Űrlap:** Formspree
 
 ## Fejlesztés
 
 ```bash
-# Függőségek telepítése
 npm install
-
-# Fejlesztői szerver (localhost:5173 vagy hasonló)
-npm run dev
-
-# Éles build
-npm run build
-
-# Éles indítás
-npm start
-
-# TypeScript ellenőrzés
-npm run check
-
-# Adatbázis migráció (Drizzle)
-npm run db:push
+npm run dev      # fejlesztői szerver
+npm run build    # éles build → dist/
+npm run check    # TypeScript ellenőrzés
 ```
-
-## Projektstruktúra
-
-```
-klara-tuzzomanc/
-├── client/                 # React frontend
-│   └── src/
-│       ├── data/
-│       │   └── products.ts # Termékkatalógus
-│       ├── components/
-│       └── pages/
-├── server/                 # Express backend
-├── shared/                 # Közös típusok (client + server)
-├── script/                 # Build szkript
-├── attached_assets/        # Termékfotók, logók, portré
-│   ├── uj-medalok-v2/     # M22–M42 medálok
-│   ├── uj-millefiori-medalok/  # M11–M21
-│   ├── uj-medalok/        # M1–M10 biloba
-│   ├── uj-fulbevalok-v2/  # F fülbevalók
-│   └── uj-karkotok/       # K karkötők
-├── package.json
-├── vite.config.ts
-├── tailwind.config.ts
-└── drizzle.config.ts
-```
-
-## Termékazonosítási konvenció
-
-- `m1-biloba` … `m10-biloba` — ginkgo biloba medálok
-- `m11-millefiori` … `m21-millefiori` — millefiori medálok (M20 = krém-narancs)
-- `m22-millefiori` … `m28-millefiori` — új millefiori medálok
-- `m29` … `m42` — új medálok különféle technikákkal
-- `f1` … `f19` — fülbevalók (F12, F13, F20 nincs; K10 sincs)
-- `k1` … `k14` — karkötők (K10 kihagyva)
-- `b-*` — brossok
-- `s-*` — szettek
-
-## Környezeti változók
-
-Másold a `.env.example` fájlt `.env` néven, és töltsd ki. Az `.env` fájl a `.gitignore`-ban van, sosem kerül a repóba.
-
-## Licenc
-
-MIT

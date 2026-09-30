@@ -1,0 +1,17 @@
+{
+  "id": "szk10",
+  "name": "Mackintosh rózsái szett",
+  "category": "szettek",
+  "price": 35000,
+  "description": "Kiemelt, ázsúrozott tűzzománc szett Mackintosh-rózsa mintával.",
+  "longDescription": "Prémium, kiemelt kollekciós szett vörösréz alapon, ékszerzománccal, ázsúr és forrasztott alapzománc technikával. A rózsás minta Charles Rennie Mackintosh stílusát idézi. Medál és fülbevaló összehangolt párban.",
+  "image": "/attached_assets/termekek/SzK10.jpg",
+  "size": "",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Ázsúr és forrasztott alapzománc",
+  "colors": [
+    "Rózsásvörös"
+  ],
+  "featured": true,
+  "sold": false
+}

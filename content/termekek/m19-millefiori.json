@@ -1,0 +1,19 @@
+{
+  "id": "m19-millefiori",
+  "name": "Holdkő millefiori medál",
+  "category": "medalok",
+  "price": 9000,
+  "description": "Sötét éjszinű korong, sárga-narancs virágokkal — dómszerű, lapos forma.",
+  "longDescription": "Lapos kör formájú medál vörösréz alapon, mély sötétzöld-fekete iszapzománccal, fényes textúrával. Középen kompakt millefiori virágminta sárga és narancs hangsúlyokkal. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M19_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Mély zöld",
+    "Fekete",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

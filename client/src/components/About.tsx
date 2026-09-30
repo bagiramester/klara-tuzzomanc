@@ -1,122 +1,85 @@
-import klaraRolamImg from '@assets/klara-portre-2026.jpg';
+import klaraPortrait from '@assets/klara-portre-2026.jpg?portrait';
+import { Img } from './Picture';
+
+const teachers = [
+  'Lizák Pálma',
+  'Török Ibolya',
+  'Vdovkina Anastasia',
+  'Meghan Salgaonkar',
+  'Gergely Judit',
+  'Ötvös Nagy Ferenc',
+];
 
 export function About() {
   return (
     <section
       id="rolam"
-      className="relative py-24 lg:py-32 px-6 overflow-hidden"
+      className="grain relative isolate overflow-hidden py-24 lg:py-36"
       data-testid="section-about"
+      aria-labelledby="rolam-title"
     >
-      {/* Soft background */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-50"
-        style={{
-          background:
-            'radial-gradient(ellipse at 80% 40%, hsl(42 50% 25% / 0.18) 0%, transparent 60%)',
-        }}
+        className="pointer-events-none absolute right-[-20%] top-1/4 -z-10 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,hsl(40_70%_40%/0.14),transparent_62%)]"
+        aria-hidden="true"
       />
 
-      <div className="relative max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Real photo of Klara at work */}
-          <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/5] relative overflow-hidden border border-gold/30">
-              <img
-                src={klaraRolamImg}
-                alt="Klára portréja — Kovariné Bauer Klára, tűzzománc ékszerész"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 20%', filter: 'saturate(1.05) contrast(1.03)' }}
-                data-testid="img-klara-rolam"
-              />
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-10">
+        {/* Portré */}
+        <figure className="reveal relative mx-auto w-full max-w-md">
+          <div className="absolute -inset-3 -z-10 rounded-t-[999px] rounded-b-[2.25rem] border border-gold/20 translate-x-4 translate-y-4" aria-hidden="true" />
+          <div className="overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-gold/30">
+            <Img
+              picture={klaraPortrait}
+              sizes="(min-width: 1024px) 440px, (min-width: 480px) 448px, 92vw"
+              alt="Klára portréja — Kovariné Bauer Klára, tűzzománc ékszerész"
+              className="aspect-[4/5] h-auto w-full object-cover"
+              style={{ objectPosition: 'center 22%' }}
+              data-testid="img-klara-rolam"
+            />
+          </div>
+          <figcaption className="glass absolute -bottom-6 left-1/2 w-[86%] -translate-x-1/2 rounded-2xl border border-white/10 px-5 py-4 text-center font-serif text-lg italic leading-snug text-gold-bright shadow-xl">
+            „A tűz formál, a kéz tanítja a fémet.”
+          </figcaption>
+        </figure>
 
-              {/* Warm tone-tint overlay to harmonize with site palette */}
-              <div
-                className="absolute inset-0 pointer-events-none mix-blend-multiply"
-                style={{
-                  background:
-                    'linear-gradient(135deg, hsl(222 75% 14% / 0.5) 0%, hsl(25 50% 20% / 0.35) 100%)',
-                }}
-              />
-              {/* Soft dark gradient overlay for caption legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-background/20 pointer-events-none" />
+        {/* Szöveg */}
+        <div className="reveal" style={{ ['--reveal-delay' as string]: '120ms' }}>
+          <p className="eyebrow">Rólam</p>
+          <h2 id="rolam-title" className="section-title mt-5">
+            Klára vagyok,
+            <span className="block italic gold-gradient-text pb-1">és szeretem a színeket</span>
+          </h2>
 
-              {/* Gold corner accents */}
-              <div className="absolute top-4 left-4 w-12 h-12 border-l border-t border-gold/60" />
-              <div className="absolute top-4 right-4 w-12 h-12 border-r border-t border-gold/60" />
-              <div className="absolute bottom-4 left-4 w-12 h-12 border-l border-b border-gold/60" />
-              <div className="absolute bottom-4 right-4 w-12 h-12 border-r border-b border-gold/60" />
-
-              {/* Caption */}
-              <div className="absolute bottom-8 left-0 right-0 text-center">
-                <p className="font-serif italic text-lg text-gold-bright px-6 drop-shadow-lg">
-                  „A tűz formál, a kéz tanítja a fémet.”
-                </p>
-              </div>
-            </div>
-
-            {/* Decorative offset frame */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold/20 -z-10" />
+          <div className="mt-8 space-y-5 text-[1.02rem] leading-relaxed text-foreground/80 sm:text-lg">
+            <p>
+              41 év számítástechnikában ledolgozott év után, 2016-ban nyugdíjas lettem — és akkor jött el az
+              idő, hogy régi dédelgetett álmomat valóra válthassam. Kipróbálhattam, hogyan készülnek az addig
+              csak megcsodált tűzzománc tárgyak, amik gyermekkorom óta rabul ejtettek.
+            </p>
+            <p>
+              Az évtizedek pörgése után a kemence csendje, a 820 fokos hő alatt megolvadó zománc színei adták
+              meg azt a nyugalmat, amit kerestem. Sokat köszönhetek tanáraimnak, akiktől a mai napig sokat
+              tanulok:
+            </p>
+            <ul className="flex flex-wrap gap-2 pt-1" aria-label="Tanáraim">
+              {teachers.map((t) => (
+                <li key={t} className="rounded-full border border-gold/25 bg-gold/5 px-3.5 py-1.5 text-sm text-gold-bright/90">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <p>
+              Minden ékszer napokig készül. Először a fémet formázom — réz, ezüst vagy bronz lemezt fűrészelek,
+              reszelek, csiszolok, forrasztok. Aztán jön a zománc: vékony rétegekben, türelemmel. Minden réteg
+              új égetést jelent, és minden égetés egy kicsit más színt hoz. Sosem tudom biztosan, mi lesz a
+              végeredmény — és pont ezt szeretem benne.
+            </p>
           </div>
 
-          {/* Text content */}
-          <div className="order-1 lg:order-2">
-            <p className="text-gold/70 tracking-[0.4em] text-xs uppercase mb-4">Rólam</p>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-8 leading-tight">
-              Klára vagyok,
-              <span className="block italic gold-gradient-text mt-2">és szeretem a színeket</span>
-            </h2>
-
-            <div className="space-y-5 text-base sm:text-lg leading-relaxed text-foreground/85">
-              <p>
-                41 év számítástechnikában ledolgozott év után, 2016-ban nyugdíjas lettem — és akkor
-                jött el az idő, hogy régi dédelgetett álmomat valóra válthassam. Kipróbálhattam,
-                hogyan készülnek az addig csak megcsodált tűzzománc tárgyak, amik gyermekkorom
-                óta rabul ejtettek.
-              </p>
-              <p>
-                Az évtizedek pörgése után a kemence csendje, a 820 fokos hő alatt megolvadó
-                zománc színei adták meg azt a nyugalmat, amit kerestem. Sokat köszönhetek
-                tanáraimnak, akiktől a mai napig sokat tanulok:
-              </p>
-              <p className="text-gold-bright/90 font-serif italic text-base">
-                Lizák Pálma · Török Ibolya · Vdovkina Anastasia · Meghan Salgaonkar · Gergely Judit · Ötvös Nagy Ferenc
-              </p>
-              <p>
-                Minden ékszer napokig készül. Először a fémet formázom — réz, ezüst vagy bronz
-                lemezt fűrészelek, reszelek, csiszolok, forrasztok. Aztán jön a zománc: vékony
-                rétegekben, türelemmel. Minden réteg új égetést jelent, és minden égetés egy
-                kicsit más színt hoz. Sosem tudom biztosan, mi lesz a végeredmény — és pont ezt
-                szeretem benne.
-              </p>
-              <p className="font-serif italic text-xl text-gold-bright">
-                Hiszem, hogy egy szépen megmunkált tárgy érzelmet ad át. Hogy amit
-                szívvel-lélekkel készítek, az tovább él, mint a divat — mert a szeretettel
-                alkotott tárgyaknak lelkük van.
-              </p>
-            </div>
-
-            {/* Personal stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-gold/20">
-              <div>
-                <div className="font-serif text-4xl text-gold-bright mb-1">10+</div>
-                <div className="text-xs tracking-[0.15em] uppercase text-muted-foreground">
-                  év tapasztalat
-                </div>
-              </div>
-              <div>
-                <div className="font-serif text-4xl text-gold-bright mb-1">820°C</div>
-                <div className="text-xs tracking-[0.15em] uppercase text-muted-foreground">
-                  égetési hőfok
-                </div>
-              </div>
-              <div>
-                <div className="font-serif text-4xl text-gold-bright mb-1">100%</div>
-                <div className="text-xs tracking-[0.15em] uppercase text-muted-foreground">
-                  kézzel készült
-                </div>
-              </div>
-            </div>
-          </div>
+          <blockquote className="mt-10 border-l-2 border-gold/60 pl-6 font-serif text-xl italic leading-relaxed text-gold-bright sm:text-2xl">
+            Hiszem, hogy egy szépen megmunkált tárgy érzelmet ad át. Hogy amit szívvel-lélekkel készítek, az
+            tovább él, mint a divat — mert a szeretettel alkotott tárgyaknak lelkük van.
+          </blockquote>
         </div>
       </div>
     </section>

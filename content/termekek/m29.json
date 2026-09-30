@@ -1,0 +1,17 @@
+{
+  "id": "m29",
+  "name": "Ametiszt lila medál",
+  "category": "medalok",
+  "price": 6000,
+  "description": "Domborított kerek medál mély ametiszt lila árnyalattal.",
+  "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál mély ametiszt lila ékszerzománccal. Visszafogott, kifinomult darab. Átmérő kb. 29 mm.",
+  "image": "/attached_assets/termekek/M29.jpg",
+  "size": "29 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, domborított",
+  "colors": [
+    "Ametiszt lila"
+  ],
+  "featured": false,
+  "sold": false
+}

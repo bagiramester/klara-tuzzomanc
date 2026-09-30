@@ -1,0 +1,18 @@
+{
+  "id": "m32",
+  "name": "Zöld-kék medál",
+  "category": "medalok",
+  "price": 6000,
+  "description": "Domborított kerek medál harmonikus zöld-kék színvilággal.",
+  "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál zöld és kék ékszerzománc árnyalatokkal. Természetinspirált, nyugodt darab. Átmérő kb. 29 mm.",
+  "image": "/attached_assets/termekek/M32.jpg",
+  "size": "29 mm átmérő",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, domborított",
+  "colors": [
+    "Zöld",
+    "Kék"
+  ],
+  "featured": false,
+  "sold": false
+}

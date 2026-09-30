@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — KLÁRA tűzzománc</title>
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <style>
+    /* Kis márka-igazítás a Decap felületén */
+    body { background: #f4f1ea; }
+  </style>
+</head>
+<body>
+  <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+  <script>
+    // ────────────────────────────────────────────────────────────────────────────
+    // KLÁRA tűzzománc — admin (Decap CMS) beállítások
+    // A termékek a GitHub-tárolóban, a content/termekek/*.json fájlokban vannak.
+    // Mentés után a Cloudflare Pages 1–2 perc alatt újraépíti és frissíti az oldalt.
+    // ────────────────────────────────────────────────────────────────────────────
+    var REPO = 'bagiramester/klara-tuzzomanc';
+    var BRANCH = 'main';
+
+    var categories = [
+      { label: 'Medál', value: 'medalok' },
+      { label: 'Fülbevaló', value: 'fulbevalok' },
+      { label: 'Karkötő', value: 'karkotok' },
+      { label: 'Bross', value: 'brossok' },
+      { label: 'Szett', value: 'szettek' },
+    ];
+
+    CMS.init({
+      config: {
+        load_config_file: false,
+        locale: 'hu',
+        backend: {
+          name: 'github',
+          repo: REPO,
+          branch: BRANCH,
+          // A bejelentkezést a saját domainen futó Cloudflare Pages Function végzi (functions/api/auth.js)
+          base_url: window.location.origin,
+          auth_endpoint: 'api/auth',
+          commit_messages: {
+            create: 'Új termék: {{slug}}',
+            update: 'Termék módosítva: {{slug}}',
+            delete: 'Termék törölve: {{slug}}',
+            uploadMedia: 'Kép feltöltve: {{path}}',
+            deleteMedia: 'Kép törölve: {{path}}',
+          },
+        },
+        // Helyi teszteléshez (npx decap-server) — élesben automatikusan kikapcsol
+        local_backend: true,
+        site_url: window.location.origin,
+        display_url: window.location.origin,
+        logo_url: '/favicon-192.png',
+        media_folder: 'attached_assets/termekek',
+        public_folder: '/attached_assets/termekek',
+        slug: { encoding: 'ascii', clean_accents: true, sanitize_replacement: '-' },
+        collections: [
+          {
+            name: 'termekek',
+            label: 'Termékek',
+            label_singular: 'termék',
+            description:
+              'Új ékszer: „+ termék” gomb. Eladott darab: nyisd meg, kapcsold be az „Elkelt” kapcsolót és mentsd (Közzététel) — így eltűnik az oldalról, de az adatai megmaradnak. Mentés után 1–2 perc, amíg az oldalon is megjelenik.',
+            folder: 'content/termekek',
+            extension: 'json',
+            format: 'json',
+            create: true,
+            delete: true,
+            slug: '{{fields.id}}',
+            identifier_field: 'name',
+            summary: "{{sold | ternary('❌ ELKELT · ', '')}}{{fields.id}} · {{name}} — {{price}} Ft",
+            sortable_fields: ['id', 'name', 'price', 'category', 'addedAt'],
+            view_groups: [
+              { label: 'Kategória', field: 'category' },
+              { label: 'Elkelt', field: 'sold' },
+            ],
+            view_filters: [
+              { label: 'Medálok', field: 'category', pattern: 'medalok' },
+              { label: 'Fülbevalók', field: 'category', pattern: 'fulbevalok' },
+              { label: 'Karkötők', field: 'category', pattern: 'karkotok' },
+              { label: 'Brossok', field: 'category', pattern: 'brossok' },
+              { label: 'Szettek', field: 'category', pattern: 'szettek' },
+              { label: 'Kiemeltek', field: 'featured', pattern: true },
+              { label: 'Elkeltek', field: 'sold', pattern: true },
+            ],
+            editor: { preview: false },
+            fields: [
+              {
+                name: 'id',
+                label: 'Azonosító (sorszám)',
+                widget: 'string',
+                hint: 'Betű + szám, pl. M43 (medál), F55 (fülbevaló), K14 (karkötő), Br2 (bross), Sz7 (szett). Egyedi legyen! Ez látszik az oldalon és az érdeklődő levélben. Létrehozás után ne változtasd.',
+                pattern: ['^[A-Za-z]+[0-9]+[A-Za-z0-9-]*$', 'Betűvel kezdődjön, utána szám jöjjön (pl. M43), szóköz nélkül.'],
+              },
+              { name: 'name', label: 'Név', widget: 'string', hint: 'Pl. „Kobaltkék szív fülbevaló”' },
+              { name: 'category', label: 'Kategória', widget: 'select', options: categories },
+              { name: 'price', label: 'Ár (Ft)', widget: 'number', value_type: 'int', min: 1, hint: 'Csak a szám, pl. 5200' },
+              {
+                name: 'image',
+                label: 'Fotó',
+                widget: 'image',
+                choose_url: false,
+                hint: 'JPG vagy PNG, akár közvetlenül a telefonról. Nem kell kicsinyíteni — az oldal automatikusan optimalizálja.',
+              },
+              { name: 'description', label: 'Rövid leírás', widget: 'string', hint: 'Egy mondat, ez látszik a kártyán.' },
+              { name: 'longDescription', label: 'Részletes leírás', widget: 'text', required: false, hint: 'A nagyított nézetben jelenik meg.' },
+              { name: 'size', label: 'Méret', widget: 'string', required: false, hint: 'Pl. 30×20 mm' },
+              { name: 'materialDetail', label: 'Anyag', widget: 'string', required: false, default: 'Vörösréz, ékszerzománc' },
+              { name: 'technique', label: 'Technika', widget: 'string', required: false, hint: 'Pl. Fűrészelt, domborított' },
+              {
+                name: 'colors',
+                label: 'Színek',
+                widget: 'list',
+                required: false,
+                default: [],
+                hint: 'Vesszővel elválasztva, pl.: Kobaltkék, Arany',
+              },
+              { name: 'featured', label: 'Kiemelt (a lista elején, „Kiemelt” címkével)', widget: 'boolean', default: false, required: false },
+              { name: 'sold', label: 'Elkelt — elrejtés az oldalról', widget: 'boolean', default: false, required: false },
+              {
+                name: 'addedAt',
+                label: 'Feltöltés dátuma',
+                widget: 'datetime',
+                required: false,
+                default: '{{now}}',
+                format: 'YYYY-MM-DD',
+                date_format: 'YYYY.MM.DD.',
+                time_format: false,
+                hint: 'Az utóbbi 60 napban feltöltött darabok „Új” címkét kapnak.',
+              },
+            ],
+          },
+        ],
+      },
+    });
+  </script>
+</body>
+</html>

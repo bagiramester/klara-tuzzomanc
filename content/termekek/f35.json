@@ -1,0 +1,17 @@
+{
+  "id": "f35",
+  "name": "Acélkék hosszúkás fülbevaló",
+  "category": "fulbevalok",
+  "price": 7500,
+  "description": "Hosszúkás fülbevaló hűvös acélkék ékszerzománccal.",
+  "longDescription": "Hosszúkás formájú fülbevaló vörösréz alapon, acélkék ékszerzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F35.jpg",
+  "size": "60×12 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "",
+  "colors": [
+    "Acélkék"
+  ],
+  "featured": false,
+  "sold": false
+}

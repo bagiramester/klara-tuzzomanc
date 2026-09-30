@@ -1,0 +1,19 @@
+{
+  "id": "m16-millefiori",
+  "name": "Mustár millefiori medál",
+  "category": "medalok",
+  "price": 6000,
+  "description": "Mustársárga és zöld áttört korong — színes virágokkal.",
+  "longDescription": "Áttört kerek medál vörösréz alapon, mustársárga és zöld tűzzománccal. A virágcsoportban kék, zöld, fehér és arany millefiori betétek. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M16_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Mustársárga",
+    "Zöld",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

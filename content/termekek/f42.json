@@ -1,0 +1,17 @@
+{
+  "id": "f42",
+  "name": "Sötétkék nagy csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 7900,
+  "description": "Teltebb, nagy csepp forma, sötétkék iszapzománccal.",
+  "longDescription": "Teltebb, nagy csepp forma fülbevaló vörösréz alapon, sötétkék iszapzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.",
+  "image": "/attached_assets/termekek/F42.jpg",
+  "size": "40×25 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Sötétkék"
+  ],
+  "featured": false,
+  "sold": false
+}

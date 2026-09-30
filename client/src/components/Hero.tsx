@@ -1,92 +1,127 @@
-import klaraLogoFull from '@assets/klara-logo.jpg';
+import { ArrowRight } from 'lucide-react';
+import klaraLogoHero from '@assets/brand/klara-logo-hero.jpg?portrait';
+import { products, type Product } from '@/data/products';
+import { scrollToSection } from '@/lib/scroll';
+import { Img } from './Picture';
+
+// Két kiemelt darab "lebeg" a logó mellett (ha ezek elkelnek, más kiemelt darab kerül a helyükre)
+const floating = [
+  ...new Set([
+    ...['sz1', 'k4'].map((id) => products.find((p) => p.id === id)),
+    ...products.filter((p) => p.featured),
+  ]),
+]
+  .filter((p): p is Product => !!p)
+  .slice(0, 2);
+
+const highPriority = { fetchpriority: 'high' } as Record<string, string>;
 
 export function Hero() {
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16"
+      className="grain relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24 pb-20 md:pt-32"
       data-testid="section-hero"
     >
-      {/* Atmospheric background layers */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{
-            background:
-              'radial-gradient(ellipse at 30% 20%, hsl(42 60% 30% / 0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 80%, hsl(222 80% 22% / 0.45) 0%, transparent 60%)',
-          }}
-        />
-        {/* Subtle gold sparkles */}
-        <div className="absolute top-[18%] left-[15%] w-1 h-1 rounded-full bg-gold/60 animate-shimmer" />
-        <div
-          className="absolute top-[35%] right-[20%] w-1.5 h-1.5 rounded-full bg-gold/40 animate-shimmer"
-          style={{ animationDelay: '1s' }}
-        />
-        <div
-          className="absolute bottom-[28%] left-[22%] w-1 h-1 rounded-full bg-gold-bright/50 animate-shimmer"
-          style={{ animationDelay: '2s' }}
-        />
-        <div
-          className="absolute bottom-[40%] right-[15%] w-2 h-2 rounded-full bg-gold/30 animate-shimmer"
-          style={{ animationDelay: '0.5s' }}
-        />
+      {/* Háttér: tűz- és kobaltfény */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="absolute -top-40 right-[-10%] h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,hsl(24_85%_45%/0.22),transparent_62%)] animate-glow" />
+        <div className="absolute bottom-[-30%] left-[-15%] h-[48rem] w-[48rem] rounded-full bg-[radial-gradient(circle,hsl(224_85%_35%/0.35),transparent_65%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Real brand logo */}
-        <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
-          <div
-            className="mx-auto overflow-hidden w-[300px] h-[360px] sm:w-[380px] sm:h-[460px] md:w-[460px] md:h-[560px] flex items-center justify-center"
-            aria-hidden="false"
-          >
-            <img
-              src={klaraLogoFull}
-              alt="KLÁRA tűzzománc — Tűzzel, szívvel, lélekkel"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 50%' }}
-              data-testid="img-hero-logo"
-            />
-          </div>
-        </div>
-
-        <div className="mt-2 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-          {/* Gold divider with diamond */}
-          <div className="flex items-center justify-center gap-4 mb-8" aria-hidden="true">
-            <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-gold/60" />
-            <div className="w-1.5 h-1.5 rotate-45 bg-gold-bright" />
-            <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-gold/60" />
-          </div>
-
-          <p className="text-base sm:text-lg text-foreground/85 max-w-2xl mx-auto leading-relaxed mb-12">
-            Egyedi tervezésű, kézzel készített tűzzománc ékszerek réz, ezüst és bronz alapon{' '}
-            <span className="text-gold/90">820 fokon égetve</span>, napokon át tartó kézműves folyamattal.
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10 lg:px-10">
+        {/* Szöveg */}
+        <div className="order-2 text-center lg:order-1 lg:text-left">
+          <p className="eyebrow animate-fade-up justify-center lg:justify-start" style={{ animationDelay: '0.05s' }}>
+            Kézműves ékszerek · Budapest
           </p>
+
+          <h1
+            className="mt-6 font-serif text-[3.1rem] leading-[0.98] sm:text-7xl lg:text-[5.6rem] animate-fade-up"
+            style={{ animationDelay: '0.15s' }}
+          >
+            Tűzzel, szívvel,
+            <span className="block italic gold-gradient-text pb-2">lélekkel.</span>
+          </h1>
+
+          <p
+            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-foreground/75 sm:text-lg lg:mx-0 animate-fade-up"
+            style={{ animationDelay: '0.3s' }}
+          >
+            Egyedi tervezésű, kézzel készített tűzzománc ékszerek réz, ezüst és bronz alapon,{' '}
+            <span className="text-gold-bright">820 °C-on égetve</span> — minden darabból csak egy készül.
+          </p>
+
+          <div
+            className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start animate-fade-up"
+            style={{ animationDelay: '0.45s' }}
+          >
+            <button
+              onClick={() => scrollToSection('kollekcio')}
+              className="btn-gold group w-full sm:w-auto"
+              data-testid="button-view-collection"
+            >
+              A kollekció megtekintése
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+            <button
+              onClick={() => scrollToSection('rolam')}
+              className="btn-ghost w-full sm:w-auto"
+              data-testid="button-about-me"
+            >
+              Ismerj meg
+            </button>
+          </div>
+
+          <dl
+            className="mx-auto mt-14 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-8 text-left lg:mx-0 animate-fade-up"
+            style={{ animationDelay: '0.6s' }}
+          >
+            {[
+              { value: `${products.length}`, label: 'egyedi darab' },
+              { value: '820 °C', label: 'égetési hőfok' },
+              { value: '100%', label: 'kézműves' },
+            ].map((s) => (
+              <div key={s.label}>
+                <dt className="sr-only">{s.label}</dt>
+                <dd className="font-serif text-3xl text-gold-bright sm:text-4xl">{s.value}</dd>
+                <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.16em] text-foreground/55">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"
-          style={{ animationDelay: '0.6s' }}
-        >
-          <button
-            onClick={() => scrollTo('kollekcio')}
-            className="group px-10 py-4 gold-gradient text-background font-medium tracking-[0.2em] uppercase text-sm hover:shadow-[0_8px_32px_rgba(212,175,55,0.4)] transition-all duration-500"
-            data-testid="button-view-collection"
-          >
-            <span className="inline-flex items-center gap-3">
-              Kollekció
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </span>
-          </button>
-          <button
-            onClick={() => scrollTo('rolam')}
-            className="px-10 py-4 border border-gold/40 text-gold-bright tracking-[0.2em] uppercase text-sm hover:bg-gold/5 hover:border-gold transition-all duration-300"
-            data-testid="button-about-me"
-          >
-            Ismerj meg
-          </button>
+        {/* Logó ív-keretben + lebegő termékek */}
+        <div className="relative order-1 mx-auto w-full max-w-[210px] sm:max-w-[320px] lg:order-2 lg:max-w-[400px] animate-fade-up">
+          <div className="absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle,hsl(30_90%_50%/0.25),transparent_65%)] blur-2xl" aria-hidden="true" />
+          <div className="relative overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-gold/30 p-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.8)]">
+            <div className="overflow-hidden rounded-t-[999px] rounded-b-[1.6rem]">
+              <Img
+                picture={klaraLogoHero}
+                sizes="(min-width: 1024px) 400px, (min-width: 640px) 320px, 210px"
+                alt="KLÁRA Fire Enamel — Tűzzel, szívvel, lélekkel"
+                loading="eager"
+                className="block h-auto w-full"
+                data-testid="img-hero-logo"
+                {...highPriority}
+              />
+            </div>
+          </div>
+
+          {floating.map((p, i) => (
+            <button
+              key={p.id}
+              onClick={() => scrollToSection('kollekcio')}
+              className={`absolute hidden sm:block h-24 w-24 overflow-hidden rounded-full border-4 border-background bg-white shadow-2xl ring-1 ring-gold/40 lg:h-28 lg:w-28 animate-float ${
+                i === 0 ? '-left-10 top-[38%] lg:-left-16' : '-right-8 bottom-[12%] lg:-right-12'
+              }`}
+              style={{ animationDelay: `${i * 1.8}s` }}
+              aria-label={`${p.name} — ugrás a kollekcióhoz`}
+            >
+              <Img picture={p.image} sizes="112px" alt="" className="h-full w-full object-cover" />
+            </button>
+          ))}
         </div>
       </div>
     </section>

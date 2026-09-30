@@ -1,0 +1,19 @@
+{
+  "id": "m23-millefiori",
+  "name": "Fehér-arany-zöld millefiori medál",
+  "category": "medalok",
+  "price": 7500,
+  "description": "Téglalap millefiori medál fehér, arany és zöld kompozícióval.",
+  "longDescription": "Téglalap alakú vörösréz medál ékszerzománccal, gazdag fehér-arany-zöld millefiori berakással. Elegáns, ünnepi darab. Méret kb. 25×50 mm.",
+  "image": "/attached_assets/termekek/M23.jpg",
+  "size": "25×50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Fehér",
+    "Arany",
+    "Zöld"
+  ],
+  "featured": false,
+  "sold": false
+}

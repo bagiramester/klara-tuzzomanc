@@ -1,0 +1,18 @@
+{
+  "id": "m13-millefiori",
+  "name": "Tűzpatina millefiori medál",
+  "category": "medalok",
+  "price": 6000,
+  "description": "Réz-narancs patinás korong, tarka virágokkal.",
+  "longDescription": "Áttört kerek medál vörösréz alapon, narancs-bordó tűzpatinás zománccal és színes millefiori berakásokkal. A meleg háttér élesen kontrasztol a fehér-kék-zöld virágokkal. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M13_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Réz-narancs",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

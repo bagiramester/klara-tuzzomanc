@@ -1,3 +1,6 @@
+# Tartalék / előnézeti telepítés GitHub Pages-re.
+# Az éles oldal a Cloudflare Pages-en fut (lásd docs/ELESITES.md). Ha az élesítés kész,
+# ez a workflow kikapcsolható (Actions → Deploy to GitHub Pages → Disable workflow).
 name: Deploy to GitHub Pages
 
 on:
@@ -30,21 +33,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build client (static, GitHub Pages)
-        run: npx vite build
+      - name: Build (static)
+        run: npm run build
         env:
           NODE_ENV: production
 
       - name: Add SPA fallback (404.html = index.html)
-        run: cp dist/public/index.html dist/public/404.html
+        run: cp dist/index.html dist/404.html
 
       - name: Add .nojekyll (do not process by Jekyll)
-        run: touch dist/public/.nojekyll
+        run: touch dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/public
+          path: dist
 
   deploy:
     needs: build
@@ -53,6 +56,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - # Tartalék / előnézeti telepítés GitHub Pages-re.
+# Az éles oldal a Cloudflare Pages-en fut (lásd docs/ELESITES.md). Ha az élesítés kész,
+# ez a workflow kikapcsolható (Actions → Deploy to GitHub Pages → Disable workflow).
+name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

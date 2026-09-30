@@ -1,0 +1,17 @@
+{
+  "id": "f34",
+  "name": "Mandarin hosszúkás fülbevaló",
+  "category": "fulbevalok",
+  "price": 6700,
+  "description": "Hosszúkás fülbevaló meleg mandarin narancs iszapzománccal.",
+  "longDescription": "Hosszúkás formájú fülbevaló vörösréz alapon, mandarin narancssárga iszapzománccal. Méret kb. 60×12 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F34.jpg",
+  "size": "60×12 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Mandarin"
+  ],
+  "featured": false,
+  "sold": false
+}

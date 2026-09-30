@@ -1,0 +1,17 @@
+{
+  "id": "f41",
+  "name": "Almazöld lyukas csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 7900,
+  "description": "Csepp forma kivágott körrel, almazöld ékszerzománccal.",
+  "longDescription": "Csepp forma kivágott körrel fülbevaló vörösréz alapon, almazöld ékszerzománccal égetve. Méret kb. 40×25 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.",
+  "image": "/attached_assets/termekek/F41.jpg",
+  "size": "40×25 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "",
+  "colors": [
+    "Almazöld"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Mail, MapPin, Facebook, CheckCircle2 } from 'lucide-react';
-import type { Product } from '@/data/products';
+import { Mail, MapPin, Facebook, CheckCircle2, Send, X } from 'lucide-react';
+import { formatPrice, productCode, type Product } from '@/data/products';
+import { Img } from './Picture';
+import { site } from '@/data/site';
 
 interface ContactProps {
   selectedProduct?: Product | null;
@@ -15,11 +17,12 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [gotcha, setGotcha] = useState(''); // spam-csapda (Formspree _gotcha)
 
   // When user clicks "Érdeklődöm" on a product, pre-fill the form
   useEffect(() => {
     if (selectedProduct) {
-      setSubject(`Érdeklődés: ${selectedProduct.name}`);
+      setSubject(`Érdeklődés: ${selectedProduct.name} (${productCode(selectedProduct.id)})`);
       setMessage(
         `Kedves Klára,\n\nszeretnék érdeklődni a(z) "${selectedProduct.name}" iránt. Kérlek, küldj információt az elérhetőségről és a vásárlás menetéről.\n\nKöszönöm,\n`
       );
@@ -46,6 +49,7 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
           message,
           product: selectedProduct?.name || '',
           _replyto: email,
+          _gotcha: gotcha,
         }),
       });
 
@@ -71,85 +75,107 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   };
 
   return (
-    <section id="kapcsolat" className="py-24 md:py-32 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">Kapcsolat</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-12">
-          Írj nekem, örömmel várom
-        </h2>
+    <section id="kapcsolat" className="grain relative isolate overflow-hidden py-24 md:py-32" aria-labelledby="kapcsolat-title">
+      <div
+        className="pointer-events-none absolute -left-40 top-10 -z-10 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,hsl(224_85%_35%/0.35),transparent_65%)]"
+        aria-hidden="true"
+      />
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-10">
+        <div className="reveal max-w-2xl">
+          <p className="eyebrow">Kapcsolat</p>
+          <h2 id="kapcsolat-title" className="section-title mt-5">
+            Írj nekem, <span className="italic gold-gradient-text">örömmel várom</span>
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-foreground/70 sm:text-lg">
+            Kérdésed van egy ékszerrel kapcsolatban, vagy egyedi darabot szeretnél? Írj bátran, hamarosan
+            válaszolok.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Contact form */}
-          <div className="lg:col-span-3">
+        <div className="mt-12 grid gap-8 lg:grid-cols-5 lg:gap-12">
+          {/* Űrlap */}
+          <div className="reveal rounded-[1.75rem] border border-white/[0.08] bg-card/60 p-6 shadow-2xl sm:p-8 lg:col-span-3">
             {submitted ? (
-              <div className="flex flex-col items-center justify-center text-center py-20 border border-gold/20">
-                <CheckCircle2 className="text-gold mb-6" size={48} strokeWidth={1.5} />
-                <h3 className="font-serif text-2xl text-gold-bright mb-3">Köszönöm az üzenetet</h3>
-                <p className="text-muted-foreground max-w-md leading-relaxed">
-                  Megkaptam az üzeneted, és hamarosan válaszolok. Addig is, kövess a Facebookon az újabb ékszerekért.
+              <div className="flex flex-col items-center justify-center py-16 text-center" role="status">
+                <span className="grid h-16 w-16 place-items-center rounded-full bg-gold/10 text-gold-bright ring-1 ring-gold/30">
+                  <CheckCircle2 size={30} strokeWidth={1.5} />
+                </span>
+                <h3 className="mt-6 font-serif text-3xl text-gold-bright">Köszönöm az üzenetet!</h3>
+                <p className="mt-3 max-w-md leading-relaxed text-foreground/70">
+                  Megkaptam az üzeneted, és hamarosan válaszolok. Addig is kövess a Facebookon az újabb ékszerekért.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 {error && (
-                  <div className="p-4 bg-red-500/10 border border-red-500/30 text-red-200 text-sm leading-relaxed">
+                  <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-4 text-sm leading-relaxed text-red-200" role="alert">
                     {error}
                   </div>
                 )}
 
                 {selectedProduct && (
-                  <div className="flex items-center justify-between p-4 bg-gold/5 border border-gold/20">
-                    <div>
-                      <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                        Érdeklődés tárgya
+                  <div className="flex items-center gap-4 rounded-2xl border border-gold/25 bg-gold/[0.06] p-3 pr-4">
+                    {selectedProduct.image && (
+                      <span className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-white">
+                        <Img picture={selectedProduct.image} sizes="56px" alt="" className="h-full w-full object-cover" />
+                      </span>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold/80">Érdeklődés tárgya</p>
+                      <p className="truncate font-medium">
+                        {selectedProduct.name}{' '}
+                        <span className="text-foreground/50">· {productCode(selectedProduct.id)} · {formatPrice(selectedProduct.price)}</span>
                       </p>
-                      <p className="text-foreground">{selectedProduct.name}</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => onClearProduct?.()}
-                      className="text-xs tracking-wider uppercase text-muted-foreground hover:text-gold transition-colors"
+                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-foreground/60 transition hover:bg-white/5 hover:text-foreground"
+                      aria-label="Termék eltávolítása"
                       data-testid="button-clear-product"
                     >
-                      eltávolít
+                      <X size={16} />
                     </button>
                   </div>
                 )}
 
-                <div>
-                  <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
-                    Neved
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                    placeholder="Pl. Kovács Anna"
-                    data-testid="input-name"
-                  />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-foreground/80">
+                      Neved
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="field"
+                      placeholder="Pl. Kovács Anna"
+                      data-testid="input-name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="mb-2 block text-sm font-medium text-foreground/80">
+                      E-mail címed
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="field"
+                      placeholder="anna@pelda.hu"
+                      data-testid="input-email"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
-                    E-mail
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
-                    placeholder="anna@pelda.hu"
-                    data-testid="input-email"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                  <label htmlFor="subject" className="mb-2 block text-sm font-medium text-foreground/80">
                     Tárgy
                   </label>
                   <input
@@ -158,14 +184,14 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                     required
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors"
+                    className="field"
                     placeholder="Pl. Egyedi rendelés"
                     data-testid="input-subject"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
+                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-foreground/80">
                     Üzenet
                   </label>
                   <textarea
@@ -174,84 +200,93 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                     rows={6}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-4 py-3 bg-background/60 border border-input text-foreground focus:border-gold/70 focus:outline-none focus:ring-1 focus:ring-gold/40 transition-colors resize-none"
-                    placeholder="Mesélj, mit szeretnél..."
+                    className="field resize-y"
+                    placeholder="Mesélj, mit szeretnél…"
                     data-testid="input-message"
                   />
                 </div>
 
+                {/* Spam-csapda: embereknek rejtett mező */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={gotcha}
+                  onChange={(e) => setGotcha(e.target.value)}
+                  className="hidden"
+                  aria-hidden="true"
+                />
+
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full gold-gradient text-background font-medium tracking-[0.2em] uppercase text-sm py-4 hover:shadow-[0_8px_32px_rgba(212,175,55,0.4)] transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-gold w-full !py-4"
                   data-testid="button-submit-form"
                 >
-                  {submitting ? 'Küldés folyamatban...' : 'Üzenet küldése'}
+                  <Send size={16} />
+                  {submitting ? 'Küldés folyamatban…' : 'Üzenet küldése'}
                 </button>
 
-                <p className="text-xs text-muted-foreground text-center leading-relaxed">
-                  Az adataidat bizalmasan kezelem, és csak a válasz küldésére használom.
+                <p className="text-center text-xs leading-relaxed text-foreground/50">
+                  Az adataidat bizalmasan kezelem, és csak a válasz küldésére használom. Részletek:{' '}
+                  <a href="#/adatkezeles" className="underline decoration-foreground/30 underline-offset-2 hover:text-gold-bright">
+                    adatkezelési tájékoztató
+                  </a>
+                  .
                 </p>
               </form>
             )}
           </div>
 
-          {/* Contact info sidebar */}
-          <aside className="lg:col-span-2 space-y-8">
-            <div>
-              <h3 className="font-serif text-2xl text-gold-bright mb-6">Elérhetőség</h3>
-              <ul className="space-y-5">
-                <li className="flex items-start gap-4">
-                  <Mail className="text-gold mt-1 shrink-0" size={20} strokeWidth={1.5} />
-                  <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                      E-mail
-                    </p>
-                    <a
-                      href="mailto:fire.enamel.klara@gmail.com"
-                      className="text-foreground hover:text-gold-bright transition-colors break-all"
-                      data-testid="link-email"
-                    >
-                      fire.enamel.klara@gmail.com
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <MapPin className="text-gold mt-1 shrink-0" size={20} strokeWidth={1.5} />
-                  <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                      Személyes átvétel
-                    </p>
-                    <p className="text-foreground">
-                      Budapest, Magyarország
-                      <br />
-                      <span className="text-muted-foreground text-sm">
-                        Személyes átvételre lehetőség van — előzetes egyeztetéssel.
-                      </span>
-                    </p>
-                  </div>
-                </li>
-              </ul>
+          {/* Elérhetőség */}
+          <aside className="reveal space-y-4 lg:col-span-2" style={{ ['--reveal-delay' as string]: '120ms' }}>
+            <a
+              href={`mailto:${site.email}`}
+              className="group flex items-start gap-4 rounded-3xl border border-white/[0.08] bg-card/40 p-6 transition hover:border-gold/30"
+              data-testid="link-email"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gold/10 text-gold-bright ring-1 ring-gold/25">
+                <Mail size={19} strokeWidth={1.6} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">E-mail</span>
+                <span className="mt-1 block break-all font-medium transition group-hover:text-gold-bright">
+                  {site.email}
+                </span>
+              </span>
+            </a>
+
+            <div className="flex items-start gap-4 rounded-3xl border border-white/[0.08] bg-card/40 p-6">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gold/10 text-gold-bright ring-1 ring-gold/25">
+                <MapPin size={19} strokeWidth={1.6} />
+              </span>
+              <span>
+                <span className="block text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">
+                  Személyes átvétel
+                </span>
+                <span className="mt-1 block font-medium">Budapest</span>
+                <span className="mt-1 block text-sm leading-relaxed text-foreground/60">
+                  Személyes átvételre lehetőség van — előzetes egyeztetéssel.
+                </span>
+              </span>
             </div>
 
-            <div className="pt-6 border-t border-gold/20">
-              <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
-                Kövess
-              </p>
-              <div className="flex gap-3">
-                <a
-                  href="https://www.facebook.com/klara.kovarinebauer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-5 h-12 border border-gold/30 text-gold hover:bg-gold/10 hover:border-gold transition-all"
-                  aria-label="Facebook"
-                  data-testid="link-facebook"
-                >
-                  <Facebook size={20} strokeWidth={1.5} />
-                  <span className="text-sm tracking-wider">Facebook</span>
-                </a>
-              </div>
-            </div>
+            <a
+              href={site.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-3xl border border-white/[0.08] bg-card/40 p-6 transition hover:border-gold/30"
+              data-testid="link-facebook"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#1877f2]/15 text-[#6ea8ff] ring-1 ring-[#1877f2]/30">
+                <Facebook size={19} strokeWidth={1.6} />
+              </span>
+              <span>
+                <span className="block text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">Kövess</span>
+                <span className="mt-1 block font-medium transition group-hover:text-gold-bright">Facebook — újdonságok elsőként</span>
+              </span>
+            </a>
           </aside>
         </div>
       </div>

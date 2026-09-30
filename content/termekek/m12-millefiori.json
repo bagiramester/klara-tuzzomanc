@@ -1,0 +1,18 @@
+{
+  "id": "m12-millefiori",
+  "name": "Égszín millefiori medál",
+  "category": "medalok",
+  "price": 6500,
+  "description": "Halvány kék áttört medál — élénk virágokkal a szegélyen.",
+  "longDescription": "Áttört, kerek medál vörösréz alapon, halvány kék-türkizes tűzzománccal és színes olasz millefiori üvegberakásokkal. A világos kék háttéren ragyognak a piros-zöld-fehér-kék virágminták. Méret kb. 50 mm.",
+  "image": "/attached_assets/termekek/M12_millefiori.jpg",
+  "size": "50 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt",
+  "colors": [
+    "Égszínkék",
+    "Millefiori virágok"
+  ],
+  "featured": false,
+  "sold": false
+}

@@ -1,0 +1,18 @@
+{
+  "id": "sz1",
+  "name": "Türkiz-réz pöttyös szett",
+  "category": "szettek",
+  "price": 23900,
+  "description": "Összehangolt medál és fülbevaló türkiz-réz pöttyös mintával.",
+  "longDescription": "Kör formájú, összehangolt tűzzománc szett vörösréz alapon, türkiz-réz pöttyös ékszerzománc mintával. A medál kb. 50 mm, a fülbevalók kb. 29 mm átmérőjűek. Kézzel fűrészelt és kalapált darabok.",
+  "image": "/attached_assets/termekek/Sz1.jpg",
+  "size": "50 mm / 29 mm",
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "technique": "Fűrészelt, kalapált",
+  "colors": [
+    "Türkiz",
+    "Réz"
+  ],
+  "featured": true,
+  "sold": false
+}

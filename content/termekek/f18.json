@@ -1,0 +1,17 @@
+{
+  "id": "f18",
+  "name": "Türkiz hosszú csepp fülbevaló",
+  "category": "fulbevalok",
+  "price": 3400,
+  "description": "Türkiz hosszúkás csepp — vízzöldes tónus, elnyújtott silhouette.",
+  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, türkiz iszapzománccal. Méret kb. 30×8 mm, antiallergén akasztóval.",
+  "image": "/attached_assets/termekek/F18.jpg",
+  "size": "30×8 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Türkiz"
+  ],
+  "featured": false,
+  "sold": false
+}

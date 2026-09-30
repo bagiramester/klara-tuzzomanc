@@ -1,0 +1,17 @@
+{
+  "id": "f44",
+  "name": "Narancs szablya fülbevaló",
+  "category": "fulbevalok",
+  "price": 6900,
+  "description": "Ívelt szablya forma, narancs iszapzománccal.",
+  "longDescription": "Ívelt szablya forma fülbevaló vörösréz alapon, narancs iszapzománccal égetve. Méret kb. 50×20 mm, antiallergén akasztóval. Minden darab egyedi mintázatú.",
+  "image": "/attached_assets/termekek/F44.jpg",
+  "size": "50×20 mm",
+  "materialDetail": "Vörösréz, iszapzománc",
+  "technique": "",
+  "colors": [
+    "Narancs"
+  ],
+  "featured": false,
+  "sold": false
+}
