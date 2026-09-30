@@ -11,7 +11,7 @@ Kovári Klára tűzzománc ékszereinek bemutató weboldala. Katalógus + érdek
 - **Telefon:** +36 20 484 7050
 - **Facebook:** [klara.kovarinebauer](https://www.facebook.com/klara.kovarinebauer)
 - **Nyelv:** magyar (30+ női célközönség)
-- **Stílus:** kobaltkék + arany sötét alap, világos „galéria” szekciók a termékfotókhoz
+- **Stílus:** kobaltkék + arany, egységes sötét téma, nagy logós nyitókép
 
 ## Termékek kezelése
 
@@ -41,7 +41,7 @@ Előbeállítások (lásd `vite.config.ts`): `?product` (termékfotók), `?portr
 
 ## Tech stack
 
-- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + vite-imagetools (WebP), saját tárhelyű betűtípusok (@fontsource)
+- **Frontend:** React 18 + Vite + TypeScript + Tailwind CSS + vite-imagetools (WebP), saját tárhelyű betűtípusok (@fontsource: Cormorant Garamond + Inter)
 - **Tartalomkezelés:** Decap CMS (git-alapú), bejelentkezés Cloudflare Pages Functions-szel (`functions/api/`)
 - **Tárhely:** Cloudflare Pages (statikus), biztonsági fejlécek: `client/public/_headers`
 - **Űrlap:** Formspree

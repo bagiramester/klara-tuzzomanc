@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, Mail, X } from 'lucide-react';
 import { categoryLabel, formatPrice, productCode, type Product } from '@/data/products';
 import { Img } from './Picture';
 
-const DIALOG_SIZES = '(min-width: 1024px) 640px, 100vw';
+const DIALOG_SIZES = '(min-width: 1024px) 600px, 100vw';
 
 interface ProductDialogProps {
   products: Product[];
@@ -14,26 +14,30 @@ interface ProductDialogProps {
 }
 
 function preload(product?: Product) {
-  if (!product?.image) return;
+  if (!product) return;
   const img = new Image();
   img.sizes = DIALOG_SIZES;
   img.srcset = product.image.sources.webp ?? '';
   img.src = product.image.img.src;
 }
 
+const arrowClass =
+  'absolute top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/75 border border-gold/40 text-gold-bright hover:bg-gold hover:text-background transition-all shadow-lg backdrop-blur-sm';
+
 export function ProductDialog({ products, index, onIndexChange, onClose, onInterest }: ProductDialogProps) {
   const product = products[index];
   const count = products.length;
   const closeRef = useRef<HTMLButtonElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const touchX = useRef<number | null>(null);
 
   const prev = () => onIndexChange((index - 1 + count) % count);
   const next = () => onIndexChange((index + 1) % count);
 
-  // Billentyűzet, görgetés-zár, fókusz visszaadása
+  // Görgetés-zár, fókusz a bezárás gombra, majd vissza az eredeti elemre
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
-    closeRef.current?.focus();
+    closeRef.current?.focus({ preventScroll: true });
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
@@ -51,8 +55,9 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
     return () => window.removeEventListener('keydown', onKey);
   });
 
-  // A szomszédos képek előtöltése a gyors lapozáshoz
+  // Lapozáskor a leírás az elejéről induljon; a szomszédos képek előtöltése
   useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
     preload(products[(index + 1) % count]);
     preload(products[(index - 1 + count) % count]);
   }, [index, products, count]);
@@ -67,127 +72,124 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-[hsl(224_60%_4%/0.85)] backdrop-blur-md sm:items-center sm:p-6 animate-fade-in"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-md sm:p-6 lg:p-10 animate-fade-in"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="product-dialog-title"
     >
       <div
-        className="paper relative grid max-h-[94svh] w-full max-w-5xl overflow-y-auto overscroll-contain rounded-t-[1.75rem] shadow-2xl sm:rounded-[1.75rem] lg:h-[min(86vh,620px)] lg:grid-cols-[1.25fr_1fr] lg:overflow-hidden"
+        className="relative flex h-[100svh] w-full max-w-5xl flex-col overflow-hidden border-gold/40 bg-card shadow-2xl sm:h-auto sm:max-h-[90svh] sm:border lg:grid lg:h-[min(88svh,680px)] lg:grid-cols-12 lg:grid-rows-1"
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
-        onTouchEnd={(e) => {
-          if (touchX.current === null) return;
-          const dx = e.changedTouches[0].clientX - touchX.current;
-          if (Math.abs(dx) > 50) (dx > 0 ? prev : next)();
-          touchX.current = null;
-        }}
       >
         {/* Kép */}
-        <div className="relative flex items-center justify-center bg-white">
-          <div className="aspect-square h-[min(52svh,100vw)] lg:aspect-auto lg:h-full lg:w-full">
-            {product.image && (
-              <Img
-                key={product.id}
-                picture={product.image}
-                sizes={DIALOG_SIZES}
-                alt={product.name}
-                loading="eager"
-                className="h-full w-full object-contain animate-fade-in"
-              />
-            )}
-          </div>
+        <div
+          className="relative flex h-[44svh] shrink-0 items-center justify-center bg-black/60 p-4 sm:h-[46svh] lg:col-span-7 lg:h-full lg:min-h-0 lg:p-6"
+          onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            if (touchX.current === null) return;
+            const dx = e.changedTouches[0].clientX - touchX.current;
+            if (Math.abs(dx) > 50) (dx > 0 ? prev : next)();
+            touchX.current = null;
+          }}
+        >
+          <Img
+            key={product.id}
+            picture={product.image}
+            sizes={DIALOG_SIZES}
+            alt={product.name}
+            loading="eager"
+            className="max-h-full w-auto max-w-full object-contain rounded shadow-2xl animate-fade-in"
+          />
 
-          <span className="absolute left-4 top-4 rounded-full bg-ink/85 px-3 py-1 text-xs font-medium tabular-nums text-paper">
+          <span className="absolute left-3 top-3 z-20 px-3 py-1 bg-background/80 border border-gold/30 text-xs tracking-widest text-gold-bright tabular-nums backdrop-blur-sm">
             {index + 1} / {count}
           </span>
 
           {count > 1 && (
             <>
-              <button
-                onClick={prev}
-                className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg ring-1 ring-ink/10 transition hover:bg-ink hover:text-paper"
-                aria-label="Előző ékszer"
-              >
-                <ChevronLeft size={20} />
+              <button onClick={prev} className={`${arrowClass} left-3`} aria-label="Előző ékszer">
+                <ChevronLeft size={22} />
               </button>
-              <button
-                onClick={next}
-                className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg ring-1 ring-ink/10 transition hover:bg-ink hover:text-paper"
-                aria-label="Következő ékszer"
-              >
-                <ChevronRight size={20} />
+              <button onClick={next} className={`${arrowClass} right-3`} aria-label="Következő ékszer">
+                <ChevronRight size={22} />
               </button>
             </>
           )}
         </div>
 
-        {/* Részletek */}
-        <div className="flex flex-col p-6 sm:p-8 lg:overflow-y-auto">
-          <div className="flex items-center justify-between gap-3 lg:pr-12">
-            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-cobalt">
-              {categoryLabel(product.category)}
-            </span>
-            <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-xs font-medium text-ink-muted">
-              {productCode(product.id)}
-            </span>
+        {/* Részletek: a szöveg görgethető, a gombok mindig látszanak alul */}
+        <div className="flex min-h-0 flex-1 flex-col bg-background/90 lg:col-span-5 lg:h-full">
+          <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 lg:p-8">
+            <div className="flex items-center justify-between gap-2 mb-3 lg:pr-10">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-gold font-medium">
+                {categoryLabel(product.category)}
+              </span>
+              <span className="text-xs text-muted-foreground">Sorszám: {productCode(product.id)}</span>
+            </div>
+
+            <h3 id="product-dialog-title" className="font-serif text-3xl text-foreground mb-3 leading-tight">
+              {product.name}
+            </h3>
+            <div className="text-2xl font-serif text-gold-bright mb-6">{formatPrice(product.price)}</div>
+
+            <div className="gold-divider mb-6 opacity-40" />
+
+            <p className="text-sm text-foreground/80 leading-relaxed">
+              {product.longDescription || product.description}
+            </p>
+
+            {specs.length > 0 && (
+              <dl className="mt-6 divide-y divide-gold/10 border-y border-gold/15 text-sm">
+                {specs.map((s) => (
+                  <div key={s.label} className="flex justify-between gap-6 py-2.5">
+                    <dt className="text-muted-foreground">{s.label}</dt>
+                    <dd className="text-right text-foreground">{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {product.colors.length > 0 && (
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Színek">
+                {product.colors.map((c) => (
+                  <li key={c} className="px-3 py-1 border border-gold/20 text-xs text-foreground/80">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
-          <h3 id="product-dialog-title" className="mt-3 font-serif text-3xl leading-tight sm:text-[2.1rem]">
-            {product.name}
-          </h3>
-          <p className="mt-2 font-serif text-2xl text-[hsl(32_70%_38%)]">{formatPrice(product.price)}</p>
-
-          <p className="mt-5 text-[0.95rem] leading-relaxed text-ink/80">{product.longDescription || product.description}</p>
-
-          {specs.length > 0 && (
-            <dl className="mt-6 divide-y divide-ink/10 border-y border-ink/10 text-sm">
-              {specs.map((s) => (
-                <div key={s.label} className="flex justify-between gap-6 py-2.5">
-                  <dt className="text-ink-muted">{s.label}</dt>
-                  <dd className="text-right font-medium">{s.value}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
-
-          {product.colors.length > 0 && (
-            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Színek">
-              {product.colors.map((c) => (
-                <li key={c} className="rounded-full bg-paper-2 px-3 py-1 text-xs font-medium text-ink/80">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="mt-auto space-y-2.5 pt-8">
-            <button onClick={() => onInterest(product)} className="btn-ink w-full">
+          <div className="shrink-0 space-y-3 border-t border-gold/20 bg-background/95 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:px-8 lg:pb-8 lg:pt-5">
+            <button
+              onClick={() => onInterest(product)}
+              className="w-full py-3.5 gold-gradient text-background font-medium tracking-[0.15em] uppercase text-xs hover:shadow-[0_4px_24px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2"
+              data-testid="button-dialog-interest"
+            >
               <Mail size={16} />
-              Érdeklődöm erről a darabról
+              Érdeklődés erről a darabról
             </button>
-            {product.image && (
-              <a
-                href={product.image.img.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-xs font-medium text-ink-muted transition hover:text-ink"
-              >
-                <ExternalLink size={14} />
-                Kép megnyitása teljes méretben
-              </a>
-            )}
+            <a
+              href={product.image.img.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 border border-gold/30 text-gold hover:border-gold hover:bg-gold/10 transition-colors text-xs tracking-wider uppercase flex items-center justify-center gap-2"
+              data-testid="link-dialog-image"
+            >
+              <ExternalLink size={14} />
+              Kép megnyitása új lapon
+            </a>
           </div>
         </div>
 
         <button
           ref={closeRef}
           onClick={onClose}
-          className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-ink shadow-lg ring-1 ring-ink/10 transition hover:bg-ink hover:text-paper"
+          className="absolute right-3 top-3 z-30 p-2.5 rounded-full bg-background/80 border border-gold/30 text-gold-bright hover:bg-gold hover:text-background transition-all backdrop-blur-sm"
           aria-label="Bezárás"
         >
-          <X size={20} />
+          <X size={22} />
         </button>
       </div>
     </div>
