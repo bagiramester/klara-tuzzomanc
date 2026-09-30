@@ -119,7 +119,7 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
         </div>
 
         {/* Részletek: a szöveg görgethető, a gombok mindig látszanak alul */}
-        <div className="flex min-h-0 flex-1 flex-col bg-background/90 lg:col-span-5 lg:h-full">
+        <div className="dialog-details flex min-h-0 flex-1 flex-col bg-background/90 lg:col-span-5 lg:h-full">
           <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 lg:p-8">
             <div className="flex items-center justify-between gap-2 mb-3 lg:pr-10">
               <span className="text-[11px] tracking-[0.2em] uppercase text-gold font-medium">
@@ -164,7 +164,7 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
           <div className="shrink-0 space-y-3 border-t border-gold/20 bg-background/95 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:px-8 lg:pb-8 lg:pt-5">
             <button
               onClick={() => onInterest(product)}
-              className="w-full py-3.5 gold-gradient text-background font-medium tracking-[0.15em] uppercase text-xs hover:shadow-[0_4px_24px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2"
+              className="btn-gold w-full !py-3.5 !text-xs"
               data-testid="button-dialog-interest"
             >
               <Mail size={16} />
@@ -174,7 +174,7 @@ export function ProductDialog({ products, index, onIndexChange, onClose, onInter
               href={product.image.img.src}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 border border-gold/30 text-gold hover:border-gold hover:bg-gold/10 transition-colors text-xs tracking-wider uppercase flex items-center justify-center gap-2"
+              className="btn-outline w-full !py-3 !text-xs"
               data-testid="link-dialog-image"
             >
               <ExternalLink size={14} />

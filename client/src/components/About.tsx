@@ -63,8 +63,8 @@ export function About() {
 
           {/* Text content */}
           <div className="order-1 lg:order-2 reveal">
-            <p className="text-gold tracking-[0.4em] text-xs uppercase mb-4">Rólam</p>
-            <h2 id="rolam-title" className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-8 leading-tight">
+            <p className="eyebrow text-gold tracking-[0.4em] text-xs uppercase mb-4">Rólam</p>
+            <h2 id="rolam-title" className="section-title font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-8 leading-tight">
               Klára vagyok,
               <span className="block italic gold-gradient-text mt-2">és szeretem a színeket</span>
             </h2>

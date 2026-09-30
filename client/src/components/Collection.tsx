@@ -75,7 +75,7 @@ export function Collection({ onSelectProduct }: CollectionProps) {
   ];
 
   const chipClass = (active: boolean) =>
-    `px-5 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-300 border shrink-0 ${
+    `chip px-5 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-300 border shrink-0 ${
       active
         ? 'bg-gold/15 border-gold text-gold-bright shadow-[0_0_20px_rgba(212,175,55,0.2)]'
         : 'border-card-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
@@ -86,12 +86,12 @@ export function Collection({ onSelectProduct }: CollectionProps) {
       <div className="max-w-7xl mx-auto">
         {/* Fejléc */}
         <div className="text-center mb-14 reveal">
-          <p className="text-xs tracking-[0.4em] uppercase text-gold mb-4">Ékszerkatalógus</p>
-          <h2 id="kollekcio-title" className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
+          <p className="eyebrow text-xs tracking-[0.4em] uppercase text-gold mb-4">Ékszerkatalógus</p>
+          <h2 id="kollekcio-title" className="section-title font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
             Kézzel készült
             <span className="block italic gold-gradient-text mt-2">tűzzománc alkotások</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
+          <p className="section-lead text-muted-foreground max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
             Minden darab egyedi, kézzel formázott réz, ezüst vagy bronz alapon készült, 820°C-os égetéssel.
             Kattints bármelyik képre a részletes nagyításhoz!
           </p>
@@ -174,16 +174,16 @@ export function Collection({ onSelectProduct }: CollectionProps) {
             </button>
           </div>
         ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <ul className="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {visible.map((product, index) => (
               <li key={product.id} className="reveal" style={{ ['--reveal-delay' as string]: `${(index % 4) * 60}ms` }}>
                 <article
-                  className="group h-full flex flex-col bg-card/60 border border-card-border hover:border-gold/50 transition-all duration-500 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)]"
+                  className="product-card group h-full flex flex-col bg-card/60 border border-card-border hover:border-gold/50 transition-all duration-500 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)]"
                   data-testid={`card-product-${product.id}`}
                 >
                   <button
                     onClick={() => setOpenIndex(index)}
-                    className="relative block aspect-square w-full overflow-hidden bg-background/50"
+                    className="product-image relative block aspect-square w-full overflow-hidden bg-background/50"
                     aria-label={`${product.name} — nagyítás és részletek`}
                   >
                     <Img
@@ -212,23 +212,23 @@ export function Collection({ onSelectProduct }: CollectionProps) {
                     </span>
                   </button>
 
-                  <div className="flex flex-col flex-1 p-6">
+                  <div className="product-body flex flex-col flex-1 p-6">
                     <div className="flex-1">
                       <h3
-                        className="font-serif text-xl text-foreground mb-2 leading-tight group-hover:text-gold-bright transition-colors"
+                        className="product-title font-serif text-xl text-foreground mb-2 leading-tight group-hover:text-gold-bright transition-colors"
                         data-testid={`text-name-${product.id}`}
                       >
                         {product.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">{product.description}</p>
+                      <p className="product-desc text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">{product.description}</p>
                     </div>
                     <div className="pt-4 border-t border-gold/15 flex items-center justify-between gap-4 mt-auto">
-                      <span className="font-serif text-lg text-gold-bright font-medium whitespace-nowrap">
+                      <span className="product-price font-serif text-lg text-gold-bright font-medium whitespace-nowrap">
                         {formatPrice(product.price)}
                       </span>
                       <button
                         onClick={() => handleInterest(product)}
-                        className="px-4 py-2 text-xs tracking-wider uppercase border border-gold/40 text-gold hover:bg-gold hover:text-background font-medium transition-all duration-300 flex items-center gap-1.5"
+                        className="btn-interest px-4 py-2 text-xs tracking-wider uppercase border border-gold/40 text-gold hover:bg-gold hover:text-background font-medium transition-all duration-300 flex items-center gap-1.5"
                         data-testid={`button-interest-${product.id}`}
                       >
                         <Mail size={14} />
