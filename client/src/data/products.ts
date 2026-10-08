@@ -5,7 +5,7 @@
 // lásd vite-plugin-products.ts. Az elkelt darabok ide már nem kerülnek be.
 import rawProducts from 'virtual:products';
 
-export type Category = 'medalok' | 'fulbevalok' | 'karkotok' | 'brossok' | 'szettek';
+export type Category = 'medalok' | 'fulbevalok' | 'karkotok' | 'brossok' | 'szettek' | 'rez-ekszerek';
 
 export interface Product {
   id: string;              // azonosító, pl. "m4-biloba" (a kiírt kód: M4)
@@ -29,6 +29,7 @@ export const categories: { id: Category; label: string; description: string }[] 
   { id: 'karkotok', label: 'Karkötők', description: 'Karra simuló darabok, mindennapra és ünnepre' },
   { id: 'brossok', label: 'Brossok', description: 'Klasszikus kitűzők, kabátra és blúzra' },
   { id: 'szettek', label: 'Szettek', description: 'Összehangolt ékszerek — medál és fülbevaló párban' },
+  { id: 'rez-ekszerek', label: 'Réz ékszerek', description: 'Kézzel készített rézékszerek, zománc nélkül' },
 ];
 
 const categoryOrder = new Map(categories.map((c, i) => [c.id, i]));

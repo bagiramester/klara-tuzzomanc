@@ -11,7 +11,7 @@ import type { Plugin } from "vite";
 
 const VIRTUAL_ID = "virtual:products";
 const RESOLVED_ID = "\0" + VIRTUAL_ID;
-const CATEGORIES = ["medalok", "fulbevalok", "karkotok", "brossok", "szettek"];
+const CATEGORIES = ["medalok", "fulbevalok", "karkotok", "brossok", "szettek", "rez-ekszerek"];
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif|tiff?)$/i;
 
 interface RawProduct {
