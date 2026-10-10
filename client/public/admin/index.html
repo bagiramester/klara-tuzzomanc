@@ -43,6 +43,9 @@
           // A bejelentkezést a saját domainen futó Cloudflare Pages Function végzi (functions/api/auth.js)
           base_url: window.location.origin,
           auth_endpoint: 'api/auth',
+          // Minden GitHub-hívás a saját proxynkon megy át (functions/api/gh/[[path]].js).
+          // Így Cloudflare Access mellett a hozzáférési token szerveroldalon marad.
+          api_root: window.location.origin + '/api/gh',
           commit_messages: {
             create: 'Új termék: {{slug}}',
             update: 'Termék módosítva: {{slug}}',

@@ -1,6 +1,15 @@
 // Cloudflare Pages Function: /api/callback
-// A GitHub ide irányít vissza. A kódot hozzáférési tokenre cseréljük, és a Decap CMS szabványos
-// üzenetküldéses kézfogásával (postMessage) visszaadjuk az admin ablaknak — csak a saját domainnek.
+//
+// Csak a GitHub OAuth tartalék üzemmódhoz kell (lásd functions/api/auth.js).
+// Ha a Cloudflare Access be van kapcsolva, ez a végpont nem jut szóhoz.
+
+import { cmsHandshake } from '../../lib/access.js';
+
+function withClearedState(response) {
+  const headers = new Headers(response.headers);
+  headers.append('Set-Cookie', 'cms_oauth_state=; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=0');
+  return new Response(response.body, { status: response.status, headers });
+}
 
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
@@ -9,7 +18,9 @@ export async function onRequestGet({ request, env }) {
   const savedState = /(?:^|;\s*)cms_oauth_state=([^;]+)/.exec(request.headers.get('Cookie') || '')?.[1];
 
   if (!code || !state || !savedState || state !== savedState) {
-    return reply(url.origin, 'error', { message: 'Érvénytelen vagy lejárt bejelentkezési kérés. Próbáld újra.' });
+    return withClearedState(
+      cmsHandshake(url.origin, 'error', { message: 'Érvénytelen vagy lejárt bejelentkezési kérés. Próbáld újra.' }),
+    );
   }
 
   let data;
@@ -30,41 +41,13 @@ export async function onRequestGet({ request, env }) {
   }
 
   if (!data.access_token) {
-    return reply(url.origin, 'error', { message: data.error_description || 'A GitHub bejelentkezés nem sikerült.' });
+    return withClearedState(
+      cmsHandshake(url.origin, 'error', {
+        message: data.error_description || 'A GitHub bejelentkezés nem sikerült.',
+      }),
+    );
   }
-  return reply(url.origin, 'success', { token: data.access_token, provider: 'github' });
-}
-
-function reply(origin, status, content) {
-  const message = `authorization:github:${status}:${JSON.stringify(content)}`;
-  // a JSON-t biztonságosan ágyazzuk be a <script>-be
-  const js = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
-  const html = `<!doctype html><html lang="hu"><head><meta charset="utf-8"><title>Bejelentkezés…</title></head>
-<body style="font-family:system-ui;padding:2rem">${status === 'success' ? 'Sikeres bejelentkezés, az ablak bezárható.' : 'Hiba: ' + escapeHtml(content.message)}
-<script>
-(function () {
-  var origin = ${js(origin)};
-  var message = ${js(message)};
-  function receive(e) {
-    if (e.origin !== origin) return;
-    window.removeEventListener('message', receive);
-    e.source.postMessage(message, origin);
-    ${status === 'success' ? 'setTimeout(function () { window.close(); }, 300);' : ''}
-  }
-  window.addEventListener('message', receive);
-  if (window.opener) window.opener.postMessage('authorizing:github', origin);
-})();
-</script></body></html>`;
-  return new Response(html, {
-    status: 200,
-    headers: {
-      'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'no-store',
-      'Set-Cookie': 'cms_oauth_state=; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=0',
-    },
-  });
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  return withClearedState(
+    cmsHandshake(url.origin, 'success', { token: data.access_token, provider: 'github' }),
+  );
 }
