@@ -1,17 +1,17 @@
 {
-  "id": "f1",
-  "name": "Citromsárga csepp fülbevaló",
-  "category": "fulbevalok",
-  "price": 3400,
-  "description": "Élénk citromsárga hosszúkás csepp — napsütötte hangulat.",
-  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, élénk sárga iszapzománccal. Antiallergén akasztóval.",
-  "image": "/attached_assets/termekek/F1.jpg",
+  "longDescription": "Hosszúkás csepp formájú fülbevaló vörösréz alapon, élénk sárga iszapzománccal. Antiallergén akasztóval.  TESZTTESZTTESZT",
   "size": "30×8 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 3400,
+  "name": "Citromsárga csepp fülbevaló",
+  "featured": false,
   "colors": [
     "Sárga"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f1",
+  "image": "/attached_assets/termekek/F1.jpg",
+  "description": "Élénk citromsárga hosszúkás csepp — napsütötte hangulat.",
+  "category": "fulbevalok"
 }
