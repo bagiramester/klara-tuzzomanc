@@ -1,8 +1,11 @@
 // Cloudflare Pages Function: /api/auth
 //
-// Az admin felület (Decap CMS) bejelentkezése. Két üzemmód van, a környezeti változók döntik el:
+// Az admin felület (Decap CMS) bejelentkezése. Három üzemmód van, a környezeti változók döntik el:
 //
-//  1. Cloudflare Access (ez a cél) — ha CF_ACCESS_TEAM_DOMAIN és CF_ACCESS_AUD be van állítva.
+//  0. E-mail + jelszó (ez a cél) — ha ADMIN_USERS és SESSION_SECRET be van állítva.
+//     A belépőoldal az /api/login, a felhasználók a lib/session.js leírása szerint.
+//
+//  1. Cloudflare Access — ha CF_ACCESS_TEAM_DOMAIN és CF_ACCESS_AUD be van állítva.
 //     Ilyenkor a belépést már a Cloudflare elintézte (e-mailes egyszeri kóddal), nekünk csak
 //     ellenőriznünk kell az azonosítót. GitHub-fiók nem kell a szerkesztőnek.
 //
@@ -11,9 +14,25 @@
 //     saját GitHub-fiók, írási joggal a tárolóhoz.
 
 import { accessEnabled, verifyAccess, cmsHandshake, AccessError } from '../../lib/access.js';
+import { loginEnabled, verifySession } from '../../lib/session.js';
 
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
+
+  // ─── 0. E-mail + jelszó ────────────────────────────────────────────────────
+  if (loginEnabled(env)) {
+    if (!(await verifySession(request, env))) {
+      // a CMS felugró ablakában jelenik meg a belépőoldal; belépés után ide jön vissza
+      return Response.redirect(`${url.origin}/api/login?next=${encodeURIComponent('/api/auth')}`, 302);
+    }
+    if (!env.GITHUB_TOKEN) {
+      return cmsHandshake(url.origin, 'error', {
+        message: 'Hiányzik a GITHUB_TOKEN környezeti változó a Cloudflare Pages beállításaiból (lásd docs/ELESITES.md).',
+      });
+    }
+    // Jelzésértékű token: a valódi GitHub-tokent az /api/gh proxy teszi a kérésekbe, szerveroldalon.
+    return cmsHandshake(url.origin, 'success', { token: 'cms-session', provider: 'github' });
+  }
 
   // ─── 1. Cloudflare Access ──────────────────────────────────────────────────
   if (accessEnabled(env)) {

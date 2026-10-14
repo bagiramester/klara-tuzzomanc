@@ -42,68 +42,31 @@ A `www` → főoldal átirányításhoz: Cloudflare → a domain → **Rules →
 
 A `functions/` mappában lévő admin-bejelentkezést a Cloudflare automatikusan felismeri (Pages Functions).
 
-## 4. Admin bejelentkezés (Cloudflare Access, e-mailes kóddal)
+## 4. Admin bejelentkezés (e-mail + jelszó)
 
-Klárának **nem kell GitHub-fiók**. A belépést a Cloudflare Access intézi: beírja az e-mail címét,
-kap egy hatjegyű kódot, és belép. A GitHub-tokent a szerveroldal teszi a kérésekbe — a böngészőbe
-soha nem kerül olyan token, amivel a tárolót írni lehetne.
+Az adminba (`/admin`) e-mail címmel és jelszóval lehet belépni. A felhasználók listája és a
+GitHub-kulcs a Cloudflare Pages beállításaiban van, a böngészőbe egyik sem kerül.
 
-**a) Hozzáférési token a tárolóhoz**
+Cloudflare Pages projekt → **Settings → Variables and Secrets** (Production), mindhárom **Secret** típussal:
 
-GitHub → [Fine-grained tokens](https://github.com/settings/personal-access-tokens) → **Generate new token**
-
-| Mező | Érték |
+| Változó | Érték |
 |---|---|
-| Repository access | Only select repositories → `klara-tuzzomanc` |
-| Permissions → Contents | Read and write |
-| Expiration | legfeljebb 1 év — a lejárat előtt újat kell generálni |
+| `ADMIN_USERS` | JSON-lista a felhasználókról: `[{"email":"…","hash":"pbkdf2$…"}, …]` — a `node scripts/jelszo.mjs <e-mail>` parancs adja (a jelszót is kiírja) |
+| `SESSION_SECRET` | hosszú véletlen szöveg, pl. `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` |
+| `GITHUB_TOKEN` | finomhangolt GitHub token (GitHub → Settings → Developer settings → Fine-grained tokens): csak a `klara-tuzzomanc` tárolóra, **Contents: Read and write** joggal; lejárat 1 év, utána újat kell készíteni |
 
-Más jogosultság nem kell. A commitok ennek a tokennek a tulajdonosa nevében készülnek,
-tehát a git-előzményben az ő neve fog szerepelni akkor is, ha Klára szerkesztett.
+Utána **Deployments → Retry deployment**. Ettől kezdve: `https://klaratuzzomanc.hu/admin` → belépőoldal → e-mail + jelszó.
+A belépés 30 napig marad meg a böngészőben; kilépés: `https://klaratuzzomanc.hu/api/logout`.
 
-**b) Access alkalmazás**
+> A korábbi módok (Cloudflare Access, GitHub OAuth) is a kódban maradtak tartaléknak; ha az
+> `ADMIN_USERS` + `SESSION_SECRET` be van állítva, ez az e-mail + jelszavas mód él.
 
-Cloudflare → **Zero Trust** → **Access** → **Applications** → **Add an application** → **Self-hosted**
+## 5. Jelszó cseréje, új felhasználó, kizárás
 
-- Alkalmazás neve: `Klára tűzzománc admin`
-- Public hostname: `klaratuzzomanc.hu`, útvonal: `admin`
-- Vegyél fel egy **második** hostnamet ugyanehhez az alkalmazáshoz: `klaratuzzomanc.hu`, útvonal: `api`
-  (enélkül a mentés nem működne, mert a CMS hívásai védtelenül mennének)
-- Policy: **Allow**, Include → **Emails** → Klára és a te címed
-- Login methods: **One-time PIN**
-
-Létrehozás után másold ki az **Application Audience (AUD) Tag** értékét.
-
-**c) Környezeti változók**
-
-Cloudflare Pages projekt → **Settings → Variables and secrets** (Production):
-
-| Név | Érték | Típus |
-|---|---|---|
-| `CF_ACCESS_TEAM_DOMAIN` | pl. `bagiramester.cloudflareaccess.com` | Text |
-| `CF_ACCESS_AUD` | az AUD Tag | Text |
-| `GITHUB_TOKEN` | az a) pontban készült token | **Secret** |
-
-Ezután **Deployments → Retry deployment**, hogy a változók életbe lépjenek.
-
-> A `GITHUB_TOKEN` csak akkor használható, ha a két `CF_ACCESS_*` változó is be van állítva.
-> Access nélkül a proxy szándékosan megtagadja a szolgálatot — különben bárki írhatná a tárolót.
-
-**Sorrend a domainnel:** előbb vedd fel a domaint a Pages projekthez (Custom domains), és csak
-utána hozd létre rá az Access alkalmazást. Fordítva a Cloudflare nem engedi hozzáadni a domaint.
-
-**Tartalék mód.** Ha a `CF_ACCESS_*` változók nincsenek beállítva, a régi GitHub OAuth belépés él
-(`GITHUB_CLIENT_ID` + `GITHUB_CLIENT_SECRET`, OAuth App callback URL-je `…/api/callback`).
-Ilyenkor minden szerkesztőnek saját GitHub-fiók kell, írási joggal a tárolóhoz.
-
-## 5. Ha valakit ki kell zárni
-
-Cloudflare → Zero Trust → Access → Applications → az alkalmazás → a policy-ból töröld az e-mail címét.
-Azonnal hatályos, nem kell se jelszót cserélni, se tokent újragenerálni.
-
-Ha maga a `GITHUB_TOKEN` szivárogna ki, a GitHubon vond vissza
-([Fine-grained tokens](https://github.com/settings/personal-access-tokens) → Revoke), generálj újat,
-és írd át a Cloudflare-változót.
+- **Új jelszó / új felhasználó:** `node scripts/jelszo.mjs valaki@pelda.hu` → az eredmény sorát tedd be az
+  `ADMIN_USERS` listába (a régi sort cseréld), majd Retry deployment.
+- **Kizárás:** vedd ki a sorát az `ADMIN_USERS`-ből → Retry deployment. A meglévő belépése is azonnal érvénytelen.
+- Ha a `GITHUB_TOKEN` kiszivárgott volna: GitHub-on vond vissza, készíts újat, írd át a változót.
 
 ## 6. Kötelező adatok kitöltése
 
