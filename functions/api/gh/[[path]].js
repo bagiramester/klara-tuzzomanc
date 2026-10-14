@@ -10,6 +10,7 @@
 //   CF_ACCESS_*    lásd lib/access.js
 
 import { verifyAccess, accessEnabled, AccessError } from '../../../lib/access.js';
+import { loginEnabled, verifySession } from '../../../lib/session.js';
 
 const GITHUB_API = 'https://api.github.com';
 
@@ -25,25 +26,33 @@ function problem(message, status) {
 }
 
 export async function onRequest({ request, env, params }) {
-  const usingAccess = accessEnabled(env);
+  const usingLogin = loginEnabled(env);
+  const usingAccess = !usingLogin && accessEnabled(env);
+  const guarded = usingLogin || usingAccess;
   const serverToken = env.GITHUB_TOKEN;
 
-  // Biztonsági kapu: szerveroldali tokent csak akkor használunk, ha az Access is véd.
-  // Access nélkül ez nyitott írási proxy lenne bárkinek.
-  if (serverToken && !usingAccess) {
+  // Biztonsági kapu: szerveroldali tokent csak akkor használunk, ha belépés is védi.
+  // Enélkül ez nyitott írási proxy lenne bárkinek.
+  if (serverToken && !guarded) {
     return problem(
-      'Hibás beállítás: a GITHUB_TOKEN be van állítva, de a Cloudflare Access nincs bekapcsolva. ' +
-        'Amíg nincs CF_ACCESS_TEAM_DOMAIN és CF_ACCESS_AUD, a szerveroldali token nem használható.',
+      'Hibás beállítás: a GITHUB_TOKEN be van állítva, de nincs belépés (ADMIN_USERS + SESSION_SECRET, ' +
+        'vagy CF_ACCESS_TEAM_DOMAIN + CF_ACCESS_AUD). Addig a szerveroldali token nem használható.',
       500,
     );
   }
 
-  if (usingAccess) {
-    try {
-      await verifyAccess(request, env);
-    } catch (err) {
-      const message = err instanceof AccessError ? err.message : 'A bejelentkezés ellenőrzése nem sikerült.';
-      return problem(message, 401);
+  if (usingLogin && !(await verifySession(request, env))) {
+    return problem('Nincs bejelentkezve. Nyisd meg újra az /admin oldalt, és lépj be.', 401);
+  }
+
+  if (guarded) {
+    if (usingAccess) {
+      try {
+        await verifyAccess(request, env);
+      } catch (err) {
+        const message = err instanceof AccessError ? err.message : 'A bejelentkezés ellenőrzése nem sikerült.';
+        return problem(message, 401);
+      }
     }
     if (!serverToken) {
       return problem(
@@ -54,7 +63,7 @@ export async function onRequest({ request, env, params }) {
     }
   }
 
-  // Access nélkül a régi mód él: a böngésző saját GitHub-tokenjével megy a kérés.
+  // Belépés nélkül a régi mód él: a böngésző saját GitHub-tokenjével megy a kérés.
   const authorization = serverToken
     ? `token ${serverToken}`
     : request.headers.get('Authorization');
@@ -91,9 +100,9 @@ export async function onRequest({ request, env, params }) {
     return problem('Nem sikerült elérni a GitHubot. Próbáld újra néhány másodperc múlva.', 502);
   }
 
-  // Access mellett a token a tárolóé, nem Kláráé — a felső sávban ne egy idegen GitHub-név
+  // Belépés mellett a token a tárolóé, nem Kláráé — a felső sávban ne egy idegen GitHub-név
   // jelenjen meg. Csak a megjelenített nevet írjuk át, minden más mező marad.
-  if (usingAccess && path === 'user' && method === 'GET' && upstream.ok) {
+  if (guarded && path === 'user' && method === 'GET' && upstream.ok) {
     try {
       const user = await upstream.json();
       return new Response(JSON.stringify({ ...user, name: 'KLÁRA tűzzománc' }), {
