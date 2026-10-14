@@ -26,7 +26,7 @@ export function About() {
               <Img
                 picture={klaraPortrait}
                 sizes="(min-width: 1024px) 540px, 92vw"
-                alt="Klára portréja — Kovariné Bauer Klára, tűzzománc ékszerész"
+                alt="Klára portréja — Kőváriné Bauer Klára, tűzzománc ékszerész"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 20%', filter: 'saturate(1.05) contrast(1.03)' }}
                 data-testid="img-klara-rolam"
