@@ -14,14 +14,12 @@ if (!email || !email.includes('@')) {
   process.exit(1);
 }
 
-// Könnyen begépelhető, de erős jelszó: 4 szótagszerű blokk, pl. "Rubin-7Kemence-Zomanc-42"
+// Erős, véletlen jelszó: 4 × 4 karakter, a könnyen összetéveszthetők (0/O, 1/l/I) nélkül, pl. "k7m2-x9pq-4rwt-c3nz"
 function generatePassword() {
-  const words = ['Zomanc', 'Kemence', 'Rubin', 'Kobalt', 'Arany', 'Ginkgo', 'Medal', 'Bross', 'Tuz', 'Szikra', 'Biloba', 'Patina'];
-  const rnd = (n) => crypto.getRandomValues(new Uint32Array(1))[0] % n;
-  const pool = [...words];
-  const pick = () => pool.splice(rnd(pool.length), 1)[0]; // három különböző szó
-  const num = () => rnd(90) + 10;
-  return `${pick()}-${pick()}${num()}-${pick()}-${num()}`;
+  const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  const chars = [...bytes].map((b) => alphabet[b % alphabet.length]);
+  return [0, 4, 8, 12].map((i) => chars.slice(i, i + 4).join('')).join('-');
 }
 
 const password = given || generatePassword();
