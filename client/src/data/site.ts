@@ -1,5 +1,5 @@
 // Az oldal és a jogi oldalak (Impresszum, Adatkezelési tájékoztató) közös adatai.
-// ⚠️ Élesítés előtt töltsd ki a [KITÖLTENDŐ] mezőket! (lásd docs/ELESITES.md)
+// Az Impresszumban a törvény (Ektv. 4. §) által előírt minimum szerepel; telefonszámot Klára kérésére nem teszünk ki.
 
 export const site = {
   name: 'KLÁRA tűzzománc',
@@ -10,12 +10,12 @@ export const site = {
 
   // Üzemeltető / adatkezelő (magánszemély vagy egyéni vállalkozó adatai)
   owner: {
-    name: 'Kovariné Bauer Klára',
-    address: '[KITÖLTENDŐ: postázási cím vagy székhely]',
-    phone: '[KITÖLTENDŐ: telefonszám, pl. +36 20 …]',
+    name: 'Kőváriné Bauer Klára',
+    address: '1181 Budapest, Kinizsi Pál u. 5.',
+    phone: '', // szándékosan üres — nem jelenik meg az oldalon
     // Egyéni vállalkozó / őstermelő esetén; ha nincs, hagyd üresen ('')
-    taxNumber: '[KITÖLTENDŐ: adószám — vagy üres, ha nincs]',
-    registration: '[KITÖLTENDŐ: nyilvántartási szám — vagy üres, ha nincs]',
+    taxNumber: '54861266-1-43',
+    registration: '',
   },
 
   hosting: {
@@ -31,5 +31,5 @@ export const site = {
     privacy: 'https://formspree.io/legal/privacy-policy',
   },
 
-  legalUpdated: '2026. október 1.',
+  legalUpdated: '2026. október 14.',
 };
