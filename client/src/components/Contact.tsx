@@ -17,7 +17,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [gotcha, setGotcha] = useState(''); // spam-csapda (Formspree _gotcha)
 
   // When user clicks "Érdeklődöm" on a product, pre-fill the form
   useEffect(() => {
@@ -49,12 +48,14 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
           message,
           product: selectedProduct?.name || '',
           _replyto: email,
-          _gotcha: gotcha,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Nem sikerült elküldeni az üzenetet.');
+        // a Formspree válaszában ott az ok (pl. tiltott domain, elért havi keret)
+        const data = await response.json().catch(() => null);
+        const detail = data?.errors?.map((e: { message?: string }) => e.message).filter(Boolean).join(' ') || data?.error;
+        throw new Error(detail || `Nem sikerült elküldeni az üzenetet (${response.status}).`);
       }
 
       setSubmitted(true);
@@ -67,8 +68,9 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
       setTimeout(() => {
         setSubmitted(false);
       }, 4000);
-    } catch {
-      setError('Sajnos az üzenet küldése nem sikerült. Kérlek, próbáld újra, vagy írj e-mailt közvetlenül.');
+    } catch (err) {
+      const detail = err instanceof Error && err.message ? ` (${err.message})` : '';
+      setError(`Sajnos az üzenet küldése nem sikerült${detail}. Kérlek, próbáld újra, vagy írj e-mailt közvetlenül: ${site.email}`);
     } finally {
       setSubmitting(false);
     }
@@ -193,18 +195,6 @@ export function Contact({ selectedProduct, onClearProduct }: ContactProps) {
                     data-testid="input-message"
                   />
                 </div>
-
-                {/* Spam-csapda: embereknek rejtett mező */}
-                <input
-                  type="text"
-                  name="_gotcha"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={gotcha}
-                  onChange={(e) => setGotcha(e.target.value)}
-                  className="hidden"
-                  aria-hidden="true"
-                />
 
                 <button
                   type="submit"
