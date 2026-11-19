@@ -1,17 +1,17 @@
 {
-  "id": "m39",
-  "name": "Antik arany medál",
-  "category": "medalok",
-  "price": 11000,
-  "description": "Nagyméretű domborított medál meleg antik arany árnyalattal.",
   "longDescription": "Kézzel fűrészelt és domborított kerek vörösréz medál meleg antik arany ékszerzománc bevonattal. Időtlen, klasszikus darab.",
-  "image": "/attached_assets/termekek/M39.jpg",
   "size": "50 mm átmérő",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, domborított",
+  "price": 11000,
+  "name": "Antik arany medál",
+  "featured": false,
   "colors": [
     "Antik arany"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "Fűrészelt, domborított",
+  "sold": true,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "m39",
+  "image": "/attached_assets/termekek/M39.jpg",
+  "description": "Nagyméretű domborított medál meleg antik arany árnyalattal.",
+  "category": "medalok"
 }
