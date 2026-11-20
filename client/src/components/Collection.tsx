@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mail, Search, X, ZoomIn } from 'lucide-react';
 import { products, categories, formatPrice, isNew, productCode, type Category, type Product } from '@/data/products';
 import { scrollToSection } from '@/lib/scroll';
@@ -21,6 +21,16 @@ const searchIndex = new Map(
     normalize([p.name, p.description, productCode(p.id), p.materialDetail ?? '', p.technique ?? '', ...p.colors].join(' ')),
   ]),
 );
+
+// Minden megnyitott terméknek saját címe van (/termek/<azonosító>), így a látogatottság
+// termékenként mérhető (Cloudflare Web Analytics), és a termékre közvetlenül lehet linkelni.
+const PRODUCT_PATH = /^\/termek\/([^/]+)\/?$/;
+const productIdFromPath = () => PRODUCT_PATH.exec(window.location.pathname)?.[1] ?? null;
+const setPath = (path: string, replace = false) => {
+  const url = path + window.location.hash;
+  if (replace) window.history.replaceState(null, '', url);
+  else window.history.pushState(null, '', url);
+};
 
 interface CollectionProps {
   onSelectProduct?: (product: Product) => void;
@@ -51,6 +61,44 @@ export function Collection({ onSelectProduct }: CollectionProps) {
     }
     return result;
   }, [filter, sort, query]);
+
+  const listRef = useRef(list);
+  listRef.current = list;
+  const urlReady = useRef(false);
+
+  // Betöltéskor: /termek/<id> címről érkezve megnyitjuk a terméket; vissza/előre gomb kezelése
+  useEffect(() => {
+    const id = productIdFromPath();
+    if (id) {
+      const i = listRef.current.findIndex((p) => p.id === id);
+      if (i >= 0) {
+        setOpenIndex(i);
+        requestAnimationFrame(() => document.getElementById('kollekcio')?.scrollIntoView({ block: 'start' }));
+      } else {
+        setPath('/', true); // eladott vagy nem létező termék: vissza a főoldalra
+      }
+    }
+    const onPop = () => {
+      const pid = productIdFromPath();
+      const idx = pid ? listRef.current.findIndex((p) => p.id === pid) : -1;
+      setOpenIndex(idx >= 0 ? idx : null);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      if (productIdFromPath()) setPath('/', true); // másik oldalra (pl. Impresszum) lépéskor
+    };
+  }, []);
+
+  // A megnyitott termék címének követése a böngésző címsorában
+  useEffect(() => {
+    if (!urlReady.current) {
+      urlReady.current = true;
+      return;
+    }
+    const target = openIndex !== null && list[openIndex] ? `/termek/${list[openIndex].id}` : '/';
+    if (window.location.pathname !== target) setPath(target);
+  }, [openIndex, list]);
 
   const visible = list.slice(0, visibleCount);
   const remaining = list.length - visible.length;
