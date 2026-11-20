@@ -46,11 +46,11 @@ const preloadCritical = (): Plugin => ({
         hero.push({ file, w: width ?? 0 });
       }
       if (/(cormorant-garamond-latin-500-normal|manrope-latin-(400|600)-normal)-.*\.woff2$/.test(file)) {
-        tags.push(`<link rel="preload" href="./${file}" as="font" type="font/woff2" crossorigin>`);
+        tags.push(`<link rel="preload" href="/${file}" as="font" type="font/woff2" crossorigin>`);
       }
     }
     if (hero.length) {
-      const srcset = hero.sort((a, b) => a.w - b.w).map((h) => `./${h.file} ${h.w}w`).join(", ");
+      const srcset = hero.sort((a, b) => a.w - b.w).map((h) => `/${h.file} ${h.w}w`).join(", ");
       tags.unshift(
         `<link rel="preload" as="image" imagesrcset="${srcset}" imagesizes="(min-width: 768px) 440px, (min-width: 640px) 380px, 300px" fetchpriority="high">`,
       );
@@ -83,8 +83,9 @@ export default defineConfig({
     },
   },
   root: path.resolve(repoRoot, "client"),
-  // relatív útvonalak: működik a saját domainen és a GitHub Pages alkönyvtárában is
-  base: "./",
+  // abszolút útvonalak: a /termek/<id> címekről is betöltődnek a fájlok.
+  // (A régi GitHub Pages-másolat buildje ki van kapcsolva, annak nem kell relatív útvonal.)
+  base: "/",
   build: {
     outDir: path.resolve(repoRoot, "dist"),
     emptyOutDir: true,
