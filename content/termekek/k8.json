@@ -1,18 +1,18 @@
 {
-  "id": "k8",
-  "name": "Arany-réz széles mandzsetta",
-  "category": "karkotok",
-  "price": 20000,
-  "description": "Nagyméretű, arany-réz mandzsetta karperec ékszerzománccal.",
   "longDescription": "Széles, nyitott mandzsetta-formájú vörösréz karperec arany és réz ékszerzománc árnyalatokkal. Egy darab, mely önmagában is megállja a helyét.",
-  "image": "/attached_assets/termekek/K8.jpg",
   "size": "73×50 mm",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, kalapált",
+  "price": 20000,
+  "name": "Arany-réz széles mandzsetta",
+  "featured": false,
   "colors": [
     "Arany",
     "Réz"
   ],
-  "featured": true,
-  "sold": false
+  "technique": "Fűrészelt, kalapált",
+  "sold": true,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "k8",
+  "image": "/attached_assets/termekek/K8.jpg",
+  "description": "Nagyméretű, arany-réz mandzsetta karperec ékszerzománccal.",
+  "category": "karkotok"
 }
