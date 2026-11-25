@@ -1,17 +1,17 @@
 {
-  "id": "f54",
-  "name": "Éjfekete kör fülbevaló korallal",
-  "category": "fulbevalok",
-  "price": 8900,
-  "description": "Kerek korong korall gyönggyel, éjfekete iszapzománccal és korallal.",
   "longDescription": "Kerek korong korall gyönggyel fülbevaló vörösréz alapon, éjfekete iszapzománccal és korallal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F54.jpg",
   "size": "30 mm átmérő",
-  "materialDetail": "Vörösréz, iszapzománc, korall",
-  "technique": "",
+  "price": 7900,
+  "name": "Éjfekete kör fülbevaló korallal",
+  "featured": false,
   "colors": [
     "Éjfekete"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc, korall",
+  "id": "f54",
+  "image": "/attached_assets/termekek/F54.jpg",
+  "description": "Kerek korong korall gyönggyel, éjfekete iszapzománccal és korallal.",
+  "category": "fulbevalok"
 }
