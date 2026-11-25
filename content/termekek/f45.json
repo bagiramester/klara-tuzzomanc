@@ -1,17 +1,17 @@
 {
-  "id": "f45",
-  "name": "Méregzöld szablya fülbevaló",
-  "category": "fulbevalok",
-  "price": 6900,
-  "description": "Ívelt szablya forma, méregzöld iszapzománccal.",
   "longDescription": "Ívelt szablya forma fülbevaló vörösréz alapon, méregzöld iszapzománccal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F45.jpg",
   "size": "50×20 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 5900,
+  "name": "Méregzöld szablya fülbevaló",
+  "featured": false,
   "colors": [
     "Méregzöld"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f45",
+  "image": "/attached_assets/termekek/F45.jpg",
+  "description": "Ívelt szablya forma, méregzöld iszapzománccal.",
+  "category": "fulbevalok"
 }
