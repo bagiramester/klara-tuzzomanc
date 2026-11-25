@@ -1,17 +1,17 @@
 {
-  "id": "f40",
-  "name": "Indigókék lyukas csepp fülbevaló",
-  "category": "fulbevalok",
-  "price": 7900,
-  "description": "Csepp forma kivágott körrel, indigókék iszapzománccal.",
   "longDescription": "Csepp forma kivágott körrel fülbevaló vörösréz alapon, indigókék iszapzománccal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F40.jpg",
   "size": "40×25 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 7900,
+  "name": "Indigókék lyukas csepp fülbevaló",
+  "featured": false,
   "colors": [
     "Indigókék"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": true,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f40",
+  "image": "/attached_assets/termekek/F40.jpg",
+  "description": "Csepp forma kivágott körrel, indigókék iszapzománccal.",
+  "category": "fulbevalok"
 }
