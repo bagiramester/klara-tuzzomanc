@@ -1,18 +1,18 @@
 {
-  "id": "sz2",
-  "name": "Arany-bronz pöttyös szett",
-  "category": "szettek",
-  "price": 21900,
-  "description": "Medál és fülbevaló meleg arany-bronz pöttyös mintával.",
   "longDescription": "Kör formájú, összehangolt tűzzománc szett vörösréz alapon, arany-bronz pöttyös ékszerzománc mintával. Kézzel fűrészelt és kalapált darabok.",
-  "image": "/attached_assets/termekek/Sz2.jpg",
   "size": "50 mm / 29 mm",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, kalapált",
+  "price": 17500,
+  "name": "Arany-bronz pöttyös szett",
+  "featured": false,
   "colors": [
     "Arany",
     "Bronz"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "Fűrészelt, kalapált",
+  "sold": false,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "sz2",
+  "image": "/attached_assets/termekek/Sz2.jpg",
+  "description": "Medál és fülbevaló meleg arany-bronz pöttyös mintával.",
+  "category": "szettek"
 }
