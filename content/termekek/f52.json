@@ -1,19 +1,19 @@
 {
-  "id": "f52",
-  "name": "Korallos fekete kör fülbevaló",
-  "category": "fulbevalok",
-  "price": 10900,
-  "description": "Kör alak kivágott középpel, korall gyönggyel, fekete-réz-piros iszapzománccal és korallal.",
   "longDescription": "Kör alak kivágott középpel, korall gyönggyel fülbevaló vörösréz alapon, fekete-réz-piros iszapzománccal és korallal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F52.jpg",
   "size": "40 mm átmérő",
-  "materialDetail": "Vörösréz, iszapzománc, korall",
-  "technique": "",
+  "price": 8500,
+  "name": "Korallos fekete kör fülbevaló",
+  "featured": false,
   "colors": [
     "Fekete",
     "Réz",
     "Piros"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc, korall",
+  "id": "f52",
+  "image": "/attached_assets/termekek/F52.jpg",
+  "description": "Kör alak kivágott középpel, korall gyönggyel, fekete-réz-piros iszapzománccal és korallal.",
+  "category": "fulbevalok"
 }
