@@ -1,18 +1,18 @@
 {
-  "id": "sz4",
-  "name": "Kék-fehér horizont szett",
-  "category": "szettek",
-  "price": 23900,
-  "description": "Medál és fülbevaló nyugodt kék-fehér horizont mintával.",
   "longDescription": "Kör formájú, összehangolt tűzzománc szett vörösréz alapon, kék és fehér ékszerzománc horizont mintával. Kézzel fűrészelt és kalapált darabok.",
-  "image": "/attached_assets/termekek/Sz4.jpg",
   "size": "50 mm / 29 mm",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, kalapált",
+  "price": 19800,
+  "name": "Kék-fehér horizont szett",
+  "featured": true,
   "colors": [
     "Kék",
     "Fehér"
   ],
-  "featured": true,
-  "sold": false
+  "technique": "Fűrészelt, kalapált",
+  "sold": false,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "sz4",
+  "image": "/attached_assets/termekek/Sz4.jpg",
+  "description": "Medál és fülbevaló nyugodt kék-fehér horizont mintával.",
+  "category": "szettek"
 }
