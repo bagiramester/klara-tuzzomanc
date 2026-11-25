@@ -1,18 +1,18 @@
 {
-  "id": "f46",
-  "name": "Fekete-opálos ívelt levél fülbevaló",
-  "category": "fulbevalok",
-  "price": 6900,
-  "description": "Ívelt levél forma, fekete-opálos iszapzománccal.",
   "longDescription": "Ívelt levél forma fülbevaló vörösréz alapon, fekete-opálos iszapzománccal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F46.jpg",
   "size": "45×15 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 6500,
+  "name": "Fekete-opálos ívelt levél fülbevaló",
+  "featured": false,
   "colors": [
     "Fekete",
     "Opálos"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f46",
+  "image": "/attached_assets/termekek/F46.jpg",
+  "description": "Ívelt levél forma, fekete-opálos iszapzománccal.",
+  "category": "fulbevalok"
 }
