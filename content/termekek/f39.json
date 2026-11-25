@@ -1,18 +1,18 @@
 {
-  "id": "f39",
-  "name": "Rózsaszín-lila lyukas csepp fülbevaló",
-  "category": "fulbevalok",
-  "price": 7900,
-  "description": "Csepp forma kivágott körrel, rózsaszín-lila iszapzománccal.",
   "longDescription": "Csepp forma kivágott körrel fülbevaló vörösréz alapon, rózsaszín-lila iszapzománccal égetve. Antiallergén akasztóval. Minden darab egyedi mintázatú.",
-  "image": "/attached_assets/termekek/F39.jpg",
   "size": "40×25 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 6900,
+  "name": "Rózsaszín-lila lyukas csepp fülbevaló",
+  "featured": false,
   "colors": [
     "Rózsaszín",
     "Lila"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f39",
+  "image": "/attached_assets/termekek/F39.jpg",
+  "description": "Csepp forma kivágott körrel, rózsaszín-lila iszapzománccal.",
+  "category": "fulbevalok"
 }
