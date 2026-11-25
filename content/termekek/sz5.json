@@ -1,18 +1,18 @@
 {
-  "id": "sz5",
-  "name": "Bézs-bordó horizont szett",
-  "category": "szettek",
-  "price": 20900,
-  "description": "Összehangolt medál és fülbevaló bézs-bordó horizont mintával.",
   "longDescription": "Kör formájú, összehangolt tűzzománc szett vörösréz alapon, bézs és bordó ékszerzománc horizont mintával. Kézzel fűrészelt és kalapált darabok.",
-  "image": "/attached_assets/termekek/Sz5.jpg",
   "size": "29 mm",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, kalapált",
+  "price": 15500,
+  "name": "Bézs-bordó horizont szett",
+  "featured": false,
   "colors": [
     "Bézs",
     "Bordó"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "Fűrészelt, kalapált",
+  "sold": false,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "sz5",
+  "image": "/attached_assets/termekek/Sz5.jpg",
+  "description": "Összehangolt medál és fülbevaló bézs-bordó horizont mintával.",
+  "category": "szettek"
 }
