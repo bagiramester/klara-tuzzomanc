@@ -1,17 +1,17 @@
 {
-  "id": "f33",
-  "name": "Menta hosszúkás fülbevaló",
-  "category": "fulbevalok",
-  "price": 6700,
-  "description": "Hosszúkás fülbevaló friss mentazöld iszapzománccal.",
   "longDescription": "Hosszúkás formájú fülbevaló vörösréz alapon, mentazöld iszapzománccal. Antiallergén akasztóval.",
-  "image": "/attached_assets/termekek/F33.jpg",
   "size": "60×12 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 5900,
+  "name": "Menta hosszúkás fülbevaló",
+  "featured": false,
   "colors": [
     "Mentazöld"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f33",
+  "image": "/attached_assets/termekek/F33.jpg",
+  "description": "Hosszúkás fülbevaló friss mentazöld iszapzománccal.",
+  "category": "fulbevalok"
 }
