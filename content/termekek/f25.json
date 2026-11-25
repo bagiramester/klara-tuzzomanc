@@ -1,18 +1,18 @@
 {
-  "id": "f25",
-  "name": "Zöld-bronz levél fülbevaló",
-  "category": "fulbevalok",
-  "price": 5900,
-  "description": "Levél forma olívazöld és bronz iszapzománc árnyalatokkal.",
   "longDescription": "Levél formájú fülbevaló vörösréz alapon, olívazöld és bronz iszapzománccal. Antiallergén akasztóval.",
-  "image": "/attached_assets/termekek/F25.jpg",
   "size": "40×15 mm",
-  "materialDetail": "Vörösréz, iszapzománc",
-  "technique": "",
+  "price": 5500,
+  "name": "Zöld-bronz levél fülbevaló",
+  "featured": false,
   "colors": [
     "Olívazöld",
     "Bronz"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "",
+  "sold": false,
+  "materialDetail": "Vörösréz, iszapzománc",
+  "id": "f25",
+  "image": "/attached_assets/termekek/F25.jpg",
+  "description": "Levél forma olívazöld és bronz iszapzománc árnyalatokkal.",
+  "category": "fulbevalok"
 }
