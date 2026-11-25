@@ -1,17 +1,17 @@
 {
-  "id": "sz3",
-  "name": "Zöld levél szett",
-  "category": "szettek",
-  "price": 22900,
-  "description": "Kör medál és levélformájú fülbevaló friss zöld árnyalatokban.",
   "longDescription": "Összehangolt tűzzománc szett vörösréz alapon, zöld ékszerzománccal. Kézzel fűrészelt és kalapált darabok.",
-  "image": "/attached_assets/termekek/Sz3.jpg",
   "size": "50 mm / 50×15 mm",
-  "materialDetail": "Vörösréz, ékszerzománc",
-  "technique": "Fűrészelt, kalapált",
+  "price": 18500,
+  "name": "Zöld levél szett",
+  "featured": false,
   "colors": [
     "Zöld"
   ],
-  "featured": false,
-  "sold": false
+  "technique": "Fűrészelt, kalapált",
+  "sold": false,
+  "materialDetail": "Vörösréz, ékszerzománc",
+  "id": "sz3",
+  "image": "/attached_assets/termekek/Sz3.jpg",
+  "description": "Kör medál és levélformájú fülbevaló friss zöld árnyalatokban.",
+  "category": "szettek"
 }
